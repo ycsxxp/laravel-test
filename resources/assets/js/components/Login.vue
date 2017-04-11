@@ -1,19 +1,32 @@
+<!-- 引入自定义样式 -->
+<style scoped>
+  .formDiv {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    top: 30%;
+    position: absolute;
+  }
+
+</style>
 <template>
-    <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
-        <Form-item prop="user">
-            <Input type="text" v-model="formInline.user" placeholder="Username">
-                <Icon type="ios-person-outline" slot="prepend"></Icon>
-            </Input>
-        </Form-item>
-        <Form-item prop="password">
-            <Input type="password" v-model="formInline.password" placeholder="Password">
-                <Icon type="ios-locked-outline" slot="prepend"></Icon>
-            </Input>
-        </Form-item>
-        <Form-item>
-            <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
-        </Form-item>
-    </Form>
+    <div class="formDiv">
+        <Form ref="formInline" :model="formInline" :rules="ruleInline" >
+            <Form-item prop="user">
+                <Input type="text" v-model="formInline.user" placeholder="Username">
+                    <Icon type="ios-person-outline" slot="prepend"></Icon>
+                </Input>
+            </Form-item>
+            <Form-item prop="password">
+                <Input type="password" v-model="formInline.password" placeholder="Password">
+                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                </Input>
+            </Form-item>
+            <Form-item>
+                <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+            </Form-item>
+        </Form>
+    </div>
 </template>
 <script>
     export default {

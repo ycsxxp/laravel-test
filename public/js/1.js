@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 32:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74,32 +74,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 36:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-exports.push([module.i, "\n.formDiv[data-v-1b4e0900] {\n  margin: 0 auto;\n  text-align: center;\n  width: 100%;\n  top: 30%;\n  position: absolute;\n}\n.loginForm[data-v-1b4e0900] {\n  width: 300px;\n  float: right;\n  margin-right: 150px;\n}\n.loginBtn[data-v-1b4e0900] {\n  width: 100%;\n}\n", ""]);
-
-/***/ }),
-
-/***/ 45:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(48)
+__webpack_require__(59)
 
-var Component = __webpack_require__(46)(
+var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(32),
+  __webpack_require__(48),
   /* template */
-  __webpack_require__(47),
+  __webpack_require__(50),
   /* scopeId */
   "data-v-1b4e0900",
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\Login.vue"
+Component.options.__file = "/Users/yangchao/Code/nf-quora/resources/assets/js/components/Login.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -121,7 +113,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 47:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -198,17 +190,25 @@ if (false) {
 
 /***/ }),
 
-/***/ 48:
+/***/ 58:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(41)();
+exports.push([module.i, "\n.formDiv[data-v-1b4e0900] {\n  margin: 0 auto;\n  text-align: center;\n  width: 100%;\n  top: 30%;\n  position: absolute;\n}\n.loginForm[data-v-1b4e0900] {\n  width: 300px;\n  float: right;\n  margin-right: 150px;\n}\n.loginBtn[data-v-1b4e0900] {\n  width: 100%;\n}\n", ""]);
+
+/***/ }),
+
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(36);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("a14ce1ce", content, false);
+var update = __webpack_require__(60)("a14ce1ce", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -225,7 +225,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 49:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -244,7 +244,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(50)
+var listToStyles = __webpack_require__(61)
 
 /*
 type StyleObject = {
@@ -447,7 +447,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 61:
 /***/ (function(module, exports) {
 
 /**

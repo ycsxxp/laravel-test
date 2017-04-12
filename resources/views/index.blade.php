@@ -13,9 +13,12 @@
     </script>
 </head>
 <style scoped>
+	html, body, #app {
+		width: 100%;
+		height: 100%;
+	}
 	body {
 		background: url("images/background.jpg") no-repeat center 0;
-		height: 100%;
 		background-size: auto;
 		font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 	}

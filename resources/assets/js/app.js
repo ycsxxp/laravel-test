@@ -1,5 +1,7 @@
+import App from './App.vue'
 import iView from 'iview'; // 引入iView
 import 'iview/dist/styles/iview.css';    // 使用 CSS
+import router from './router'
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -17,8 +19,11 @@ Vue.use(iView);
  */
 
 // Vue.component('example', require('./components/Example.vue'));
-Vue.component('login', require('./components/Login.vue'));
+// Vue.component('login', require('./components/Login.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    template: '<App />',
+    components: { App }
 });

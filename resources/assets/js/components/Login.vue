@@ -7,23 +7,30 @@
     top: 30%;
     position: absolute;
   }
-
+  .loginForm {
+    width: 300px;
+    float: right;
+    margin-right: 150px;
+  }
+  .loginBtn {
+    width: 100%;
+  }
 </style>
 <template>
     <div class="formDiv">
-        <Form ref="formInline" :model="formInline" :rules="ruleInline" >
+        <Form class="loginForm" ref="formInline" :model="formInline" :rules="ruleInline" >
             <Form-item prop="user">
-                <Input type="text" v-model="formInline.user" placeholder="Username">
+                <Input type="text" v-model="formInline.user" placeholder="请输入用户名">
                     <Icon type="ios-person-outline" slot="prepend"></Icon>
                 </Input>
             </Form-item>
             <Form-item prop="password">
-                <Input type="password" v-model="formInline.password" placeholder="Password">
+                <Input type="password" v-model="formInline.password" placeholder="请输入密码">
                     <Icon type="ios-locked-outline" slot="prepend"></Icon>
                 </Input>
             </Form-item>
             <Form-item>
-                <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+                <Button class="loginBtn" type="primary" @click="handleSubmit('formInline')">登录</Button>
             </Form-item>
         </Form>
     </div>

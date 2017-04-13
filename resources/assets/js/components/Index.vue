@@ -61,20 +61,32 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
         <Row type="flex" class-name="rowDiv" justify="center">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu active-name="1" theme="dark" width="auto">
+                <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']" accordion>
                     <div class="layout-logo-left"></div>
-                    <Menu-item name="1">
-                        <Icon type="ios-navigate" :size="iconSize"></Icon>
-                        <span class="layout-text">选项 1</span>
-                    </Menu-item>
-                    <Menu-item name="2">
-                        <Icon type="ios-keypad" :size="iconSize"></Icon>
-                        <span class="layout-text">选项 2</span>
-                    </Menu-item>
-                    <Menu-item name="3">
-                        <Icon type="ios-analytics" :size="iconSize"></Icon>
-                        <span class="layout-text">选项 3</span>
-                    </Menu-item>
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-paper"></Icon>
+                            内容管理
+                        </template>
+                        <Menu-item name="1-1">文章管理</Menu-item>
+                        <Menu-item name="1-2">评论管理</Menu-item>
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-people"></Icon>
+                            用户管理
+                        </template>
+                        <Menu-item name="2-1">用户列表</Menu-item>
+                        <Menu-item name="2-2">活跃用户</Menu-item>
+                    </Submenu>
+                    <Submenu name="3">
+                        <template slot="title">
+                            <Icon type="ios-analytics"></Icon>
+                            导航三
+                        </template>
+                        <Menu-item name="3-1">选项 1</Menu-item>
+                        <Menu-item name="3-2">选项 2</Menu-item>
+                    </Submenu>
                 </Menu>
             </i-col>
             <i-col :span="spanRight">
@@ -86,7 +98,7 @@
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="#">首页</Breadcrumb-item>
-                        <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
+                        <Breadcrumb-item href="#">{{spanLeft}}</Breadcrumb-item>
                         <Breadcrumb-item>某应用</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
@@ -103,6 +115,7 @@
 <script>
     export default {
         data () {
+            console.log(window.location)
             return {
                 spanLeft: 4,
                 spanRight: 20

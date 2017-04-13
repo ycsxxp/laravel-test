@@ -1,99 +1,25 @@
 webpackJsonp([1],{
 
-/***/ 48:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            formInline: {
-                user: '',
-                password: ''
-            },
-            ruleInline: {
-                user: [{ required: true, message: '请填写用户名', trigger: 'blur' }],
-                password: [{ required: true, message: '请填写密码', trigger: 'blur' }, { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }]
-            }
-        };
-    },
-
-    methods: {
-        handleSubmit: function handleSubmit(name) {
-            var _this = this;
-
-            this.$refs[name].validate(function (valid) {
-                if (valid) {
-                    _this.$Message.success('提交成功!');
-                } else {
-                    _this.$Message.error('表单验证失败!');
-                }
-            });
-        }
-    }
-});
-
-/***/ }),
-
-/***/ 49:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(59)
+__webpack_require__(65)
 
-var Component = __webpack_require__(35)(
+var Component = __webpack_require__(4)(
   /* script */
-  __webpack_require__(48),
+  __webpack_require__(58),
   /* template */
-  __webpack_require__(50),
+  __webpack_require__(63),
   /* scopeId */
-  "data-v-1b4e0900",
+  "data-v-51a665e9",
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/yangchao/Code/nf-quora/resources/assets/js/components/Login.vue"
+Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\Index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -102,9 +28,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1b4e0900", Component.options)
+    hotAPI.createRecord("data-v-51a665e9", Component.options)
   } else {
-    hotAPI.reload("data-v-1b4e0900", Component.options)
+    hotAPI.reload("data-v-51a665e9", Component.options)
   }
 })()}
 
@@ -113,119 +39,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 50:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "formDiv"
-  }, [_c('Form', {
-    ref: "formInline",
-    staticClass: "loginForm",
-    attrs: {
-      "model": _vm.formInline,
-      "rules": _vm.ruleInline
-    }
-  }, [_c('Form-item', {
-    attrs: {
-      "prop": "user"
-    }
-  }, [_c('Input', {
-    attrs: {
-      "type": "text",
-      "placeholder": "请输入用户名"
-    },
-    model: {
-      value: (_vm.formInline.user),
-      callback: function($$v) {
-        _vm.formInline.user = $$v
-      },
-      expression: "formInline.user"
-    }
-  }, [_c('Icon', {
-    attrs: {
-      "type": "ios-person-outline"
-    },
-    slot: "prepend"
-  })], 1)], 1), _vm._v(" "), _c('Form-item', {
-    attrs: {
-      "prop": "password"
-    }
-  }, [_c('Input', {
-    attrs: {
-      "type": "password",
-      "placeholder": "请输入密码"
-    },
-    model: {
-      value: (_vm.formInline.password),
-      callback: function($$v) {
-        _vm.formInline.password = $$v
-      },
-      expression: "formInline.password"
-    }
-  }, [_c('Icon', {
-    attrs: {
-      "type": "ios-locked-outline"
-    },
-    slot: "prepend"
-  })], 1)], 1), _vm._v(" "), _c('Form-item', [_c('Button', {
-    staticClass: "loginBtn",
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": function($event) {
-        _vm.handleSubmit('formInline')
-      }
-    }
-  }, [_vm._v("登录")])], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1b4e0900", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 58:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(41)();
-exports.push([module.i, "\n.formDiv[data-v-1b4e0900] {\n  margin: 0 auto;\n  text-align: center;\n  width: 100%;\n  top: 30%;\n  position: absolute;\n}\n.loginForm[data-v-1b4e0900] {\n  width: 300px;\n  float: right;\n  margin-right: 150px;\n}\n.loginBtn[data-v-1b4e0900] {\n  width: 100%;\n}\n", ""]);
-
-/***/ }),
-
-/***/ 59:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(58);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(60)("a14ce1ce", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-1b4e0900\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-1b4e0900\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 60:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -244,7 +58,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(61)
+var listToStyles = __webpack_require__(57)
 
 /*
 type StyleObject = {
@@ -447,7 +261,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 61:
+/***/ 57:
 /***/ (function(module, exports) {
 
 /**
@@ -478,6 +292,320 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+
+/***/ 58:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        console.log(window.location);
+        return {
+            spanLeft: 4,
+            spanRight: 20
+        };
+    },
+
+    computed: {
+        iconSize: function iconSize() {
+            return this.spanLeft === 4 ? 14 : 24;
+        }
+    },
+    methods: {
+        toggleClick: function toggleClick() {
+            if (this.spanLeft === 4) {
+                this.spanLeft = 2;
+                this.spanRight = 22;
+            } else {
+                this.spanLeft = 4;
+                this.spanRight = 20;
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(15)();
+exports.push([module.i, "\n.layout[data-v-51a665e9]{\n    border: 1px solid #d7dde4;\n    background: #f5f7f9;\n    position: relative;\n    border-radius: 4px;\n    overflow: hidden;\n    height: 100%;\n}\n.layout-breadcrumb[data-v-51a665e9]{\n    padding: 10px 15px 0;\n}\n.layout-content[data-v-51a665e9]{\n    height: 100%;\n    min-height: 200px;\n    margin: 15px;\n    overflow: hidden;\n    background: #fff;\n    border-radius: 4px;\n}\n.layout-content-main[data-v-51a665e9]{\n    padding: 10px;\n}\n.layout-copy[data-v-51a665e9]{\n    bottom: 0;\n    position: absolute;\n    width: 100%;\n    text-align: center;\n    padding: 10px 0 20px;\n    color: #9ea7b4;\n}\n.layout-menu-left[data-v-51a665e9]{\n    background: #464c5b;\n}\n.layout-header[data-v-51a665e9]{\n    height: 60px;\n    background: #fff;\n    box-shadow: 0 1px 1px rgba(0,0,0,.1);\n}\n.layout-logo-left[data-v-51a665e9]{\n    width: 90%;\n    height: 30px;\n    background: #5b6270;\n    border-radius: 3px;\n    margin: 15px auto;\n}\n.layout-ceiling-main a[data-v-51a665e9]{\n    color: #9ba7b5;\n}\n.layout-hide-text .layout-text[data-v-51a665e9]{\n    display: none;\n}\n.ivu-col[data-v-51a665e9]{\n    -webkit-transition: width .2s ease-in-out;\n    transition: width .2s ease-in-out;\n}\n.rowDiv[data-v-51a665e9] {\n    height: 100%;\n}\n", ""]);
+
+/***/ }),
+
+/***/ 63:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "layout",
+    class: {
+      'layout-hide-text': _vm.spanLeft < 4
+    }
+  }, [_c('Row', {
+    attrs: {
+      "type": "flex",
+      "class-name": "rowDiv",
+      "justify": "center"
+    }
+  }, [_c('i-col', {
+    staticClass: "layout-menu-left",
+    attrs: {
+      "span": _vm.spanLeft
+    }
+  }, [_c('Menu', {
+    attrs: {
+      "active-name": "1-2",
+      "theme": "dark",
+      "width": "auto",
+      "open-names": ['1'],
+      "accordion": ""
+    }
+  }, [_c('div', {
+    staticClass: "layout-logo-left"
+  }), _vm._v(" "), _c('Submenu', {
+    attrs: {
+      "name": "1"
+    }
+  }, [_c('template', {
+    slot: "title"
+  }, [_c('Icon', {
+    attrs: {
+      "type": "ios-paper"
+    }
+  }), _vm._v("\n                        内容管理\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "1-1"
+    }
+  }, [_vm._v("文章管理")]), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "1-2"
+    }
+  }, [_vm._v("评论管理")])], 2), _vm._v(" "), _c('Submenu', {
+    attrs: {
+      "name": "2"
+    }
+  }, [_c('template', {
+    slot: "title"
+  }, [_c('Icon', {
+    attrs: {
+      "type": "ios-people"
+    }
+  }), _vm._v("\n                        用户管理\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "2-1"
+    }
+  }, [_vm._v("用户列表")]), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "2-2"
+    }
+  }, [_vm._v("活跃用户")])], 2), _vm._v(" "), _c('Submenu', {
+    attrs: {
+      "name": "3"
+    }
+  }, [_c('template', {
+    slot: "title"
+  }, [_c('Icon', {
+    attrs: {
+      "type": "ios-analytics"
+    }
+  }), _vm._v("\n                        导航三\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "3-1"
+    }
+  }, [_vm._v("选项 1")]), _vm._v(" "), _c('Menu-item', {
+    attrs: {
+      "name": "3-2"
+    }
+  }, [_vm._v("选项 2")])], 2)], 1)], 1), _vm._v(" "), _c('i-col', {
+    attrs: {
+      "span": _vm.spanRight
+    }
+  }, [_c('div', {
+    staticClass: "layout-header"
+  }, [_c('i-button', {
+    attrs: {
+      "type": "text"
+    },
+    on: {
+      "click": _vm.toggleClick
+    }
+  }, [_c('Icon', {
+    attrs: {
+      "type": "navicon",
+      "size": "32"
+    }
+  })], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "layout-breadcrumb"
+  }, [_c('Breadcrumb', [_c('Breadcrumb-item', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("首页")]), _vm._v(" "), _c('Breadcrumb-item', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v(_vm._s(_vm.spanLeft))]), _vm._v(" "), _c('Breadcrumb-item', [_vm._v("某应用")])], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "layout-content"
+  }, [_c('div', {
+    staticClass: "layout-content-main"
+  }, [_vm._v("内容区域")])]), _vm._v(" "), _c('div', {
+    staticClass: "layout-copy"
+  }, [_vm._v("\n                2011-2016 © TalkingData\n            ")])])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-51a665e9", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(56)("e258a512", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-51a665e9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-51a665e9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 

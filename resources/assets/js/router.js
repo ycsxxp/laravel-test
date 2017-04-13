@@ -6,7 +6,7 @@ import Example from './components/Example.vue'
 Vue.use(VueRouter)
 
 export default new VueRouter({
-	mode: 'history',
+	// mode: 'history',
 	routes: [
 		{
 			path: '/',
@@ -18,11 +18,17 @@ export default new VueRouter({
 		},
 		{
 			path: '/index',
-			component: resolve => require(['./components/Index.vue'], resolve)
-		},
-		{
-			path: '/about',
-			component: resolve => require(['./components/Example.vue'], resolve)
+			component: resolve => require(['./components/Index.vue'], resolve),
+			children: [
+				{
+					path: '/article',
+					component: resolve => require(['./components/Example.vue'], resolve)
+				},
+				{
+					path: '/test',
+					component: resolve => require(['./components/Test.vue'], resolve)
+				}
+			]
 		}
 	]
 })

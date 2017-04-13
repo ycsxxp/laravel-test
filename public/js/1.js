@@ -17,7 +17,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\Index.vue"
+Component.options.__file = "/Users/yangchao/Code/nf-quora/resources/assets/js/components/Index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -414,19 +414,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        console.log(window.location);
         return {
             spanLeft: 4,
-            spanRight: 20
+            spanRight: 20,
+            page: ['article']
         };
     },
 
     computed: {
         iconSize: function iconSize() {
             return this.spanLeft === 4 ? 14 : 24;
+        },
+        setActive: function setActive() {
+            return this.$route.path.replace('/', '');
         }
     },
     methods: {
@@ -438,6 +445,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.spanLeft = 4;
                 this.spanRight = 20;
             }
+        },
+        routeTo: function routeTo(e) {
+            this.$router.push(e);
         }
     }
 });
@@ -474,11 +484,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('Menu', {
     attrs: {
-      "active-name": "1-2",
+      "active-name": _vm.setActive,
       "theme": "dark",
       "width": "auto",
       "open-names": ['1'],
       "accordion": ""
+    },
+    on: {
+      "on-select": _vm.routeTo
     }
   }, [_c('div', {
     staticClass: "layout-logo-left"
@@ -494,11 +507,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v("\n                        内容管理\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
     attrs: {
-      "name": "1-1"
+      "name": "article"
     }
   }, [_vm._v("文章管理")]), _vm._v(" "), _c('Menu-item', {
     attrs: {
-      "name": "1-2"
+      "name": "test"
     }
   }, [_vm._v("评论管理")])], 2), _vm._v(" "), _c('Submenu', {
     attrs: {
@@ -568,7 +581,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "layout-content"
   }, [_c('div', {
     staticClass: "layout-content-main"
-  }, [_vm._v("内容区域")])]), _vm._v(" "), _c('div', {
+  }, [_c('transition', {
+    attrs: {
+      "mode": "out-in"
+    }
+  }, [_c('router-view')], 1)], 1)]), _vm._v(" "), _c('div', {
     staticClass: "layout-copy"
   }, [_vm._v("\n                2011-2016 © TalkingData\n            ")])])], 1)], 1)
 },staticRenderFns: []}

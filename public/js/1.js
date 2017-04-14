@@ -5,19 +5,19 @@ webpackJsonp([1],{
 
 
 /* styles */
-__webpack_require__(65)
+__webpack_require__(68)
 
 var Component = __webpack_require__(4)(
   /* script */
-  __webpack_require__(58),
+  __webpack_require__(59),
   /* template */
-  __webpack_require__(63),
+  __webpack_require__(66),
   /* scopeId */
   "data-v-51a665e9",
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/yangchao/Code/nf-quora/resources/assets/js/components/Index.vue"
+Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\Index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -39,7 +39,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -58,7 +58,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(57)
+var listToStyles = __webpack_require__(58)
 
 /*
 type StyleObject = {
@@ -261,7 +261,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports) {
 
 /**
@@ -295,7 +295,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -423,17 +423,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             spanLeft: 4,
-            spanRight: 20,
-            page: ['article']
+            spanRight: 20
         };
     },
 
     computed: {
         iconSize: function iconSize() {
             return this.spanLeft === 4 ? 14 : 24;
-        },
-        setActive: function setActive() {
-            return this.$route.path.replace('/', '');
         }
     },
     methods: {
@@ -454,7 +450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 61:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(15)();
@@ -462,7 +458,7 @@ exports.push([module.i, "\n.layout[data-v-51a665e9]{\n    border: 1px solid #d7d
 
 /***/ }),
 
-/***/ 63:
+/***/ 66:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -484,7 +480,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('Menu', {
     attrs: {
-      "active-name": _vm.setActive,
       "theme": "dark",
       "width": "auto",
       "open-names": ['1'],
@@ -599,17 +594,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 65:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(56)("e258a512", content, false);
+var update = __webpack_require__(57)("e258a512", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

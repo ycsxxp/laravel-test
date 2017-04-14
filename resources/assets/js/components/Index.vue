@@ -61,7 +61,7 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
         <Row type="flex" class-name="rowDiv" justify="center">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu :active-name="setActive" theme="dark" width="auto" :open-names="['1']" v-on:on-select="routeTo" accordion>
+                <Menu theme="dark" width="auto" :open-names="['1']" v-on:on-select="routeTo" accordion>
                     <div class="layout-logo-left"></div>
                     <Submenu name="1">
                         <template slot="title">
@@ -121,16 +121,12 @@
         data () {
             return {
                 spanLeft: 4,
-                spanRight: 20,
-                page: ['article']
+                spanRight: 20
             }
         },
         computed: {
             iconSize () {
                 return this.spanLeft === 4 ? 14 : 24;
-            },
-            setActive() {
-                return this.$route.path.replace('/','');
             }
         },
         methods: {

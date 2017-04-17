@@ -76,7 +76,7 @@
                             <Icon type="ios-people"></Icon>
                             用户管理
                         </template>
-                        <Menu-item name="2-1">用户列表</Menu-item>
+                        <Menu-item name="user">用户列表</Menu-item>
                         <Menu-item name="2-2">活跃用户</Menu-item>
                     </Submenu>
                     <Submenu name="3">

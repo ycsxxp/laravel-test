@@ -27,6 +27,10 @@ export default new VueRouter({
 				{
 					path: '/test',
 					component: resolve => require(['./components/Test.vue'], resolve)
+				},
+				{
+					path: '/user',
+					component: resolve => require(['./components/User.vue'], resolve)
 				}
 			]
 		}

@@ -56,44 +56,30 @@
     .rowDiv {
         height: 100%;
     }
+    .ivu-icon-ios-arrow-down:before{
+        content: "";
+    }
 </style>
 <template>
     <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
         <Row type="flex" class-name="rowDiv" justify="center">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu theme="dark" width="auto" :open-names="['1']" v-on:on-select="routeTo" accordion>
+                <Menu mode="vertical" theme="dark" width="auto" :open-names="['1']" v-on:on-select="routeTo" accordion>
                     <div class="layout-logo-left"></div>
-                    <Submenu name="1">
+                    <Submenu v-for="menu in menuArr" :name="menu.name" :key="menu.id">
                         <template slot="title">
-                            <Icon type="ios-paper"></Icon>
-                            内容管理
+                            <Icon :type="menu.icon" :size="iconSize"></Icon>
+                            <span class="layout-text">{{menu.title}}</span>
                         </template>
-                        <Menu-item name="article">文章管理</Menu-item>
-                        <Menu-item name="test">评论管理</Menu-item>
-                    </Submenu>
-                    <Submenu name="2">
-                        <template slot="title">
-                            <Icon type="ios-people"></Icon>
-                            用户管理
-                        </template>
-                        <Menu-item name="user">用户列表</Menu-item>
-                        <Menu-item name="2-2">活跃用户</Menu-item>
-                    </Submenu>
-                    <Submenu name="3">
-                        <template slot="title">
-                            <Icon type="ios-analytics"></Icon>
-                            导航三
-                        </template>
-                        <Menu-item name="3-1">选项 1</Menu-item>
-                        <Menu-item name="3-2">选项 2</Menu-item>
+                        <Menu-item v-for="submenu in menu.child" :name="submenu.name" :key="submenu.id">{{submenu.title}}</Menu-item>
                     </Submenu>
                 </Menu>
             </i-col>
             <i-col :span="spanRight">
                 <div class="layout-header">
-                    <i-button type="text" @click="toggleClick">
+                    <!-- <i-button type="text" @click="toggleClick">
                         <Icon type="navicon" size="32"></Icon>
-                    </i-button>
+                    </i-button> -->
                 </div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
@@ -121,7 +107,45 @@
         data () {
             return {
                 spanLeft: 4,
-                spanRight: 20
+                spanRight: 20,
+                menuArr: [
+                    {
+                        id: '1',
+                        name: '1',
+                        title: '内容管理',
+                        icon: 'ios-paper',
+                        child: [
+                            {
+                                id: '1',
+                                name: 'article',
+                                title: '文章管理'
+                            },
+                            {
+                                id: '2',
+                                name: 'test',
+                                title: '评论管理'
+                            }
+                        ]
+                    },
+                    {
+                        id: '2',
+                        name: '2',
+                        title: '用户管理',
+                        icon: 'ios-people',
+                        child: [
+                            {
+                                id: '1',
+                                name: 'user',
+                                title: '用户列表'
+                            },
+                            {
+                                id: '2',
+                                name: 'useractive',
+                                title: '活跃用户'
+                            }
+                        ]
+                    }
+                ]
             }
         },
         computed: {

@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Example from './components/Example.vue'
-
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -22,7 +20,7 @@ export default new VueRouter({
 			children: [
 				{
 					path: '/article',
-					component: resolve => require(['./components/Example.vue'], resolve)
+					component: resolve => require(['./components/Article.vue'], resolve)
 				},
 				{
 					path: '/test',

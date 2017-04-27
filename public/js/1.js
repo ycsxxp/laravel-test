@@ -1,17 +1,17 @@
 webpackJsonp([1],{
 
-/***/ 54:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(68)
+__webpack_require__(71)
 
-var Component = __webpack_require__(4)(
+var Component = __webpack_require__(13)(
   /* script */
   __webpack_require__(59),
   /* template */
-  __webpack_require__(66),
+  __webpack_require__(68),
   /* scopeId */
   "data-v-51a665e9",
   /* cssModules */
@@ -39,7 +39,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 57:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -58,7 +58,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(58)
+var listToStyles = __webpack_require__(57)
 
 /*
 type StyleObject = {
@@ -261,7 +261,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 57:
 /***/ (function(module, exports) {
 
 /**
@@ -404,26 +404,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             spanLeft: 4,
-            spanRight: 20
+            spanRight: 20,
+            menuArr: [{
+                id: '1',
+                name: '1',
+                title: '内容管理',
+                icon: 'ios-paper',
+                child: [{
+                    id: '1',
+                    name: 'article',
+                    title: '文章管理'
+                }, {
+                    id: '2',
+                    name: 'test',
+                    title: '评论管理'
+                }]
+            }, {
+                id: '2',
+                name: '2',
+                title: '用户管理',
+                icon: 'ios-people',
+                child: [{
+                    id: '1',
+                    name: 'user',
+                    title: '用户列表'
+                }, {
+                    id: '2',
+                    name: 'useractive',
+                    title: '活跃用户'
+                }]
+            }]
         };
     },
 
@@ -450,15 +465,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 63:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(15)();
-exports.push([module.i, "\n.layout[data-v-51a665e9]{\n    border: 1px solid #d7dde4;\n    background: #f5f7f9;\n    position: relative;\n    border-radius: 4px;\n    overflow: hidden;\n    height: 100%;\n}\n.layout-breadcrumb[data-v-51a665e9]{\n    padding: 10px 15px 0;\n}\n.layout-content[data-v-51a665e9]{\n    height: 100%;\n    min-height: 200px;\n    margin: 15px;\n    overflow: hidden;\n    background: #fff;\n    border-radius: 4px;\n}\n.layout-content-main[data-v-51a665e9]{\n    padding: 10px;\n}\n.layout-copy[data-v-51a665e9]{\n    bottom: 0;\n    position: absolute;\n    width: 100%;\n    text-align: center;\n    padding: 10px 0 20px;\n    color: #9ea7b4;\n}\n.layout-menu-left[data-v-51a665e9]{\n    background: #464c5b;\n}\n.layout-header[data-v-51a665e9]{\n    height: 60px;\n    background: #fff;\n    box-shadow: 0 1px 1px rgba(0,0,0,.1);\n}\n.layout-logo-left[data-v-51a665e9]{\n    width: 90%;\n    height: 30px;\n    background: #5b6270;\n    border-radius: 3px;\n    margin: 15px auto;\n}\n.layout-ceiling-main a[data-v-51a665e9]{\n    color: #9ba7b5;\n}\n.layout-hide-text .layout-text[data-v-51a665e9]{\n    display: none;\n}\n.ivu-col[data-v-51a665e9]{\n    -webkit-transition: width .2s ease-in-out;\n    transition: width .2s ease-in-out;\n}\n.rowDiv[data-v-51a665e9] {\n    height: 100%;\n}\n", ""]);
+exports = module.exports = __webpack_require__(14)();
+exports.push([module.i, "\n.layout[data-v-51a665e9]{\n    border: 1px solid #d7dde4;\n    background: #f5f7f9;\n    position: relative;\n    border-radius: 4px;\n    overflow: hidden;\n    height: 100%;\n}\n.layout-breadcrumb[data-v-51a665e9]{\n    padding: 10px 15px 0;\n}\n.layout-content[data-v-51a665e9]{\n    height: 100%;\n    min-height: 200px;\n    margin: 15px;\n    overflow: hidden;\n    background: #fff;\n    border-radius: 4px;\n}\n.layout-content-main[data-v-51a665e9]{\n    padding: 10px;\n}\n.layout-copy[data-v-51a665e9]{\n    bottom: 0;\n    position: absolute;\n    width: 100%;\n    text-align: center;\n    padding: 10px 0 20px;\n    color: #9ea7b4;\n}\n.layout-menu-left[data-v-51a665e9]{\n    background: #464c5b;\n}\n.layout-header[data-v-51a665e9]{\n    height: 60px;\n    background: #fff;\n    box-shadow: 0 1px 1px rgba(0,0,0,.1);\n}\n.layout-logo-left[data-v-51a665e9]{\n    width: 90%;\n    height: 30px;\n    background: #5b6270;\n    border-radius: 3px;\n    margin: 15px auto;\n}\n.layout-ceiling-main a[data-v-51a665e9]{\n    color: #9ba7b5;\n}\n.layout-hide-text .layout-text[data-v-51a665e9]{\n    display: none;\n}\n.ivu-col[data-v-51a665e9]{\n    -webkit-transition: width .2s ease-in-out;\n    transition: width .2s ease-in-out;\n}\n.rowDiv[data-v-51a665e9] {\n    height: 100%;\n}\n.ivu-icon-ios-arrow-down[data-v-51a665e9]:before{\n    content: \"\";\n}\n", ""]);
 
 /***/ }),
 
-/***/ 66:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -480,6 +495,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('Menu', {
     attrs: {
+      "mode": "vertical",
       "theme": "dark",
       "width": "auto",
       "open-names": ['1'],
@@ -490,79 +506,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "layout-logo-left"
-  }), _vm._v(" "), _c('Submenu', {
-    attrs: {
-      "name": "1"
-    }
-  }, [_c('template', {
-    slot: "title"
-  }, [_c('Icon', {
-    attrs: {
-      "type": "ios-paper"
-    }
-  }), _vm._v("\n                        内容管理\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "article"
-    }
-  }, [_vm._v("文章管理")]), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "test"
-    }
-  }, [_vm._v("评论管理")])], 2), _vm._v(" "), _c('Submenu', {
-    attrs: {
-      "name": "2"
-    }
-  }, [_c('template', {
-    slot: "title"
-  }, [_c('Icon', {
-    attrs: {
-      "type": "ios-people"
-    }
-  }), _vm._v("\n                        用户管理\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "2-1"
-    }
-  }, [_vm._v("用户列表")]), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "2-2"
-    }
-  }, [_vm._v("活跃用户")])], 2), _vm._v(" "), _c('Submenu', {
-    attrs: {
-      "name": "3"
-    }
-  }, [_c('template', {
-    slot: "title"
-  }, [_c('Icon', {
-    attrs: {
-      "type": "ios-analytics"
-    }
-  }), _vm._v("\n                        导航三\n                    ")], 1), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "3-1"
-    }
-  }, [_vm._v("选项 1")]), _vm._v(" "), _c('Menu-item', {
-    attrs: {
-      "name": "3-2"
-    }
-  }, [_vm._v("选项 2")])], 2)], 1)], 1), _vm._v(" "), _c('i-col', {
+  }), _vm._v(" "), _vm._l((_vm.menuArr), function(menu) {
+    return _c('Submenu', {
+      key: menu.id,
+      attrs: {
+        "name": menu.name
+      }
+    }, [_c('template', {
+      slot: "title"
+    }, [_c('Icon', {
+      attrs: {
+        "type": menu.icon,
+        "size": _vm.iconSize
+      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "layout-text"
+    }, [_vm._v(_vm._s(menu.title))])], 1), _vm._v(" "), _vm._l((menu.child), function(submenu) {
+      return _c('Menu-item', {
+        key: submenu.id,
+        attrs: {
+          "name": submenu.name
+        }
+      }, [_vm._v(_vm._s(submenu.title))])
+    })], 2)
+  })], 2)], 1), _vm._v(" "), _c('i-col', {
     attrs: {
       "span": _vm.spanRight
     }
   }, [_c('div', {
     staticClass: "layout-header"
-  }, [_c('i-button', {
-    attrs: {
-      "type": "text"
-    },
-    on: {
-      "click": _vm.toggleClick
-    }
-  }, [_c('Icon', {
-    attrs: {
-      "type": "navicon",
-      "size": "32"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('div', {
     staticClass: "layout-breadcrumb"
   }, [_c('Breadcrumb', [_c('Breadcrumb-item', {
     attrs: {
@@ -594,17 +567,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 68:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(57)("e258a512", content, false);
+var update = __webpack_require__(56)("e258a512", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

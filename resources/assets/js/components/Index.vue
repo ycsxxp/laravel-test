@@ -36,6 +36,7 @@
         height: 60px;
         background: #fff;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
+        padding-right: 50px;
     }
     .layout-logo-left{
         width: 90%;
@@ -59,6 +60,13 @@
     .ivu-icon-ios-arrow-down:before{
         content: "";
     }
+    .userIconDrop {
+        float: right;
+    }
+    .userIcon {
+        margin-top: 9px;
+        height: 41px;
+    }
 </style>
 <template>
     <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
@@ -80,6 +88,15 @@
                     <!-- <i-button type="text" @click="toggleClick">
                         <Icon type="navicon" size="32"></Icon>
                     </i-button> -->
+                    <Dropdown class="userIconDrop" trigger="hover" @on-click="userTodo">
+                        <Button class="userIcon" type="info" shape="circle">
+                            <Icon type="person" ></Icon>
+                        </Button>
+                        <Dropdown-menu slot="list">
+                            <Dropdown-item name='logout'>退出</Dropdown-item>
+                        </Dropdown-menu>
+                    </Dropdown>
+                    
                 </div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
@@ -163,8 +180,14 @@
                     this.spanRight = 20;
                 }
             },
+            userTodo(name) {
+                if(name='logout') this.logout();
+            },
             routeTo(e) {
                 this.$router.push(e)
+            },
+            logout() {
+                console.log("b");
             }
         }
     }

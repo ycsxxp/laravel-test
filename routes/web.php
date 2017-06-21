@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Route::get('/login', function () {
-//     return view('index');
-// });
+Route::post('/login', 'LoginController@ceshi');
 
 // Route::get('/index', function () {
 //     return view('welcome');

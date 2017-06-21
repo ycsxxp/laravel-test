@@ -1,25 +1,25 @@
 webpackJsonp([1],{
 
-/***/ 52:
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(71)
+__webpack_require__(78)
 
-var Component = __webpack_require__(13)(
+var Component = __webpack_require__(12)(
   /* script */
-  __webpack_require__(59),
+  __webpack_require__(63),
   /* template */
-  __webpack_require__(68),
+  __webpack_require__(73),
   /* scopeId */
-  "data-v-51a665e9",
+  null,
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\Index.vue"
+Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\User\\Add.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Add.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -28,9 +28,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-51a665e9", Component.options)
+    hotAPI.createRecord("data-v-bcc35f14", Component.options)
   } else {
-    hotAPI.reload("data-v-51a665e9", Component.options)
+    hotAPI.reload("data-v-bcc35f14", Component.options)
   }
 })()}
 
@@ -39,7 +39,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -58,7 +58,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(57)
+var listToStyles = __webpack_require__(58)
 
 /*
 type StyleObject = {
@@ -261,7 +261,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports) {
 
 /**
@@ -295,7 +295,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -329,308 +329,174 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            spanLeft: 4,
-            spanRight: 20,
-            menuArr: [{
-                id: '1',
-                name: '1',
-                title: '内容管理',
-                icon: 'ios-paper',
-                child: [{
-                    id: '1',
-                    name: 'article',
-                    title: '文章管理'
-                }, {
-                    id: '2',
-                    name: 'test',
-                    title: '评论管理'
-                }]
-            }, {
-                id: '2',
-                name: '2',
-                title: '用户管理',
-                icon: 'ios-people',
-                child: [{
-                    id: '1',
-                    name: 'user',
-                    title: '用户列表'
-                }, {
-                    id: '2',
-                    name: 'useractive',
-                    title: '活跃用户'
-                }]
-            }]
-        };
-    },
+	data: function data() {
+		return {
+			userInfo: {
+				username: '',
+				userage: 1
+			},
+			userValidate: {
+				username: [{ required: true, message: '姓名不能为空', trigger: 'blur' }],
+				usercity: [{ required: true, message: '请选择城市', trigger: 'change' }]
+			}
+		};
+	},
 
-    computed: {
-        iconSize: function iconSize() {
-            return this.spanLeft === 4 ? 14 : 24;
-        }
-    },
-    methods: {
-        toggleClick: function toggleClick() {
-            if (this.spanLeft === 4) {
-                this.spanLeft = 2;
-                this.spanRight = 22;
-            } else {
-                this.spanLeft = 4;
-                this.spanRight = 20;
-            }
-        },
-        userTodo: function userTodo(name) {
-            if (name = 'logout') this.logout();
-        },
-        routeTo: function routeTo(e) {
-            this.$router.push(e);
-        },
-        logout: function logout() {
-            console.log("b");
-        }
-    }
+	methods: {
+		handleSubmit: function handleSubmit(name) {
+			var _this = this;
+
+			this.$refs[name].validate(function (valid) {
+				if (valid) {
+					_this.$Message.success('提交成功!');
+				} else {
+					_this.$Message.error('表单验证失败!');
+				}
+			});
+		},
+		handleReset: function handleReset(name) {
+			this.$refs[name].resetFields();
+		}
+	}
 });
-
-/***/ }),
-
-/***/ 64:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n.layout[data-v-51a665e9]{\n    border: 1px solid #d7dde4;\n    background: #f5f7f9;\n    position: relative;\n    border-radius: 4px;\n    overflow: hidden;\n    height: 100%;\n}\n.layout-breadcrumb[data-v-51a665e9]{\n    padding: 10px 15px 0;\n}\n.layout-content[data-v-51a665e9]{\n    height: 100%;\n    min-height: 200px;\n    margin: 15px;\n    overflow: hidden;\n    background: #fff;\n    border-radius: 4px;\n}\n.layout-content-main[data-v-51a665e9]{\n    padding: 10px;\n}\n.layout-copy[data-v-51a665e9]{\n    bottom: 0;\n    position: absolute;\n    width: 100%;\n    text-align: center;\n    padding: 10px 0 20px;\n    color: #9ea7b4;\n}\n.layout-menu-left[data-v-51a665e9]{\n    background: #1c2438;\n}\n.layout-header[data-v-51a665e9]{\n    height: 60px;\n    background: #fff;\n    box-shadow: 0 1px 1px rgba(0,0,0,.1);\n    padding-right: 50px;\n}\n.layout-logo-left[data-v-51a665e9]{\n    width: 90%;\n    height: 30px;\n    background: #5b6270;\n    border-radius: 3px;\n    margin: 15px auto;\n}\n.layout-ceiling-main a[data-v-51a665e9]{\n    color: #9ba7b5;\n}\n.layout-hide-text .layout-text[data-v-51a665e9]{\n    display: none;\n}\n.ivu-col[data-v-51a665e9]{\n    -webkit-transition: width .2s ease-in-out;\n    transition: width .2s ease-in-out;\n}\n.rowDiv[data-v-51a665e9] {\n    height: 100%;\n}\n.ivu-icon-ios-arrow-down[data-v-51a665e9]:before{\n    content: \"\";\n}\n.userIconDrop[data-v-51a665e9] {\n    float: right;\n}\n.userIcon[data-v-51a665e9] {\n    margin-top: 9px;\n    height: 41px;\n}\n", ""]);
 
 /***/ }),
 
 /***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(13)();
+exports.push([module.i, "\n.addUserForm {\n\twidth: 350px;\n\tpadding: 20px 0 20px 0;\n}\n", ""]);
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "layout",
-    class: {
-      'layout-hide-text': _vm.spanLeft < 4
-    }
-  }, [_c('Row', {
+    staticClass: "addUserForm"
+  }, [_c('Form', {
+    ref: "userInfo",
     attrs: {
-      "type": "flex",
-      "class-name": "rowDiv",
-      "justify": "center"
+      "model": _vm.userInfo,
+      "label-width": 80,
+      "rules": _vm.userValidate
     }
-  }, [_c('i-col', {
-    staticClass: "layout-menu-left",
+  }, [_c('Form-item', {
     attrs: {
-      "span": _vm.spanLeft
+      "label": "姓名",
+      "prop": "username"
     }
-  }, [_c('Menu', {
+  }, [_c('Input', {
     attrs: {
-      "mode": "vertical",
-      "theme": "dark",
-      "width": "auto",
-      "open-names": ['1'],
-      "accordion": ""
+      "type": "text",
+      "placeholder": "请输入"
+    },
+    model: {
+      value: (_vm.userInfo.username),
+      callback: function($$v) {
+        _vm.userInfo.username = $$v
+      },
+      expression: "userInfo.username"
+    }
+  })], 1), _vm._v(" "), _c('Form-item', {
+    attrs: {
+      "label": "年龄",
+      "prop": "userage"
+    }
+  }, [_c('Input-number', {
+    attrs: {
+      "max": 1000,
+      "min": 1
+    },
+    model: {
+      value: (_vm.userInfo.userage),
+      callback: function($$v) {
+        _vm.userInfo.userage = $$v
+      },
+      expression: "userInfo.userage"
+    }
+  })], 1), _vm._v(" "), _c('Form-item', {
+    attrs: {
+      "label": "城市",
+      "prop": "usercity"
+    }
+  }, [_c('Select', {
+    attrs: {
+      "placeholder": "请选择所在地"
+    },
+    model: {
+      value: (_vm.userInfo.usercity),
+      callback: function($$v) {
+        _vm.userInfo.usercity = $$v
+      },
+      expression: "userInfo.usercity"
+    }
+  }, [_c('Option', {
+    attrs: {
+      "value": "beijing"
+    }
+  }, [_vm._v("北京市")]), _vm._v(" "), _c('Option', {
+    attrs: {
+      "value": "shanghai"
+    }
+  }, [_vm._v("上海市")]), _vm._v(" "), _c('Option', {
+    attrs: {
+      "value": "shenzhen"
+    }
+  }, [_vm._v("深圳市")])], 1)], 1), _vm._v(" "), _c('Form-item', [_c('Button', {
+    attrs: {
+      "type": "primary"
     },
     on: {
-      "on-select": _vm.routeTo
-    }
-  }, [_c('div', {
-    staticClass: "layout-logo-left"
-  }), _vm._v(" "), _vm._l((_vm.menuArr), function(menu) {
-    return _c('Submenu', {
-      key: menu.id,
-      attrs: {
-        "name": menu.name
+      "click": function($event) {
+        _vm.handleSubmit('userInfo')
       }
-    }, [_c('template', {
-      slot: "title"
-    }, [_c('Icon', {
-      attrs: {
-        "type": menu.icon,
-        "size": _vm.iconSize
-      }
-    }), _vm._v(" "), _c('span', {
-      staticClass: "layout-text"
-    }, [_vm._v(_vm._s(menu.title))])], 1), _vm._v(" "), _vm._l((menu.child), function(submenu) {
-      return _c('Menu-item', {
-        key: submenu.id,
-        attrs: {
-          "name": submenu.name
-        }
-      }, [_vm._v(_vm._s(submenu.title))])
-    })], 2)
-  })], 2)], 1), _vm._v(" "), _c('i-col', {
-    attrs: {
-      "span": _vm.spanRight
     }
-  }, [_c('div', {
-    staticClass: "layout-header"
-  }, [_c('Dropdown', {
-    staticClass: "userIconDrop",
+  }, [_vm._v("提交")]), _vm._v(" "), _c('Button', {
+    staticStyle: {
+      "margin-left": "8px"
+    },
     attrs: {
-      "trigger": "hover"
+      "type": "ghost"
     },
     on: {
-      "on-click": _vm.userTodo
+      "click": function($event) {
+        _vm.handleReset('userInfo')
+      }
     }
-  }, [_c('Button', {
-    staticClass: "userIcon",
-    attrs: {
-      "type": "info",
-      "shape": "circle"
-    }
-  }, [_c('Icon', {
-    attrs: {
-      "type": "person"
-    }
-  })], 1), _vm._v(" "), _c('Dropdown-menu', {
-    slot: "list"
-  }, [_c('Dropdown-item', {
-    attrs: {
-      "name": "logout"
-    }
-  }, [_vm._v("退出")])], 1)], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "layout-breadcrumb"
-  }, [_c('Breadcrumb', [_c('Breadcrumb-item', {
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("首页")]), _vm._v(" "), _c('Breadcrumb-item', {
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v(_vm._s(_vm.spanLeft))]), _vm._v(" "), _c('Breadcrumb-item', [_vm._v("某应用")])], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "layout-content"
-  }, [_c('div', {
-    staticClass: "layout-content-main"
-  }, [_c('transition', {
-    attrs: {
-      "mode": "out-in"
-    }
-  }, [_c('router-view')], 1)], 1)]), _vm._v(" "), _c('div', {
-    staticClass: "layout-copy"
-  }, [_vm._v("\n                2011-2016 © TalkingData\n            ")])])], 1)], 1)
+  }, [_vm._v("重置")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-51a665e9", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-bcc35f14", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 71:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(64);
+var content = __webpack_require__(68);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(56)("e258a512", content, false);
+var update = __webpack_require__(57)("3e7d68a1", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-51a665e9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-51a665e9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-bcc35f14\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Add.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-bcc35f14\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Add.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

@@ -59,6 +59,11 @@
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         this.$Message.success('提交成功!');
+                        this.$http.post('/login',this.formInline).then(response => {
+                            console.log(this.formInline)
+                        }, response => {
+                            console.log("b")
+                        })
                     } else {
                         this.$Message.error('表单验证失败!');
                     }

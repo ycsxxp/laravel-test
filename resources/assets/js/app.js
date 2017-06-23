@@ -1,4 +1,5 @@
 import App from './App.vue'
+import Vuex from 'vuex' // 引入vuex
 import iView from 'iview'; // 引入iView
 import 'iview/dist/styles/iview.css';    // 使用 CSS
 import router from './router'
@@ -10,6 +11,8 @@ import router from './router'
 
 require('./bootstrap');
 
+// 使用vuex
+Vue.use(Vuex);
 // 使用iView
 Vue.use(iView);
 Vue.prototype.$http = axios;

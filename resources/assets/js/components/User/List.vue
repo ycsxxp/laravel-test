@@ -65,10 +65,23 @@
     methods: {
       addUser () {
         this.$router.push({ path: '/user-add' })
+      },
+      getUser () {
+        this.$http.post('/getuser', {_token: window.Laravel.csrfToken}).then(
+          response => {
+            console.log(response);
+            this.userlist = response.data
+          },
+          response => {
+
+          }
+        )
       }
     },
+    beforeMount () {
+      this.getUser()
+    },
 		mounted() {
-        console.log(this.$router)
     }
 	}
 </script>

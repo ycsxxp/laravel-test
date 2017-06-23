@@ -1,17 +1,17 @@
 webpackJsonp([1],{
 
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(78)
+__webpack_require__(79)
 
 var Component = __webpack_require__(12)(
   /* script */
-  __webpack_require__(63),
+  __webpack_require__(64),
   /* template */
-  __webpack_require__(73),
+  __webpack_require__(74),
   /* scopeId */
   null,
   /* cssModules */
@@ -39,7 +39,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -58,7 +58,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(58)
+var listToStyles = __webpack_require__(59)
 
 /*
 type StyleObject = {
@@ -261,7 +261,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports) {
 
 /**
@@ -295,7 +295,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -329,42 +329,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			userInfo: {
-				username: '',
-				userage: 1
-			},
-			userValidate: {
-				username: [{ required: true, message: '姓名不能为空', trigger: 'blur' }],
-				usercity: [{ required: true, message: '请选择城市', trigger: 'change' }]
-			}
-		};
-	},
+  data: function data() {
+    return {
+      userInfo: {
+        name: '',
+        age: 1,
+        address: '',
+        email: '',
+        password: '',
+        _token: window.Laravel.csrfToken
+      },
+      userValidate: {
+        name: [{ required: true, message: '姓名不能为空', trigger: 'blur' }],
+        address: [{ required: true, message: '请选择城市', trigger: 'change' }],
+        email: [{ required: true, message: '邮箱不能为空', trigger: 'blur' }, { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }],
+        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
+      }
+    };
+  },
 
-	methods: {
-		handleSubmit: function handleSubmit(name) {
-			var _this = this;
+  methods: {
+    handleSubmit: function handleSubmit(name) {
+      var _this = this;
 
-			this.$refs[name].validate(function (valid) {
-				if (valid) {
-					_this.$Message.success('提交成功!');
-				} else {
-					_this.$Message.error('表单验证失败!');
-				}
-			});
-		},
-		handleReset: function handleReset(name) {
-			this.$refs[name].resetFields();
-		}
-	}
+      this.$refs[name].validate(function (valid) {
+        if (valid) {
+          _this.$Message.success('提交成功!');
+          _this.$http.post('/adduser', _this.userInfo).then(function (response) {}, function (response) {});
+        } else {
+          _this.$Message.error('表单验证失败!');
+        }
+      });
+    },
+    handleReset: function handleReset(name) {
+      this.$refs[name].resetFields();
+    }
+  }
 });
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(13)();
@@ -372,7 +386,7 @@ exports.push([module.i, "\n.addUserForm {\n\twidth: 350px;\n\tpadding: 20px 0 20
 
 /***/ }),
 
-/***/ 73:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -388,24 +402,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('Form-item', {
     attrs: {
       "label": "姓名",
-      "prop": "username"
+      "prop": "name"
     }
   }, [_c('Input', {
     attrs: {
       "type": "text",
-      "placeholder": "请输入"
+      "placeholder": "请输入姓名"
     },
     model: {
-      value: (_vm.userInfo.username),
+      value: (_vm.userInfo.name),
       callback: function($$v) {
-        _vm.userInfo.username = $$v
+        _vm.userInfo.name = $$v
       },
-      expression: "userInfo.username"
+      expression: "userInfo.name"
     }
   })], 1), _vm._v(" "), _c('Form-item', {
     attrs: {
       "label": "年龄",
-      "prop": "userage"
+      "prop": "age"
     }
   }, [_c('Input-number', {
     attrs: {
@@ -413,27 +427,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "min": 1
     },
     model: {
-      value: (_vm.userInfo.userage),
+      value: (_vm.userInfo.age),
       callback: function($$v) {
-        _vm.userInfo.userage = $$v
+        _vm.userInfo.age = $$v
       },
-      expression: "userInfo.userage"
+      expression: "userInfo.age"
     }
   })], 1), _vm._v(" "), _c('Form-item', {
     attrs: {
-      "label": "城市",
-      "prop": "usercity"
+      "label": "地址",
+      "prop": "address"
     }
   }, [_c('Select', {
     attrs: {
       "placeholder": "请选择所在地"
     },
     model: {
-      value: (_vm.userInfo.usercity),
+      value: (_vm.userInfo.address),
       callback: function($$v) {
-        _vm.userInfo.usercity = $$v
+        _vm.userInfo.address = $$v
       },
-      expression: "userInfo.usercity"
+      expression: "userInfo.address"
     }
   }, [_c('Option', {
     attrs: {
@@ -447,7 +461,40 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "shenzhen"
     }
-  }, [_vm._v("深圳市")])], 1)], 1), _vm._v(" "), _c('Form-item', [_c('Button', {
+  }, [_vm._v("深圳市")])], 1)], 1), _vm._v(" "), _c('Form-item', {
+    attrs: {
+      "label": "邮箱",
+      "prop": "email"
+    }
+  }, [_c('Input', {
+    attrs: {
+      "placeholder": "请输入邮箱"
+    },
+    model: {
+      value: (_vm.userInfo.email),
+      callback: function($$v) {
+        _vm.userInfo.email = $$v
+      },
+      expression: "userInfo.email"
+    }
+  })], 1), _vm._v(" "), _c('Form-item', {
+    attrs: {
+      "label": "密码",
+      "prop": "password"
+    }
+  }, [_c('Input', {
+    attrs: {
+      "type": "password",
+      "placeholder": "请输入密码"
+    },
+    model: {
+      value: (_vm.userInfo.password),
+      callback: function($$v) {
+        _vm.userInfo.password = $$v
+      },
+      expression: "userInfo.password"
+    }
+  })], 1), _vm._v(" "), _c('Form-item', [_c('Button', {
     attrs: {
       "type": "primary"
     },
@@ -480,17 +527,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 78:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(68);
+var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(57)("3e7d68a1", content, false);
+var update = __webpack_require__(58)("3e7d68a1", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

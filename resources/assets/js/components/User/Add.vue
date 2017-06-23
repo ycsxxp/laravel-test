@@ -7,19 +7,26 @@
 <template>
 	<div class="addUserForm">
 		<Form ref="userInfo" :model="userInfo" :label-width="80" :rules="userValidate">
-		  <Form-item label="姓名" prop="username">
-		    <Input type="text" v-model="userInfo.username" placeholder="请输入" />
+		  <Form-item label="姓名" prop="name">
+		    <Input type="text" v-model="userInfo.name" placeholder="请输入姓名" />
 		  </Form-item>
-		  <Form-item label="年龄" prop="userage">
-		    <Input-number :max="1000" :min="1" v-model="userInfo.userage"></Input-number>
+		  <Form-item label="年龄" prop="age">
+		    <Input-number :max="1000" :min="1" v-model="userInfo.age"></Input-number>
 		  </Form-item>
-		  <Form-item label="城市" prop="usercity">
-		    <Select v-model="userInfo.usercity" placeholder="请选择所在地">
-		        <Option value="beijing">北京市</Option>
-		        <Option value="shanghai">上海市</Option>
-		        <Option value="shenzhen">深圳市</Option>
+		  <Form-item label="地址" prop="address">
+		    <Select v-model="userInfo.address" placeholder="请选择所在地">
+	        <Option value="beijing">北京市</Option>
+	        <Option value="shanghai">上海市</Option>
+	        <Option value="shenzhen">深圳市</Option>
 		    </Select>
+        <!-- <Input type="text" v-model="userInfo.address" placeholder="请输入" /> -->
 		  </Form-item>
+      <Form-item label="邮箱" prop="email">
+        <Input v-model="userInfo.email" placeholder="请输入邮箱"></Input>
+      </Form-item>
+      <Form-item label="密码" prop="password">
+        <Input type="password" v-model="userInfo.password" placeholder="请输入密码"></Input>
+      </Form-item>
 		  <Form-item>
 		  	<Button type="primary" @click="handleSubmit('userInfo')">提交</Button>
 		  	<Button type="ghost" @click="handleReset('userInfo')" style="margin-left: 8px">重置</Button>
@@ -32,16 +39,27 @@ export default {
 	data () {
 	  return {
 	    userInfo: {
-	      username: '',
-	      userage: 1
+	      name: '',
+	      age: 1,
+        address: '',
+        email: '',
+        password: '',
+        _token: window.Laravel.csrfToken,
 	    },
 	    userValidate: {
-	      username: [
+	      name: [
 	        { required: true, message: '姓名不能为空', trigger: 'blur' }
 	      ],
-	      usercity: [
+	      address: [
 	        { required: true, message: '请选择城市', trigger: 'change' }
-	      ]
+	      ],
+        email: [
+          { required: true, message: '邮箱不能为空', trigger: 'blur' },
+          { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' }
+        ],
 	    }
 	  }
   },
@@ -50,6 +68,12 @@ export default {
   		this.$refs[name].validate((valid) => {
   			if (valid) {
   				this.$Message.success('提交成功!');
+          this.$http.post('/adduser', this.userInfo).then(
+            response => {
+              
+            },
+            response => {}
+          );
   			} else {
   				this.$Message.error('表单验证失败!');
   			}

@@ -25,8 +25,23 @@ Vue.prototype.$http = axios;
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('login', require('./components/Login.vue'));
 
+const store = new Vuex.Store({
+	state: {
+		loginStatus: false
+	},
+	mutations: {
+		loginSuccess (state) {
+			state.loginStatus = true
+		},
+		logoutSuccess (state) {
+			state.loginStatus = false
+		}
+	}
+})
+
 const app = new Vue({
     el: '#app',
+    store,
     router,
     template: '<App />',
     components: { App }

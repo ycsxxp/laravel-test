@@ -64,6 +64,7 @@ export default {
               // 请求成功
               if(response.data != '') {
                 // 登录成功
+                this.$store.commit('loginSuccess')
                 this.$router.push({ path:'/index'});
               }else {
                 this.$Message.error('登录失败！账号或密码错误');

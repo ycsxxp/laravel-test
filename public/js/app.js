@@ -10586,8 +10586,23 @@ Vue.prototype.$http = axios;
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('login', require('./components/Login.vue'));
 
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: {
+    loginStatus: false
+  },
+  mutations: {
+    loginSuccess: function loginSuccess(state) {
+      state.loginStatus = true;
+    },
+    logoutSuccess: function logoutSuccess(state) {
+      state.loginStatus = false;
+    }
+  }
+});
+
 var app = new Vue({
   el: '#app',
+  store: store,
   router: __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */],
   template: '<App />',
   components: { App: __WEBPACK_IMPORTED_MODULE_0__App_vue___default.a }

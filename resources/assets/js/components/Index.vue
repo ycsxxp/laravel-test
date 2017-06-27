@@ -120,6 +120,11 @@
 </template>
 <script>
 export default {
+  beforeCreate () {
+    if(this.$store.state.loginStatus == false) {
+      this.$router.push({ path: '/login' });
+    }
+  },
   data () {
     return {
       spanLeft: 4,
@@ -188,6 +193,7 @@ export default {
     logout() {
       this.$http.post('/logout', { _token: window.Laravel.csrfToken }).then(
         response => {
+          this.$store.commit('logoutSuccess')
           this.$router.push({ path: '/' });
         },
         response => {

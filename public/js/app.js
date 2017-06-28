@@ -10559,11 +10559,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_iview_dist_styles_iview_css__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_iview_dist_styles_iview_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_iview_dist_styles_iview_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__router__ = __webpack_require__(34);
-
- // 引入vuex
- // 引入iView
- // 使用 CSS
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store__ = __webpack_require__(86);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -10571,6 +10567,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(33);
+
+
+ // 引入vuex
+ // 引入iView
+ // 使用 CSS
+
+
 
 // 使用vuex
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
@@ -10586,23 +10589,21 @@ Vue.prototype.$http = axios;
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('login', require('./components/Login.vue'));
 
-var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: {
-    loginStatus: false
-  },
-  mutations: {
-    loginSuccess: function loginSuccess(state) {
-      state.loginStatus = true;
-    },
-    logoutSuccess: function logoutSuccess(state) {
-      state.loginStatus = false;
-    }
+
+__WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */].beforeEach(function (to, from, next) {
+  if (!__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && to.path != '/login') {
+    // 如果未登录 && 路由不是 /login 则重定向到 /login
+    next('/login');
+  } else if (__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && to.path == '/login') {
+    // 如果已登录 && 路由是 /login 则不跳转
+    next(false);
+  } else {
+    next();
   }
 });
-
 var app = new Vue({
   el: '#app',
-  store: store,
+  store: __WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */],
   router: __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */],
   template: '<App />',
   components: { App: __WEBPACK_IMPORTED_MODULE_0__App_vue___default.a }
@@ -72170,6 +72171,67 @@ module.exports = function(module) {
 __webpack_require__(10);
 module.exports = __webpack_require__(11);
 
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(49);
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+	state: {
+		loginStatus: false
+	},
+	mutations: {
+		loginSuccess: function loginSuccess(state) {
+			state.loginStatus = true;
+		},
+		logoutSuccess: function logoutSuccess(state) {
+			state.loginStatus = false;
+		}
+	}
+}));
 
 /***/ })
 /******/ ]);

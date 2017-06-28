@@ -57,6 +57,10 @@
           {
             title: '地址',
             key: 'address'
+          },
+          {
+            title: '邮箱',
+            key: 'email'
           }
         ],
         userlist: []

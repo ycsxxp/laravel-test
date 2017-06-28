@@ -120,11 +120,11 @@
 </template>
 <script>
 export default {
-  beforeCreate () {
-    if(this.$store.state.loginStatus == false) {
-      this.$router.push({ path: '/login' });
-    }
-  },
+  // beforeCreate () {
+  //   if(this.$store.state.loginStatus == false) {
+  //     this.$router.push({ path: '/login' });
+  //   }
+  // },
   data () {
     return {
       spanLeft: 4,

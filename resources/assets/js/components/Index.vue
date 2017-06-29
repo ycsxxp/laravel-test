@@ -188,7 +188,7 @@ export default {
       if(name='logout') this.logout();
     },
     routeTo(e) {
-      this.$router.push(e)
+      this.$router.push({ path: '/'+e });
     },
     logout() {
       this.$http.post('/logout', { _token: window.Laravel.csrfToken }).then(

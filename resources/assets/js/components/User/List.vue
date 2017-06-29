@@ -61,6 +61,52 @@
           {
             title: '邮箱',
             key: 'email'
+          },
+          {
+            title: '操作',
+            key: 'action',
+            width: 150,
+            align: 'center',
+            render: (createElement, params) => {
+              return createElement(
+                'div',
+                [
+                  createElement(
+                    'Button',
+                    {
+                      props: {
+                        type: 'primary',
+                        size: 'small'
+                      },
+                      style: {
+                        marginRight: '5px'
+                      },
+                      on: {
+                        click: () => {
+                          this.editUser(params)
+                        }
+                      }
+                    },
+                    '编辑'
+                  ),
+                  createElement(
+                    'Button',
+                    {
+                      props: {
+                        type: 'error',
+                        size: 'small'
+                      },
+                      on: {
+                        click: () => {
+                          this.deleteUser(params.row.id, params.row.name)
+                        }
+                      }
+                    },
+                    '删除'
+                  )
+                ]
+              )
+            }
           }
         ],
         userlist: []
@@ -68,16 +114,29 @@
     },
     methods: {
       addUser () {
-        this.$router.push({ path: '/user-add' })
+        this.$router.push({ path: '/user-form/add' })
+      },
+      editUser (params) {
+        this.$store.state.data.userFormData = params
+        this.$router.push({ path: '/user-form/edit' })
       },
       getUser () {
         this.$http.post('/getuser', {_token: window.Laravel.csrfToken}).then(
           response => {
-            console.log(response);
             this.userlist = response.data
           },
           response => {
-
+            this.$Message.error('获取失败,请重试!');
+          }
+        )
+      },
+      deleteUser (id, name) {
+        this.$http.post('/deleteuser', {id: id, name: name, _token: window.Laravel.csrfToken}).then(
+          response => {
+            this.userlist = response.data
+          },
+          response => {
+            this.$Message.error('删除失败,请重试!');
           }
         )
       }

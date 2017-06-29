@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		loginStatus: false
+		loginStatus: false,
+		data: {
+			userFormData: []
+		} 
 	},
 	mutations: {
 		loginSuccess (state) {

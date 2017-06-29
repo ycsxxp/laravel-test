@@ -21,6 +21,8 @@ Route::post('/logout', 'LoginController@logout');
 
 Route::middleware('auth')->post('/getuser', 'LoginController@getuser');
 Route::middleware('auth')->post('/adduser', 'LoginController@adduser');
+Route::middleware('auth')->post('/updateuser', 'LoginController@updateuser');
+Route::middleware('auth')->post('/deleteuser', 'LoginController@deleteuser');
 // Route::get('/index', function () {
 //     return view('welcome');
 // });

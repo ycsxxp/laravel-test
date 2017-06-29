@@ -38,13 +38,14 @@
 export default {
 	data () {
 	  return {
+      type: this.$route.params.type,
+      apiurl: '',
 	    userInfo: {
 	      name: '',
 	      age: 1,
         address: '',
         email: '',
-        password: '',
-        _token: window.Laravel.csrfToken,
+        password: ''
 	    },
 	    userValidate: {
 	      name: [
@@ -63,16 +64,29 @@ export default {
 	    }
 	  }
   },
+  created () {
+    if(this.type == 'edit') {
+      this.userInfo = this.$store.state.data.userFormData.row
+    }
+  },
   methods: {
   	handleSubmit (name) {
   		this.$refs[name].validate((valid) => {
   			if (valid) {
   				this.$Message.success('提交成功!');
-          this.$http.post('/adduser', this.userInfo).then(
+          this.userInfo._token = window.Laravel.csrfToken
+          if(this.type == 'add') {
+            this.apiurl = '/adduser'
+          }else {
+            this.apiurl = '/updateuser'
+          }
+          this.$http.post(this.apiurl, this.userInfo).then(
             response => {
-              
+              this.$router.push({ path: '/user' })
             },
-            response => {}
+            response => {
+              this.$Message.error('提交失败,请重试!');
+            }
           );
   			} else {
   				this.$Message.error('表单验证失败!');

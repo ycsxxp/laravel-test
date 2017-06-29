@@ -10594,8 +10594,8 @@ __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */].beforeEach(function (to
   if (!__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && to.path != '/login') {
     // 如果未登录 && 路由不是 /login 则重定向到 /login
     next('/login');
-  } else if (__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && to.path == '/login') {
-    // 如果已登录 && 路由是 /login 则不跳转
+  } else if (__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && (to.path == '/login' || to.path == '/')) {
+    // 如果已登录 && 路由是 /login或者 / 则不跳转
     next(false);
   } else {
     next();
@@ -11682,9 +11682,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 				return __webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(57)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
-			path: '/user-add',
+			path: '/user-form/:type',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(56)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(87)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}]
 	}]
@@ -72221,7 +72221,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {
-		loginStatus: false
+		loginStatus: false,
+		data: {
+			userFormData: []
+		}
 	},
 	mutations: {
 		loginSuccess: function loginSuccess(state) {

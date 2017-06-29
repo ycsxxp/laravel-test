@@ -31,8 +31,8 @@ export default new VueRouter({
 					component: resolve => require(['./components/User/List.vue'], resolve),
 				},
 				{
-					path: '/user-add',
-					component: resolve => require(['./components/User/Add.vue'], resolve)
+					path: '/user-form/:type',
+					component: resolve => require(['./components/User/Form.vue'], resolve)
 				}
 			]
 		}

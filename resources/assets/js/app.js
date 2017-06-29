@@ -33,8 +33,8 @@ router.beforeEach((to, from, next) => {
 	if(!store.state.loginStatus && to.path != '/login') {
 		// 如果未登录 && 路由不是 /login 则重定向到 /login
 		next('/login')
-	}else if(store.state.loginStatus && to.path == '/login') {
-		// 如果已登录 && 路由是 /login 则不跳转
+	}else if(store.state.loginStatus && (to.path == '/login' || to.path == '/')) {
+		// 如果已登录 && 路由是 /login或者 / 则不跳转
 		next(false)
 	}else {
 		next()

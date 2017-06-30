@@ -20,7 +20,7 @@ export default new VueRouter({
 			children: [
 				{
 					path: '/article',
-					component: resolve => require(['./components/Article.vue'], resolve)
+					component: resolve => require(['./components/Article/List.vue'], resolve)
 				},
 				{
 					path: '/test',

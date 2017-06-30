@@ -16,13 +16,12 @@ Route::get('/', function () {
 });
 
 Route::post('/login', 'LoginController@authenticate');
-
 Route::post('/logout', 'LoginController@logout');
 
-Route::middleware('auth')->post('/getuser', 'LoginController@getuser');
-Route::middleware('auth')->post('/adduser', 'LoginController@adduser');
-Route::middleware('auth')->post('/updateuser', 'LoginController@updateuser');
-Route::middleware('auth')->post('/deleteuser', 'LoginController@deleteuser');
+Route::middleware('auth')->post('/getuser', 'UserController@getuser');
+Route::middleware('auth')->post('/adduser', 'UserController@adduser');
+Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
+Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
 // Route::get('/index', function () {
 //     return view('welcome');
 // });

@@ -1,26 +1,25 @@
-<!-- 引入自定义样式 -->
 <style>
-.panel-heading {
-  height: 50px;
+.row-header {
+  margin-bottom: 10px; 
+}
+.control-bar {
   text-align: right;
 }
 </style>
 <template>
 	<div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <Input v-model="value2" placeholder="请输入..." style="width: 150px"></Input>
-            <Button type="primary" icon="ios-search" shape="circle"></Button>
-            <Button type="primary" @click="addUser" >新增</Button>
-          </div>
-          <div class="panel-body">
-            <Table border stripe :columns="userColumns" :data="userlist"></Table>
-          </div>
+    <Row type="flex" justify="end" class="row-header">
+      <Col span="8">
+        <div class="control-bar">
+          <Input v-model="value2" placeholder="请输入..." style="width: 150px"></Input>
+          <Button type="primary" icon="ios-search" shape="circle"></Button>
+          <Button type="primary" @click="addUser" >新增</Button>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
+    <Row>
+      <Table border stripe :columns="userColumns" :data="userList"></Table>
+    </Row>
   </div>
 </template>
 <script>
@@ -109,7 +108,7 @@
             }
           }
         ],
-        userlist: []
+        userList: []
       }
     },
     methods: {
@@ -123,7 +122,7 @@
       getUser () {
         this.$http.post('/getuser', {_token: window.Laravel.csrfToken}).then(
           response => {
-            this.userlist = response.data
+            this.userList = response.data
           },
           response => {
             this.$Message.error('获取失败,请重试!');
@@ -133,7 +132,7 @@
       deleteUser (id, name) {
         this.$http.post('/deleteuser', {id: id, name: name, _token: window.Laravel.csrfToken}).then(
           response => {
-            this.userlist = response.data
+            this.userList = response.data
           },
           response => {
             this.$Message.error('删除失败,请重试!');

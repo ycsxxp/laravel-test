@@ -72,7 +72,7 @@
   <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
     <Row type="flex" class-name="rowDiv" justify="center">
       <i-col :span="spanLeft" class="layout-menu-left">
-        <Menu mode="vertical" theme="dark" width="auto" :open-names="['1']" v-on:on-select="routeTo" accordion>
+        <Menu mode="vertical" theme="dark" width="auto" :open-names="['1']" @on-select="routeTo" accordion>
           <div class="layout-logo-left"></div>
           <Submenu v-for="menu in menuArr" :name="menu.name" :key="menu.id">
             <template slot="title">

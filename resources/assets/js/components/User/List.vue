@@ -113,11 +113,13 @@
     },
     methods: {
       addUser () {
-        this.$router.push({ path: '/user-form/add' })
+        this.$store.commit('addBreadCrumb', {'title': '添加用户'})
+        this.$router.push({ path: '/user/add' })
       },
       editUser (params) {
+        this.$store.commit('addBreadCrumb', {'title': '编辑用户'})
         this.$store.state.data.userFormData = params
-        this.$router.push({ path: '/user-form/edit' })
+        this.$router.push({ path: '/user/edit' })
       },
       getUser () {
         this.$http.post('/getuser', {_token: window.Laravel.csrfToken}).then(

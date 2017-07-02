@@ -17,7 +17,7 @@ var Component = __webpack_require__(13)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\User\\Form.vue"
+Component.options.__file = "/Users/yangchao/Code/nf-quora/resources/assets/js/components/User/Form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -398,7 +398,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n.addUserForm {\n\twidth: 350px;\n\tpadding: 20px 0 20px 0;\n}\n", ""]);
+exports.push([module.i, "\n.addUserForm {\r\n\twidth: 350px;\r\n\tpadding: 20px 0 20px 0;\n}\r\n", ""]);
 
 /***/ }),
 

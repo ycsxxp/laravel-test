@@ -72,7 +72,7 @@ export default {
             },
             response => {
               // 请求失败
-              console.log("b")
+              this.$Message.error('请求失败！稍后重试');
             }
           )
         } else {

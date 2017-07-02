@@ -100,8 +100,7 @@
         <div class="layout-breadcrumb">
             <Breadcrumb>
                 <Breadcrumb-item href="#">首页</Breadcrumb-item>
-                <Breadcrumb-item href="#">{{spanLeft}}</Breadcrumb-item>
-                <Breadcrumb-item>某应用</Breadcrumb-item>
+                <Breadcrumb-item v-for="(item,index) in breadCrumb" :href=" item.name!=null ? '/'+item.name:'#' " :key="index">{{ item.title }}</Breadcrumb-item>
             </Breadcrumb>
         </div>
         <div class="layout-content">
@@ -127,6 +126,7 @@ export default {
   // },
   data () {
     return {
+      breadCrumb: [],
       spanLeft: 4,
       spanRight: 20,
       menuArr: [
@@ -188,6 +188,10 @@ export default {
       if(name='logout') this.logout();
     },
     routeTo(e) {
+      // 获取面包屑显示
+      this.$store.commit('setBreadCrumb', { 'clickName': e, 'menuArr': this.menuArr, 'breadCrumb': this.breadCrumb})
+      this.breadCrumb = this.$store.state.breadCrumb
+      // 跳转
       this.$router.push({ path: '/'+e });
     },
     logout() {

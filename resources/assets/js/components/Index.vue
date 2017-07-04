@@ -100,7 +100,7 @@
         <div class="layout-breadcrumb">
             <Breadcrumb>
                 <Breadcrumb-item href="#">首页</Breadcrumb-item>
-                <Breadcrumb-item v-for="(item,index) in breadCrumb" :href=" item.name!=null ? '/'+item.name:'#' " :key="index">{{ item.title }}</Breadcrumb-item>
+                <Breadcrumb-item v-for="(item,index) in breadCrumb" href="#" :key="index">{{ item.title }}</Breadcrumb-item>
             </Breadcrumb>
         </div>
         <div class="layout-content">

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		loginStatus: false,
+		loginUserInfo: [],
 		breadCrumb: [],
 		data: {
 			userFormData: []
@@ -14,6 +15,9 @@ export default new Vuex.Store({
 	mutations: {
 		loginSuccess (state) {
 			state.loginStatus = true
+		},
+		setLoginUserInfo (state, payload) {
+			state.loginUserInfo = payload
 		},
 		logoutSuccess (state) {
 			state.loginStatus = false

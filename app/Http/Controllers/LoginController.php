@@ -19,8 +19,9 @@ class LoginController extends Controller {
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
             // return redirect()->intended('dashboard');
-            // 重定向操作由前端来做该出不需要返回
-            return redirect()->intended();
+            // 重定向操作由前端来做
+            // 该处返回已登录用户的信息
+            return Auth::user();
         }
     }
 

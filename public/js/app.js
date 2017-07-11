@@ -12500,6 +12500,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 				return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(57)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}]
+	}, {
+		path: '/home',
+		component: function component(resolve) {
+			return __webpack_require__.e/* require */(7/* empty */).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(89)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+		}
 	}]
 }));
 
@@ -12519,6 +12524,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {
 		loginStatus: false,
+		loginUserInfo: [],
 		breadCrumb: [],
 		data: {
 			userFormData: []
@@ -12527,6 +12533,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 	mutations: {
 		loginSuccess: function loginSuccess(state) {
 			state.loginStatus = true;
+		},
+		setLoginUserInfo: function setLoginUserInfo(state, payload) {
+			state.loginUserInfo = payload;
 		},
 		logoutSuccess: function logoutSuccess(state) {
 			state.loginStatus = false;

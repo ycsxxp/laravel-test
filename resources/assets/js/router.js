@@ -35,6 +35,16 @@ export default new VueRouter({
 					component: resolve => require(['./components/User/Form.vue'], resolve)
 				}
 			]
+		},
+		{
+			path: '/home',
+			component: resolve => require(['./components/Home.vue'], resolve),
+			// children: [
+			// 	{
+			// 		path: '/article',
+			// 		component: resolve => require(['./components/Article/List.vue'], resolve)
+			// 	}
+			// ]
 		}
 	]
 })

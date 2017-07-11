@@ -65,7 +65,8 @@ export default {
               if(response.data != '') {
                 // 登录成功
                 this.$store.commit('loginSuccess')
-                this.$router.push({ path:'/index'});
+                this.$store.commit('setLoginUserInfo', response.data)
+                this.$router.push({ path:'/index'})
               }else {
                 this.$Message.error('登录失败！账号或密码错误');
               }

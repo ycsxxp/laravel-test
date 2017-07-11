@@ -369,7 +369,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$refs[name].validate(function (valid) {
         if (valid) {
-          _this.$Message.success('提交成功!');
           _this.userInfo._token = window.Laravel.csrfToken;
           if (_this.type == 'add') {
             _this.apiurl = '/adduser';
@@ -377,6 +376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.apiurl = '/updateuser';
           }
           _this.$http.post(_this.apiurl, _this.userInfo).then(function (response) {
+            _this.$Message.success('添加成功!');
             _this.$router.push({ path: '/user' });
           }, function (response) {
             _this.$Message.error('提交失败,请重试!');

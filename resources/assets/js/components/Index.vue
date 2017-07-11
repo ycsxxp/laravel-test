@@ -72,7 +72,7 @@
   <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
     <Row type="flex" class-name="rowDiv" justify="center">
       <i-col :span="spanLeft" class="layout-menu-left">
-        <Menu mode="vertical" theme="dark" width="auto" :open-names="['1']" @on-select="routeTo" accordion>
+        <Menu mode="vertical" theme="dark" width="auto" active-name="article" :open-names="['1']" @on-select="routeTo" accordion>
           <div class="layout-logo-left"></div>
           <Submenu v-for="menu in menuArr" :name="menu.name" :key="menu.id">
             <template slot="title">
@@ -119,11 +119,6 @@
 </template>
 <script>
 export default {
-  // beforeCreate () {
-  //   if(this.$store.state.loginStatus == false) {
-  //     this.$router.push({ path: '/login' });
-  //   }
-  // },
   data () {
     return {
       breadCrumb: [],
@@ -168,6 +163,12 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    // 获取面包屑显示
+    this.$store.commit('setBreadCrumb', { 'clickName': this.menuArr[0].child[0].name, 'menuArr': this.menuArr, 'breadCrumb': this.breadCrumb})
+    this.breadCrumb = this.$store.state.breadCrumb 
+    this.$router.push({ path: '/'+this.menuArr[0].child[0].name });
   },
   computed: {
     iconSize () {

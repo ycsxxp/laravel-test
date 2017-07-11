@@ -73,7 +73,6 @@ export default {
   	handleSubmit (name) {
   		this.$refs[name].validate((valid) => {
   			if (valid) {
-  				this.$Message.success('提交成功!');
           this.userInfo._token = window.Laravel.csrfToken
           if(this.type == 'add') {
             this.apiurl = '/adduser'
@@ -82,6 +81,7 @@ export default {
           }
           this.$http.post(this.apiurl, this.userInfo).then(
             response => {
+              this.$Message.success('添加成功!');
               this.$router.push({ path: '/user' })
             },
             response => {

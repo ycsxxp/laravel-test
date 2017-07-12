@@ -39,12 +39,12 @@ export default new VueRouter({
 		{
 			path: '/home',
 			component: resolve => require(['./components/Home.vue'], resolve),
-			// children: [
-			// 	{
-			// 		path: '/article',
-			// 		component: resolve => require(['./components/Article/List.vue'], resolve)
-			// 	}
-			// ]
+			children: [
+				{
+					path: '/ceshi',
+					component: resolve => require(['./components/HomePage/Ceshi.vue'], resolve)
+				}
+			]
 		}
 	]
 })

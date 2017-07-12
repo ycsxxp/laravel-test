@@ -66,7 +66,11 @@ export default {
                 // 登录成功
                 this.$store.commit('loginSuccess')
                 this.$store.commit('setLoginUserInfo', response.data)
-                this.$router.push({ path:'/index'})
+                if(this.$store.state.loginUserInfo.role == '0') {
+                  this.$router.push({ path:'/index'})
+                }else {
+                  this.$router.push({ path:'/home'})
+                }
               }else {
                 this.$Message.error('登录失败！账号或密码错误');
               }

@@ -1,41 +1,103 @@
 webpackJsonp([1],{
 
-/***/ 57:
+/***/ 100:
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/* styles */
-__webpack_require__(78)
-
-var Component = __webpack_require__(13)(
-  /* script */
-  __webpack_require__(65),
-  /* template */
-  __webpack_require__(73),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\User\\Form.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "content"
+  }, [_c('div', {
+    staticClass: "content-left"
+  }, [_c('section', {
+    staticClass: "wenzhang-section"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "summary"
+  }, [_vm._v("\n        This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...\n      ")]), _vm._v(" "), _c('div', {
+    staticClass: "readmore"
+  }, [_c('Button', {
+    attrs: {
+      "type": "info"
+    }
+  }, [_vm._v("Readmore")])], 1)]), _vm._v(" "), _c('section', {
+    staticClass: "wenzhang-section"
+  }, [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "summary"
+  }, [_vm._v("\n        This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...\n      ")]), _vm._v(" "), _c('div', {
+    staticClass: "readmore"
+  }, [_c('Button', {
+    attrs: {
+      "type": "info"
+    }
+  }, [_vm._v("Readmore")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "content-right"
+  }, [_vm._v("\n    我是右边栏\n  ")])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "title"
+  }, [_c('h2', [_vm._v("为什么你的Web前端工作经验不值钱？")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "cover"
+  }, [_c('img', {
+    attrs: {
+      "src": "https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "title"
+  }, [_c('h2', [_vm._v("为什么你的Web前端工作经验不值钱？")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "cover"
+  }, [_c('img', {
+    attrs: {
+      "src": "https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
   module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0a9dd182", Component.options)
-  } else {
-    hotAPI.reload("data-v-0a9dd182", Component.options)
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-288fc12a", module.exports)
   }
-})()}
+}
 
-module.exports = Component.exports
+/***/ }),
 
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)();
+exports.push([module.i, "\n.content[data-v-288fc12a] {\n  width: 100%;\n}\n.content .content-left[data-v-288fc12a] {\n    width: 70%;\n    float: left;\n}\n.content .content-left .wenzhang-section[data-v-288fc12a] {\n      width: 70%;\n      margin: 0 auto;\n      margin-bottom: 20px;\n      padding: 20px 15px 15px 20px;\n}\n.content .content-left .wenzhang-section .title[data-v-288fc12a] {\n        height: 30px;\n        margin: 0 0 10px 0;\n}\n.content .content-left .wenzhang-section .cover[data-v-288fc12a] {\n        width: 100%;\n}\n.content .content-left .wenzhang-section .cover img[data-v-288fc12a] {\n          width: auto;\n          height: auto;\n          max-width: 100%;\n          max-height: 100%;\n}\n.content .content-left .wenzhang-section .summary[data-v-288fc12a] {\n        margin: 20px 0 20px 0;\n}\n.content .content-right[data-v-288fc12a] {\n    width: 30%;\n    float: left;\n}\n", ""]);
+
+/***/ }),
+
+/***/ 103:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(102);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(59)("14514db9", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-288fc12a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ceshi.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-288fc12a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ceshi.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -295,278 +357,42 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 65:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      type: this.$route.params.type,
-      apiurl: '',
-      userInfo: {
-        name: '',
-        age: 1,
-        address: '',
-        email: '',
-        password: ''
-      },
-      userValidate: {
-        name: [{ required: true, message: '姓名不能为空', trigger: 'blur' }],
-        address: [{ required: true, message: '请选择城市', trigger: 'change' }],
-        email: [{ required: true, message: '邮箱不能为空', trigger: 'blur' }, { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }],
-        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
-      }
-    };
-  },
-  created: function created() {
-    if (this.type == 'edit') {
-      this.userInfo = this.$store.state.data.userFormData.row;
-    }
-  },
-
-  methods: {
-    handleSubmit: function handleSubmit(name) {
-      var _this = this;
-
-      this.$refs[name].validate(function (valid) {
-        if (valid) {
-          _this.userInfo._token = window.Laravel.csrfToken;
-          if (_this.type == 'add') {
-            _this.apiurl = '/adduser';
-          } else {
-            _this.apiurl = '/updateuser';
-          }
-          _this.$http.post(_this.apiurl, _this.userInfo).then(function (response) {
-            _this.$Message.success('添加成功!');
-            _this.$router.push({ path: '/user' });
-          }, function (response) {
-            _this.$Message.error('提交失败,请重试!');
-          });
-        } else {
-          _this.$Message.error('表单验证失败!');
-        }
-      });
-    },
-    handleReset: function handleReset(name) {
-      this.$refs[name].resetFields();
-    }
-  }
-});
-
-/***/ }),
-
-/***/ 67:
+/***/ 99:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n.addUserForm {\n\twidth: 350px;\n\tpadding: 20px 0 20px 0;\n}\n", ""]);
 
-/***/ }),
+/* styles */
+__webpack_require__(103)
 
-/***/ 73:
-/***/ (function(module, exports, __webpack_require__) {
+var Component = __webpack_require__(13)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(100),
+  /* scopeId */
+  "data-v-288fc12a",
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\HomePage\\Ceshi.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Ceshi.vue: functional components are not supported with templates, they should use render functions.")}
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "addUserForm"
-  }, [_c('Form', {
-    ref: "userInfo",
-    attrs: {
-      "model": _vm.userInfo,
-      "label-width": 80,
-      "rules": _vm.userValidate
-    }
-  }, [_c('Form-item', {
-    attrs: {
-      "label": "姓名",
-      "prop": "name"
-    }
-  }, [_c('Input', {
-    attrs: {
-      "type": "text",
-      "placeholder": "请输入姓名"
-    },
-    model: {
-      value: (_vm.userInfo.name),
-      callback: function($$v) {
-        _vm.userInfo.name = $$v
-      },
-      expression: "userInfo.name"
-    }
-  })], 1), _vm._v(" "), _c('Form-item', {
-    attrs: {
-      "label": "年龄",
-      "prop": "age"
-    }
-  }, [_c('Input-number', {
-    attrs: {
-      "max": 1000,
-      "min": 1
-    },
-    model: {
-      value: (_vm.userInfo.age),
-      callback: function($$v) {
-        _vm.userInfo.age = $$v
-      },
-      expression: "userInfo.age"
-    }
-  })], 1), _vm._v(" "), _c('Form-item', {
-    attrs: {
-      "label": "地址",
-      "prop": "address"
-    }
-  }, [_c('Select', {
-    attrs: {
-      "placeholder": "请选择所在地"
-    },
-    model: {
-      value: (_vm.userInfo.address),
-      callback: function($$v) {
-        _vm.userInfo.address = $$v
-      },
-      expression: "userInfo.address"
-    }
-  }, [_c('Option', {
-    attrs: {
-      "value": "beijing"
-    }
-  }, [_vm._v("北京市")]), _vm._v(" "), _c('Option', {
-    attrs: {
-      "value": "shanghai"
-    }
-  }, [_vm._v("上海市")]), _vm._v(" "), _c('Option', {
-    attrs: {
-      "value": "shenzhen"
-    }
-  }, [_vm._v("深圳市")])], 1)], 1), _vm._v(" "), _c('Form-item', {
-    attrs: {
-      "label": "邮箱",
-      "prop": "email"
-    }
-  }, [_c('Input', {
-    attrs: {
-      "placeholder": "请输入邮箱"
-    },
-    model: {
-      value: (_vm.userInfo.email),
-      callback: function($$v) {
-        _vm.userInfo.email = $$v
-      },
-      expression: "userInfo.email"
-    }
-  })], 1), _vm._v(" "), _c('Form-item', {
-    attrs: {
-      "label": "密码",
-      "prop": "password"
-    }
-  }, [_c('Input', {
-    attrs: {
-      "type": "password",
-      "placeholder": "请输入密码"
-    },
-    model: {
-      value: (_vm.userInfo.password),
-      callback: function($$v) {
-        _vm.userInfo.password = $$v
-      },
-      expression: "userInfo.password"
-    }
-  })], 1), _vm._v(" "), _c('Form-item', [_c('Button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": function($event) {
-        _vm.handleSubmit('userInfo')
-      }
-    }
-  }, [_vm._v("提交")]), _vm._v(" "), _c('Button', {
-    staticStyle: {
-      "margin-left": "8px"
-    },
-    attrs: {
-      "type": "ghost"
-    },
-    on: {
-      "click": function($event) {
-        _vm.handleReset('userInfo')
-      }
-    }
-  }, [_vm._v("重置")])], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
   module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0a9dd182", module.exports)
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-288fc12a", Component.options)
+  } else {
+    hotAPI.reload("data-v-288fc12a", Component.options)
   }
-}
+})()}
 
-/***/ }),
+module.exports = Component.exports
 
-/***/ 78:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(67);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(59)("50657de8", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0a9dd182\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Form.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0a9dd182\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Form.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ })
 

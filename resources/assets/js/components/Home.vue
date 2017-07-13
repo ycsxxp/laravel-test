@@ -44,12 +44,12 @@
             <Menu-item name="ceshi">
               首页
             </Menu-item>
-            <Menu-item name="acticle">
+            <Menu-item name="writer">
               发布文章
             </Menu-item>
             <Menu-item name="other">
               其他
-            </Menu-item>  
+            </Menu-item>
           </div>
         </div>
       </Menu>

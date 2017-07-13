@@ -5,92 +5,82 @@ webpackJsonp([1],{
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "content"
+    staticClass: "container"
+  }, [_c('Row', {
+    staticClass: "row-header",
+    attrs: {
+      "type": "flex",
+      "justify": "end"
+    }
+  }, [_c('Col', {
+    attrs: {
+      "span": "8"
+    }
   }, [_c('div', {
-    staticClass: "content-left"
-  }, [_c('section', {
-    staticClass: "wenzhang-section"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "summary"
-  }, [_vm._v("\n        This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...\n      ")]), _vm._v(" "), _c('div', {
-    staticClass: "readmore"
-  }, [_c('Button', {
+    staticClass: "control-bar"
+  }, [_c('Input', {
+    staticStyle: {
+      "width": "150px"
+    },
     attrs: {
-      "type": "info"
+      "placeholder": "请输入..."
+    },
+    model: {
+      value: (_vm.value2),
+      callback: function($$v) {
+        _vm.value2 = $$v
+      },
+      expression: "value2"
     }
-  }, [_vm._v("Readmore")])], 1)]), _vm._v(" "), _c('section', {
-    staticClass: "wenzhang-section"
-  }, [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "summary"
-  }, [_vm._v("\n        This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...\n      ")]), _vm._v(" "), _c('div', {
-    staticClass: "readmore"
-  }, [_c('Button', {
+  }), _vm._v(" "), _c('Button', {
     attrs: {
-      "type": "info"
+      "type": "primary",
+      "icon": "ios-search",
+      "shape": "circle"
     }
-  }, [_vm._v("Readmore")])], 1)])]), _vm._v(" "), _c('div', {
-    staticClass: "content-right"
-  }, [_vm._v("\n    我是右边栏\n  ")])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "title"
-  }, [_c('h2', [_vm._v("为什么你的Web前端工作经验不值钱？")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "cover"
-  }, [_c('img', {
+  }), _vm._v(" "), _c('Button', {
     attrs: {
-      "src": "https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp"
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.addUser
     }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "title"
-  }, [_c('h2', [_vm._v("为什么你的Web前端工作经验不值钱？")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "cover"
-  }, [_c('img', {
+  }, [_vm._v("新增")])], 1)])], 1), _vm._v(" "), _c('Row', [_c('Table', {
     attrs: {
-      "src": "https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp"
+      "border": "",
+      "stripe": "",
+      "columns": _vm.userColumns,
+      "data": _vm.userList
     }
-  })])
-}]}
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-288fc12a", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-2eaa3e19", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 102:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n.content[data-v-288fc12a] {\n  width: 100%;\n}\n.content .content-left[data-v-288fc12a] {\n    width: 70%;\n    float: left;\n}\n.content .content-left .wenzhang-section[data-v-288fc12a] {\n      width: 70%;\n      margin: 0 auto;\n      margin-bottom: 20px;\n      padding: 20px 15px 15px 20px;\n}\n.content .content-left .wenzhang-section .title[data-v-288fc12a] {\n        height: 30px;\n        margin: 0 0 10px 0;\n}\n.content .content-left .wenzhang-section .cover[data-v-288fc12a] {\n        width: 100%;\n}\n.content .content-left .wenzhang-section .cover img[data-v-288fc12a] {\n          width: auto;\n          height: auto;\n          max-width: 100%;\n          max-height: 100%;\n}\n.content .content-left .wenzhang-section .summary[data-v-288fc12a] {\n        margin: 20px 0 20px 0;\n}\n.content .content-right[data-v-288fc12a] {\n    width: 30%;\n    float: left;\n}\n", ""]);
-
-/***/ }),
-
-/***/ 103:
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(102);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(59)("14514db9", content, false);
+var update = __webpack_require__(62)("20e7f5bc", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-288fc12a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ceshi.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-288fc12a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ceshi.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2eaa3e19\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./List.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2eaa3e19\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./List.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -101,7 +91,46 @@ if(false) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 61:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(110)
+
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(73),
+  /* template */
+  __webpack_require__(100),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\User\\List.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] List.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2eaa3e19", Component.options)
+  } else {
+    hotAPI.reload("data-v-2eaa3e19", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -120,7 +149,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(60)
+var listToStyles = __webpack_require__(63)
 
 /*
 type StyleObject = {
@@ -323,7 +352,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 63:
 /***/ (function(module, exports) {
 
 /**
@@ -357,42 +386,144 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 99:
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _this = this;
+
+    return {
+      value2: "",
+      userInfo: {
+        username: '',
+        userage: 1
+      },
+      userValidate: {
+        username: [{ required: true, message: '姓名不能为空', trigger: 'blur' }],
+        usercity: [{ required: true, message: '请选择城市', trigger: 'change' }]
+      },
+      userColumns: [{
+        type: 'selection',
+        width: 60,
+        align: 'center'
+      }, {
+        title: '姓名',
+        key: 'name'
+      }, {
+        title: '年龄',
+        key: 'age'
+      }, {
+        title: '地址',
+        key: 'address'
+      }, {
+        title: '邮箱',
+        key: 'email'
+      }, {
+        title: '操作',
+        key: 'action',
+        width: 150,
+        align: 'center',
+        render: function render(createElement, params) {
+          return createElement('div', [createElement('Button', {
+            props: {
+              type: 'primary',
+              size: 'small'
+            },
+            style: {
+              marginRight: '5px'
+            },
+            on: {
+              click: function click() {
+                _this.editUser(params);
+              }
+            }
+          }, '编辑'), createElement('Button', {
+            props: {
+              type: 'error',
+              size: 'small'
+            },
+            on: {
+              click: function click() {
+                _this.deleteUser(params.row.id, params.row.name);
+              }
+            }
+          }, '删除')]);
+        }
+      }],
+      userList: []
+    };
+  },
+
+  methods: {
+    addUser: function addUser() {
+      this.$store.commit('addBreadCrumb', { 'title': '添加用户' });
+      this.$router.push({ path: '/user/add' });
+    },
+    editUser: function editUser(params) {
+      this.$store.commit('addBreadCrumb', { 'title': '编辑用户' });
+      this.$store.state.data.userFormData = params;
+      this.$router.push({ path: '/user/edit' });
+    },
+    getUser: function getUser() {
+      var _this2 = this;
+
+      this.$http.post('/getuser', { _token: window.Laravel.csrfToken }).then(function (response) {
+        _this2.userList = response.data;
+      }, function (response) {
+        _this2.$Message.error('获取失败,请重试!');
+      });
+    },
+    deleteUser: function deleteUser(id, name) {
+      var _this3 = this;
+
+      this.$http.post('/deleteuser', { id: id, name: name, _token: window.Laravel.csrfToken }).then(function (response) {
+        _this3.userList = response.data;
+      }, function (response) {
+        _this3.$Message.error('删除失败,请重试!');
+      });
+    }
+  },
+  beforeMount: function beforeMount() {
+    this.getUser();
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/* styles */
-__webpack_require__(103)
-
-var Component = __webpack_require__(13)(
-  /* script */
-  null,
-  /* template */
-  __webpack_require__(100),
-  /* scopeId */
-  "data-v-288fc12a",
-  /* cssModules */
-  null
-)
-Component.options.__file = "D:\\Code\\nf-quora\\resources\\assets\\js\\components\\HomePage\\Ceshi.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Ceshi.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-288fc12a", Component.options)
-  } else {
-    hotAPI.reload("data-v-288fc12a", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
+exports = module.exports = __webpack_require__(14)();
+exports.push([module.i, "\n.row-header {\r\n  margin-bottom: 10px;\n}\n.control-bar {\r\n  text-align: right;\n}\r\n", ""]);
 
 /***/ })
 

@@ -33,6 +33,18 @@
     .content-right {
       width: 30%;
       float: left;
+      .remen-section {
+        padding: 20px 15px 15px 20px;
+        .remen-list {
+          margin: 20px 0 0 20px;
+        }
+      }
+      .recent-section {
+        padding: 20px 15px 15px 20px;
+        .recent-list {
+          margin: 20px 0 0 20px;
+        }
+      }
     }
   }
 </style>
@@ -70,7 +82,28 @@
       </section>
     </div>
     <div class="content-right">
-      我是右边栏
+      <section class="remen-section">
+        <div class="title">
+          <h2>热门文章</h2>
+        </div>
+        <ul class="remen-list">
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+        </ul>
+      </section>
+      <section class="recent-section">
+        <div class="title">
+          <h2>最新文章</h2>
+        </div>
+        <ul class="recent-list">
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+          <li>不知道写什么就随便一下</li>
+        </ul>
+      </section>
     </div>
   </div>
 </template>

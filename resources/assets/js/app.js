@@ -13,11 +13,11 @@ import 'iview/dist/styles/iview.css';    // 使用 CSS
 import router from './router'
 import store from './store'
 
-
 // 使用vuex
 Vue.use(Vuex);
 // 使用iView
 Vue.use(iView);
+
 Vue.prototype.$http = axios;
 /**
  * Next, we will create a fresh Vue application instance and attach it to

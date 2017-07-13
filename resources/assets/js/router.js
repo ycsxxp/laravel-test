@@ -43,6 +43,10 @@ export default new VueRouter({
 				{
 					path: '/ceshi',
 					component: resolve => require(['./components/HomePage/Ceshi.vue'], resolve)
+				},
+				{
+					path: '/writer',
+					component: resolve => require(['./components/HomePage/Writer.vue'], resolve)
 				}
 			]
 		}

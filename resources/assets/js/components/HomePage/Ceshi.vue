@@ -24,6 +24,7 @@
         }
         .summary {
           margin: 20px 0 20px 0;
+          height: 50px;
         }
         .readmore {
 
@@ -51,30 +52,14 @@
 <template>
   <div class="content">
     <div class="content-left">
-      <section class="wenzhang-section">
+      <section class="wenzhang-section" v-for="article in articleInfo">
         <div class="title">
-          <h2>为什么你的Web前端工作经验不值钱？</h2>
+          <h2>{{article.title}}</h2>
         </div>
         <div class="cover">
           <img src="https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp">
         </div>
-        <div class="summary">
-          This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...
-        </div>
-        <div class="readmore">
-          <Button type="info">Readmore</Button>
-        </div>
-      </section>
-
-      <section class="wenzhang-section">
-        <div class="title">
-          <h2>为什么你的Web前端工作经验不值钱？</h2>
-        </div>
-        <div class="cover">
-          <img src="https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp">
-        </div>
-        <div class="summary">
-          This is your blog post. Blogs are a great way to connect with your audience and keep them coming back. They can also be a great way to position yourself as an authority in your field. To edit your content, simply click here to open the Blog Manager. From the Blog Mana...
+        <div class="summary" v-html="article.content.substring(0, 100)">
         </div>
         <div class="readmore">
           <Button type="info">Readmore</Button>
@@ -107,3 +92,34 @@
     </div>
   </div>
 </template>
+<script>
+// Vue.filter('summaryCut', str)
+export default {
+  data () {
+    return {
+      articleInfo: {
+        title: '',
+        content: '',
+      },
+    }
+  },
+  beforeMount () {
+    this.getArticle()
+  },
+  methods: {
+    getArticle () {
+      this.$http.post('/getArticle', {_token: window.Laravel.csrfToken}).then(
+        response => {
+          this.articleInfo = response.data
+        },
+        response => {
+          this.$Message.error('获取失败,请重试!');
+        }
+      )
+    },
+  },
+  filter () {
+
+  }
+}
+</script>

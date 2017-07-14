@@ -22,6 +22,10 @@ Route::middleware('auth')->post('/getuser', 'UserController@getuser');
 Route::middleware('auth')->post('/adduser', 'UserController@adduser');
 Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
 Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
+
+Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
+Route::middleware('auth')->post('/saveWriter', 'ArticleController@saveWriter');
+
 // Route::get('/index', function () {
 //     return view('welcome');
 // });

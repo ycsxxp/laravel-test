@@ -22,13 +22,13 @@
 <template>
   <div class="content">
     <div class="title_input">
-      <Input v-model="title" size="large"></Input>
+      <Input v-model="articleInfo.title" size="large"></Input>
     </div>
     <div class="editor_container">
-      <quill-editor v-model="content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor>
+      <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor>
     </div>
     <div class="submit_btn">
-      <Button type="info" @click="publish()">发布</Button>
+      <Button type="info" @click="handleSubmit()">发布</Button>
     </div>
   </div>
 </template>
@@ -39,8 +39,10 @@ import { quillEditor } from 'vue-quill-editor'
 export default {
   data () {
     return {
-      title: '这里是文章标题',
-      content: '<h2>this is sample</h2>',
+      articleInfo: {
+        title: '这里是文章标题',
+        content: '<h2>this is sample</h2>',
+      },
       editorOption: {
 
       }
@@ -59,8 +61,16 @@ export default {
     onEditorReady(editor) {
       console.log('editor ready!', editor)
     },
-    publish() {
-      console.log("a");
+    handleSubmit() {
+      this.articleInfo._token = window.Laravel.csrfToken
+      this.$http.post( '/saveWriter', this.articleInfo ).then(
+        response => {
+          this.$Message.success('添加成功!');
+        },
+        response => {
+          this.$Message.error('提交失败,请重试!');
+        }
+      )
     }
   }
 }

@@ -38,7 +38,7 @@
       <Menu mode="horizontal" theme="light" active-name="ceshi" @on-select="routeTo">
         <div class="wrapper-header-nav">
           <a href="/" class="wrapper-header-nav-logo">
-            <img src="https://file.iviewui.com/dist/fe8d29da1225d943e30f9ee1bddce78f.png">
+            <img src="images/logo.png">
           </a>
           <div class="wrapper-header-nav-list">
             <Menu-item name="ceshi">

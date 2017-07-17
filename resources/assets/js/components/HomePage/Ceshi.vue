@@ -1,10 +1,17 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   .content {
     width: 100%;
-    .content-left {
+    .backBtn {
+      width: 100px;
+      position: absolute;
+      float: right;
+      margin-left: 690px;
+      margin-top: 30px;
+    }
+    .content_left {
       width: 70%;
       float: left;
-      .wenzhang-section {
+      .wenzhang_section {
         width: 70%;
         margin: 0 auto;
         margin-bottom: 20px;
@@ -30,6 +37,17 @@
 
         }
       }
+
+      .detail_section {
+        padding: 30px 50px 0 50px;
+        .title_detail {
+          // margin-bottom: 
+        }
+        .content_detail {
+          margin-top: 30px;
+        }  
+      }
+      
     }
     .content-right {
       width: 30%;
@@ -51,18 +69,31 @@
 </style>
 <template>
   <div class="content">
-    <div class="content-left">
-      <section class="wenzhang-section" v-for="article in articleInfo">
+    <div class="backBtn" v-show="detail"><Button type="success" @click="back">返回</Button></div>
+    <div class="content_left">
+      <section v-show="!detail" class="wenzhang_section" v-for="article in articleInfo">
         <div class="title">
           <h2>{{article.title}}</h2>
         </div>
         <div class="cover">
-          <img src="https://static.wixstatic.com/media/72620b440e684eae9376c87a8d60f050.jpg/v1/fill/w_550,h_367,al_c,q_80,usm_0.66_1.00_0.01/72620b440e684eae9376c87a8d60f050.webp">
+          <img src="images/72620b440e684eae9376c87a8d60f050.webp">
         </div>
-        <div class="summary" v-html="article.content.substring(0, 100)">
+        <div class="summary" v-html="summaryFilter(article.content)">
         </div>
-        <div class="readmore">
-          <Button type="info">Readmore</Button>
+        <div class="readmore" @click="showDetail(article)">
+          <Button type="info">详细</Button>
+        </div>
+      </section>
+      <section class="detail_section" v-show="detail">
+        <div class="title_detail">
+          <h2>{{articleDetail.title}}</h2>
+        </div>
+        <div class="title_span">
+          最后编辑于 {{articleDetail.updated_at}}
+        </div>
+        <div class="content_detail">
+          <div v-html="articleDetail.content">
+          </div>
         </div>
       </section>
     </div>
@@ -93,20 +124,27 @@
   </div>
 </template>
 <script>
-// Vue.filter('summaryCut', str)
 export default {
   data () {
     return {
+      detail: false,
       articleInfo: {
         title: '',
         content: '',
       },
+      articleDetail: {}
     }
   },
   beforeMount () {
     this.getArticle()
   },
   methods: {
+    summaryFilter (val) {
+      return (val || "").substring(0, 100)
+    },
+    back () {
+      this.detail = false
+    },
     getArticle () {
       this.$http.post('/getArticle', {_token: window.Laravel.csrfToken}).then(
         response => {
@@ -117,9 +155,11 @@ export default {
         }
       )
     },
+    showDetail (article) {
+      console.log(article)
+      this.detail = true
+      this.articleDetail = article
+    }
   },
-  filter () {
-
-  }
 }
 </script>

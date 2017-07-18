@@ -25,6 +25,7 @@ Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
 
 Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
 Route::middleware('auth')->post('/saveWriter', 'ArticleController@saveWriter');
+Route::middleware('auth')->post('/visitCountUp', 'ArticleController@visitCountUp');
 
 // Route::get('/index', function () {
 //     return view('welcome');

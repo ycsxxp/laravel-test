@@ -41,7 +41,7 @@ export default {
     return {
       articleInfo: {
         title: '这里是文章标题',
-        content: '<h2>this is sample</h2>',
+        content: '文章内容',
       },
       editorOption: {
 

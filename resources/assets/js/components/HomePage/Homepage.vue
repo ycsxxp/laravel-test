@@ -103,10 +103,9 @@
           <h2>热门文章</h2>
         </div>
         <ul class="remen-list">
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
+          <li v-for="article in visitOrderedArticleInfo">
+            {{article.title}}
+          </li>
         </ul>
       </section>
       <section class="recent-section">
@@ -114,10 +113,9 @@
           <h2>最新文章</h2>
         </div>
         <ul class="recent-list">
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
-          <li>不知道写什么就随便一下</li>
+          <li v-for="article in hotOrderedArticleInfo">
+            {{article.title}}
+          </li>
         </ul>
       </section>
     </div>
@@ -138,6 +136,15 @@ export default {
   beforeMount () {
     this.getArticle()
   },
+  computed: {
+    // 过滤器
+    visitOrderedArticleInfo: function () {
+      return _.orderBy(this.articleInfo, 'visit_count', 'desc')
+    },
+    hotOrderedArticleInfo: function () {
+      return _.orderBy(this.articleInfo, 'created_at', 'asc')
+    }
+  },
   methods: {
     summaryFilter (val) {
       return (val || "").substring(0, 100)
@@ -149,6 +156,7 @@ export default {
       this.$http.post('/getArticle', {_token: window.Laravel.csrfToken}).then(
         response => {
           this.articleInfo = response.data
+          console.log(this.articleInfo)
         },
         response => {
           this.$Message.error('获取失败,请重试!');
@@ -156,9 +164,31 @@ export default {
       )
     },
     showDetail (article) {
-      console.log(article)
       this.detail = true
+      // 查看详细之后 阅读量增加
+      this.visitCountUp(article.id)
+      // 保持打开时定位在文章顶部
+      this.$nextTick(function () {
+        document.body.scrollTop = 0
+        document.documentElement.scrollTop = 0
+      })
       this.articleDetail = article
+    },
+    visitCountUp (id) {
+      let payload = {
+        id: id,
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.post('/visitCountUp', payload).then(
+        response => {
+          // 请求成功
+          console.log(response.data)
+        },
+        response => {
+          // 请求失败
+          this.$Message.error('阅读量增加失败')
+        }
+      )
     }
   },
 }

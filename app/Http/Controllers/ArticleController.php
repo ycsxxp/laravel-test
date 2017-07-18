@@ -25,5 +25,13 @@ class ArticleController extends Controller {
         $articles = Article::all();
         return $articles->toJson();
     }
+
+    public function visitCountUp(Request $request) {
+        $id = intval($request->id);
+        $article = Article::find($id);
+        $article->timestamps = false;
+        $article->visit_count += 1;
+        $article->save();
+    }
 }
 ?>

@@ -16,6 +16,10 @@
           height: 100%;
         }
       }
+      .wrapper-header-nav-user{
+        float: right;
+        margin-left: 50px;
+      }
       .wrapper-header-nav-list {
         height: inherit;
         float: right;
@@ -35,13 +39,22 @@
 <template>
   <div class="wrapper">
     <div class="wrapper-header">
-      <Menu mode="horizontal" theme="light" active-name="ceshi" @on-select="routeTo">
+      <Menu mode="horizontal" theme="light" active-name="homepage" @on-select="routeTo">
         <div class="wrapper-header-nav">
           <a href="/" class="wrapper-header-nav-logo">
             <img src="images/logo.png">
           </a>
+          <div class="wrapper-header-nav-user">
+            <Dropdown trigger="hover" @on-click="userTodo">
+              <Button type="info" shape="circle" icon="ios-person">
+              </Button>
+              <Dropdown-menu slot="list">
+                <Dropdown-item name='logout'>退出</Dropdown-item>
+              </Dropdown-menu>
+            </Dropdown>
+          </div>
           <div class="wrapper-header-nav-list">
-            <Menu-item name="ceshi">
+            <Menu-item name="homepage">
               首页
             </Menu-item>
             <Menu-item name="writer">
@@ -62,12 +75,26 @@
 <script>
 export default {
   mounted () {
-    this.$router.push({ path: '/ceshi' });
+    this.$router.push({ path: '/homepage' });
   },
   methods: {
     routeTo(e) {
       // 跳转
       this.$router.push({ path: '/'+e });
+    },
+    userTodo(name) {
+      if(name='logout') this.logout();
+    },
+    logout() {
+      this.$http.post('/logout', { _token: window.Laravel.csrfToken }).then(
+        response => {
+          this.$store.commit('logoutSuccess')
+          this.$router.push({ path: '/' });
+        },
+        response => {
+
+        }
+      )
     }
   }
 }

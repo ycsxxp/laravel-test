@@ -21,5 +21,7 @@ class Article extends Model {
     protected $hidden = [
         
     ];
+
+    public $timestamps = true;
 }
 ?>

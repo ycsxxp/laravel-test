@@ -11,11 +11,14 @@
     .content_left {
       width: 70%;
       float: left;
-      .wenzhang_section {
+      padding-top: 20px;
+      .article_section {
         width: 70%;
         margin: 0 auto;
         margin-bottom: 20px;
         padding: 20px 15px 15px 20px;
+        border-style: solid;
+        border-width: 1px;
         .title {
           height: 30px;
           margin: 0 0 10px 0;
@@ -33,13 +36,24 @@
           margin: 20px 0 20px 0;
           height: 50px;
         }
-        .readmore {
-
+        .infoDiv {
+          position: relative;
+          .visit_span {
+            position: absolute;
+            bottom: 0px;
+            margin-left: 20px;
+          }
+          .time_span {
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+          }
         }
       }
 
       .detail_section {
         padding: 30px 50px 0 50px;
+        overflow: hidden;
         .title_detail {
           // margin-bottom: 
         }
@@ -66,22 +80,27 @@
       }
     }
   }
+  :global(.content_detail img) {
+    max-width: 650px;
+  }
 </style>
 <template>
   <div class="content">
     <div class="backBtn" v-show="detail"><Button type="success" @click="back">返回</Button></div>
     <div class="content_left">
-      <section v-show="!detail" class="wenzhang_section" v-for="article in articleInfo">
+      <section v-show="!detail" class="article_section" v-for="article in articleInfo">
         <div class="title">
           <h2>{{article.title}}</h2>
         </div>
         <div class="cover">
-          <img src="images/72620b440e684eae9376c87a8d60f050.webp">
+          <!-- <img src="images/72620b440e684eae9376c87a8d60f050.webp"> -->
         </div>
         <div class="summary" v-html="summaryFilter(article.content)">
         </div>
-        <div class="readmore" @click="showDetail(article)">
-          <Button type="info">详细</Button>
+        <div class="infoDiv">
+          <Button class="readmore" type="info"  @click="showDetail(article)">详细</Button>
+          <span class="visit_span"><Icon type="ios-eye" color=""></Icon> 访问量 {{article.visit_count}}</span>
+          <span class="time_span"><Icon type="ios-clock"></Icon> {{article.created_at}}</span>
         </div>
       </section>
       <section class="detail_section" v-show="detail">
@@ -97,31 +116,12 @@
         </div>
       </section>
     </div>
-    <div class="content-right">
-      <section class="remen-section">
-        <div class="title">
-          <h2>热门文章</h2>
-        </div>
-        <ul class="remen-list">
-          <li v-for="article in visitOrderedArticleInfo">
-            {{article.title}}
-          </li>
-        </ul>
-      </section>
-      <section class="recent-section">
-        <div class="title">
-          <h2>最新文章</h2>
-        </div>
-        <ul class="recent-list">
-          <li v-for="article in hotOrderedArticleInfo">
-            {{article.title}}
-          </li>
-        </ul>
-      </section>
-    </div>
+    <catalog :list="articleInfo"></catalog>
   </div>
 </template>
 <script>
+import Catalog from './Catalog.vue'
+
 export default {
   data () {
     return {
@@ -133,18 +133,21 @@ export default {
       articleDetail: {}
     }
   },
-  beforeMount () {
+  components: {
+    Catalog
+  },
+  created () {
     this.getArticle()
   },
-  computed: {
-    // 过滤器
-    visitOrderedArticleInfo: function () {
-      return _.orderBy(this.articleInfo, 'visit_count', 'desc')
-    },
-    hotOrderedArticleInfo: function () {
-      return _.orderBy(this.articleInfo, 'created_at', 'asc')
-    }
-  },
+  // computed: {
+  //   // 过滤器
+  //   hotArticleInfo: function () {
+  //     return _.orderBy(this.articleInfo, 'like_count', 'desc').slice(0, 5)
+  //   },
+  //   recentArticleInfo: function () {
+  //     return _.orderBy(this.articleInfo, 'visit_count', 'desc').slice(0, 5)
+  //   }
+  // },
   methods: {
     summaryFilter (val) {
       return (val || "").substring(0, 100)
@@ -156,7 +159,6 @@ export default {
       this.$http.post('/getArticle', {_token: window.Laravel.csrfToken}).then(
         response => {
           this.articleInfo = response.data
-          console.log(this.articleInfo)
         },
         response => {
           this.$Message.error('获取失败,请重试!');

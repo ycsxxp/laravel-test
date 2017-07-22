@@ -65,10 +65,11 @@ export default {
       this.articleInfo._token = window.Laravel.csrfToken
       this.$http.post( '/saveWriter', this.articleInfo ).then(
         response => {
-          this.$Message.success('添加成功!');
+          this.$Message.success('添加成功!')
+          this.$router.push({ path: '/homepage' })
         },
         response => {
-          this.$Message.error('提交失败,请重试!');
+          this.$Message.error('提交失败,请重试!')
         }
       )
     }

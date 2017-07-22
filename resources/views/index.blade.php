@@ -18,7 +18,7 @@
 		height: 100%;
 	}
 	body {
-		background: url("images/background.jpg") no-repeat center 0;
+		background: url("images/background.jpg") repeat center 0;
 		background-size: auto;
 		font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 	}

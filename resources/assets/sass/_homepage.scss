@@ -1,0 +1,84 @@
+.content {
+  width: 100%;
+  .backBtn {
+    width: 100px;
+    position: absolute;
+    float: right;
+    margin-left: 690px;
+    margin-top: 30px;
+  }
+  .content_left {
+    width: 70%;
+    float: left;
+    padding-top: 20px;
+    .article_section {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      padding: 20px 15px 15px 20px;
+      border-style: solid;
+      border-width: 1px;
+      .title {
+        height: 30px;
+        margin: 0 0 10px 0;
+      }
+      .cover {
+        width: 100%;
+        img {
+          width: auto;  
+          height: auto;  
+          max-width: 100%;  
+          max-height: 100%;
+        }
+      }
+      .summary {
+        margin: 20px 0 20px 0;
+        height: 50px;
+      }
+      .infoDiv {
+        position: relative;
+        .visit_span {
+          position: absolute;
+          bottom: 0px;
+          margin-left: 20px;
+        }
+        .time_span {
+          position: absolute;
+          bottom: 0px;
+          right: 20px;
+        }
+      }
+    }
+
+    .detail_section {
+      padding: 30px 50px 0 50px;
+      overflow: hidden;
+      .title_detail {
+        // margin-bottom: 
+      }
+      .content_detail {
+        margin-top: 30px;
+      }  
+    }
+    
+  }
+  .content-right {
+    width: 30%;
+    float: left;
+    .remen-section {
+      padding: 20px 15px 15px 20px;
+      .remen-list {
+        margin: 20px 0 0 20px;
+      }
+    }
+    .recent-section {
+      padding: 20px 15px 15px 20px;
+      .recent-list {
+        margin: 20px 0 0 20px;
+      }
+    }
+  }
+}
+:global(.content_detail img) {
+  max-width: 650px;
+}

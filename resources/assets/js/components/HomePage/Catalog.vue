@@ -6,7 +6,7 @@
       </div>
       <ul class="remen-list">
         <li v-for="article in hotArticleInfo">
-          <a @click="showDetail(article)">{{article.title}}</a>
+          <a @click="showDetail(article.id)">{{article.title}}</a>
         </li>
       </ul>
     </section>
@@ -16,7 +16,7 @@
       </div>
       <ul class="recent-list">
         <li v-for="article in recentArticleInfo">
-          <a @click="showDetail(article)">{{article.title}}</a>
+          <a @click="showDetail(article.id)">{{article.title}}</a>
         </li>
       </ul>
     </section>
@@ -24,33 +24,54 @@
 </template>
 <script>
 export default {
-  props: ["list"],
   data () {
     return {
-      articleInfo: this.list
+      orderArticleList: {
+        visitList: {},
+        likeList: {}
+      }
     }
   },
-  // 对传进来的 list参数监听 父组件修改后 同步修改到子组件
+  // 对传进来的 recent, hot 参数监听 父组件修改后 同步修改到子组件
   watch: {
-    list(val) {
-      this.articleInfo = val;//新增result的watch，监听变更并同步到myResult上
-    }
+    recent(val) {
+      this.visitList = val;//新增result的watch，监听变更并同步到myResult上
+    },
+    hot(val) {
+      this.likeList = val;//新增result的watch，监听变更并同步到myResult上
+    },
   },
   mounted () {
-    console.log(this.list)
+    this.getOrderArticleList()
   },
   computed: {
     // 过滤器
     hotArticleInfo: function () {
-      return _.orderBy(this.articleInfo, 'like_count', 'desc').slice(0, 5)
+      return _.orderBy(this.orderArticleList.likeList, 'like_count', 'desc').slice(0, 5)
     },
     recentArticleInfo: function () {
-      return _.orderBy(this.articleInfo, 'visit_count', 'desc').slice(0, 5)
+      return _.orderBy(this.orderArticleList.visitList, 'visit_count', 'desc').slice(0, 5)
     }
   },
   methods: {
-    showDetail (article) {
-      console.log(article)
+    getOrderArticleList() {
+      let payload = {
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.post( '/getOrderArticleList', payload ).then(
+        response => {
+          // 请求成功 得到排序后的列表
+          this.orderArticleList.likeList = response.data.order_by_like
+          this.orderArticleList.visitList = response.data.order_by_visit
+        },
+        response => {
+          // 请求失败
+          this.$Message.error('获取失败')
+        }
+      )
+    },
+    showDetail(id) {
+      this.$router.push({ path: '/detail/'+id })
     }
   }
 }

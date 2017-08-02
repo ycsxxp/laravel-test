@@ -47,6 +47,10 @@ export default new VueRouter({
 				{
 					path: '/writer',
 					component: resolve => require(['./components/HomePage/Writer.vue'], resolve)
+				},
+				{
+					path: '/detail/:id',
+					component: resolve => require(['./components/HomePage/Detail.vue'], resolve)
 				}
 			]
 		}

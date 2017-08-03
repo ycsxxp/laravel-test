@@ -19,8 +19,13 @@
           <span class="time_span"><Icon type="ios-clock"></Icon> {{article.created_at}}</span>
         </div>
       </section>
+      <div class="pagination">
+        <Page :total="paginationInit.total" placement="top" size="small" show-elevator show-sizer :current="paginationInit.page" :page-size="paginationInit.size" :page-size-opts="paginationInit.sizeOpt" @on-change="changePage" @on-page-size-change="setPageSize"></Page>
+      </div>
     </div>
-    <catalog></catalog>
+    <div class="content-right">
+      <catalog></catalog>
+    </div>
   </div>
 </template>
 <script>
@@ -35,7 +40,13 @@ export default {
       },
       hotArticleList: {},
       recentArticleList: {},
-      articleDetail: {}
+      articleDetail: {},
+      paginationInit: {
+        total: 1,
+        page: 1,
+        size: 1,
+        sizeOpt: [1, 2, 3, 4, 10]
+      }
     }
   },
   components: {
@@ -48,10 +59,17 @@ export default {
     summaryFilter (val) {
       return (val || "").substring(0, 100)
     },
-    getArticle () {
-      this.$http.post('/getArticle', {_token: window.Laravel.csrfToken}).then(
+    getArticle() {
+      let payload = {
+        size: this.paginationInit.size,
+        page: this.paginationInit.page,
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.post('/getArticle', payload).then(
         response => {
-          this.articleInfo = response.data
+          this.articleInfo = response.data.articles
+          this.paginationInit.total = response.data.total
+          console.log(this.paginationInit.total)
           this.hotArticleList = this.articleInfo
           this.recentArticleList = this.articleInfo
         },
@@ -67,6 +85,14 @@ export default {
       //   document.body.scrollTop = 0
       //   document.documentElement.scrollTop = 0
       // })
+    },
+    changePage (page) {
+      this.paginationInit.page = page
+      this.getArticle()
+    },
+    setPageSize (size) {
+      this.paginationInit.size = size
+      this.getArticle()
     }
   },
 }

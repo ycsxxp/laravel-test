@@ -1,5 +1,5 @@
 <template>
-  <div class="content-right">
+  <div>
     <section class="remen-section">
       <div class="title">
         <h2>热门文章</h2>

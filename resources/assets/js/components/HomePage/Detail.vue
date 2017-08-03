@@ -18,9 +18,10 @@
         </div>
       </section>
     </div>
-    <catalog></catalog>
+    <div class="content-right">
+      <catalog></catalog>  
+    </div>
   </div>
-  
 </template>
 <script>
 import Catalog from './Catalog.vue'

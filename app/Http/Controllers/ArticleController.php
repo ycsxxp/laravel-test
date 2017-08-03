@@ -21,9 +21,16 @@ class ArticleController extends Controller {
         ]);
     }
 
-    public function getArticle() {
-        $articles = Article::orderBy('created_at', 'desc')->get();
-        return $articles->toJson();
+    public function getArticle(Request $request) {
+        // 每页条数
+        $size = intval($request->size);
+        // 页数
+        $page = intval($request->page);
+
+        $articles = Article::orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+        $total = Article::count();
+        $result = array('articles' => $articles, 'total' => $total );
+        return $result;
     }
 
     public function getArticleDetail(Request $request) {

@@ -34,17 +34,14 @@ import Catalog from './Catalog.vue'
 export default {
   data () {
     return {
-      articleInfo: {
-        title: '',
-        content: '',
-      },
+      articleInfo: {},
       hotArticleList: {},
       recentArticleList: {},
       articleDetail: {},
       paginationInit: {
         total: 1,
-        page: 1,
-        size: 1,
+        page: this.$store.state.pageConfig.currentPage,
+        size: this.$store.state.pageConfig.pageSize,
         sizeOpt: [1, 2, 3, 4, 10]
       }
     }
@@ -69,7 +66,6 @@ export default {
         response => {
           this.articleInfo = response.data.articles
           this.paginationInit.total = response.data.total
-          console.log(this.paginationInit.total)
           this.hotArticleList = this.articleInfo
           this.recentArticleList = this.articleInfo
         },
@@ -87,10 +83,20 @@ export default {
       // })
     },
     changePage (page) {
+      let payload = {
+        page: page,
+        size: this.paginationInit.size
+      }
+      this.$store.commit('setPageConfig', payload)
       this.paginationInit.page = page
       this.getArticle()
     },
     setPageSize (size) {
+      let payload = {
+        page: this.paginationInit.page,
+        size: size
+      }
+      this.$store.commit('setPageConfig', payload)
       this.paginationInit.size = size
       this.getArticle()
     }

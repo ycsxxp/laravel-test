@@ -12613,6 +12613,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 		breadCrumb: [],
 		data: {
 			userFormData: []
+		},
+		pageConfig: {
+			currentPage: 1,
+			pageSize: 1
 		}
 	},
 	mutations: {
@@ -12653,6 +12657,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 				state.breadCrumb.push(payload);
 			}
 			// state.breadCrumb.push(title)
+		},
+		setPageConfig: function setPageConfig(state, payload) {
+			state.pageConfig.currentPage = payload.page;
+			state.pageConfig.pageSize = payload.size;
 		}
 	}
 }));

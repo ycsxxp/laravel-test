@@ -47,6 +47,9 @@ export default {
   mounted() {
     this.getArticleDetail(parseInt(this.$route.params.id))
   },
+  updated() {
+    this.getArticleDetail(parseInt(this.$route.params.id))
+  },
   methods: {
     back() {
       this.$router.push({ path: '/homepage' })

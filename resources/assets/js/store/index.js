@@ -10,7 +10,11 @@ export default new Vuex.Store({
 		breadCrumb: [],
 		data: {
 			userFormData: []
-		} 
+		},
+		pageConfig: {
+			currentPage: 1,
+			pageSize: 1	
+		}
 	},
 	mutations: {
 		loginSuccess (state) {
@@ -55,6 +59,11 @@ export default new Vuex.Store({
 				state.breadCrumb.push(payload)
 			}
 			// state.breadCrumb.push(title)
+		},
+
+		setPageConfig(state, payload) {
+			state.pageConfig.currentPage = payload.page
+			state.pageConfig.pageSize = payload.size
 		}
 	}
 })

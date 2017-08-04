@@ -611,17 +611,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      articleInfo: {
-        title: '',
-        content: ''
-      },
+      articleInfo: {},
       hotArticleList: {},
       recentArticleList: {},
       articleDetail: {},
       paginationInit: {
         total: 1,
-        page: 1,
-        size: 1,
+        page: this.$store.state.pageConfig.currentPage,
+        size: this.$store.state.pageConfig.pageSize,
         sizeOpt: [1, 2, 3, 4, 10]
       }
     };
@@ -649,7 +646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.post('/getArticle', payload).then(function (response) {
         _this.articleInfo = response.data.articles;
         _this.paginationInit.total = response.data.total;
-        console.log(_this.paginationInit.total);
         _this.hotArticleList = _this.articleInfo;
         _this.recentArticleList = _this.articleInfo;
       }, function (response) {
@@ -665,10 +661,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // })
     },
     changePage: function changePage(page) {
+      var payload = {
+        page: page,
+        size: this.paginationInit.size
+      };
+      this.$store.commit('setPageConfig', payload);
       this.paginationInit.page = page;
       this.getArticle();
     },
     setPageSize: function setPageSize(size) {
+      var payload = {
+        page: this.paginationInit.page,
+        size: size
+      };
+      this.$store.commit('setPageConfig', payload);
       this.paginationInit.size = size;
       this.getArticle();
     }

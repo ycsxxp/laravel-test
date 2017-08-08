@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Article;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller {
     public function saveWriter(Request $request) {
@@ -27,7 +29,14 @@ class ArticleController extends Controller {
         // 页数
         $page = intval($request->page);
 
-        $articles = Article::orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+        // DB::enableQueryLog();
+        $articles = Article::with('username')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+
+        // foreach (DB::getQueryLog() as $sql) {
+        //     dump($sql['query']);
+        // }
+        // dump($articles);
+        // exit();
         $total = Article::count();
         $result = array('articles' => $articles, 'total' => $total );
         return $result;

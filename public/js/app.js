@@ -12608,7 +12608,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {
-		loginStatus: false,
+		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false,
 		loginUserInfo: [],
 		breadCrumb: [],
 		data: {
@@ -12616,18 +12616,20 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 		},
 		pageConfig: {
 			currentPage: 1,
-			pageSize: 1
+			pageSize: 5
 		}
 	},
 	mutations: {
 		loginSuccess: function loginSuccess(state) {
 			state.loginStatus = true;
+			localStorage.setItem("loginStatus", "true");
 		},
 		setLoginUserInfo: function setLoginUserInfo(state, payload) {
 			state.loginUserInfo = payload;
 		},
 		logoutSuccess: function logoutSuccess(state) {
 			state.loginStatus = false;
+			localStorage.setItem("loginStatus", "false");
 		},
 		setBreadCrumb: function setBreadCrumb(state, payload) {
 			// state.ceshibread = ['ceshi','success']

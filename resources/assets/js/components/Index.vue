@@ -30,7 +30,8 @@
     color: #9ea7b4;
   }
   .layout-menu-left{
-    background: #1c2438;
+    /*background: #1c2438;*/
+    background: #495060;
   }
   .layout-header{
     height: 60px;
@@ -72,8 +73,9 @@
   <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
     <Row type="flex" class-name="rowDiv" justify="center">
       <i-col :span="spanLeft" class="layout-menu-left">
+        <div class="layout-logo-left"></div>
         <Menu mode="vertical" theme="dark" width="auto" active-name="article" :open-names="['1']" @on-select="routeTo" accordion>
-          <div class="layout-logo-left"></div>
+          
           <Submenu v-for="menu in menuArr" :name="menu.name" :key="menu.id">
             <template slot="title">
               <Icon :type="menu.icon" :size="iconSize"></Icon>

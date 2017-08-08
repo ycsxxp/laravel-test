@@ -42,7 +42,7 @@ export default {
         total: 1,
         page: this.$store.state.pageConfig.currentPage,
         size: this.$store.state.pageConfig.pageSize,
-        sizeOpt: [1, 2, 3, 4, 10]
+        sizeOpt: [5, 10, 15, 20]
       }
     }
   },

@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		loginStatus: false,
+		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false ,
 		loginUserInfo: [],
 		breadCrumb: [],
 		data: {
@@ -13,18 +13,20 @@ export default new Vuex.Store({
 		},
 		pageConfig: {
 			currentPage: 1,
-			pageSize: 1	
+			pageSize: 5	
 		}
 	},
 	mutations: {
 		loginSuccess (state) {
 			state.loginStatus = true
+			localStorage.setItem("loginStatus", "true")
 		},
 		setLoginUserInfo (state, payload) {
 			state.loginUserInfo = payload
 		},
 		logoutSuccess (state) {
 			state.loginStatus = false
+			localStorage.setItem("loginStatus", "false")
 		},
 		setBreadCrumb(state, payload) {
 			// state.ceshibread = ['ceshi','success']

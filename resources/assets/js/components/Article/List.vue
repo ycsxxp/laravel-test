@@ -34,15 +34,15 @@ export default {
           },
           {
             title: '文章标题',
-            key: 'name'
+            key: 'title'
           },
           {
             title: '摘要',
-            key: 'summary'
+            key: 'title'
           },
           {
             title: '发布人',
-            key: 'user'
+            key: 'username'
           },
           {
             title: '操作',
@@ -51,6 +51,34 @@ export default {
       ],
       articleList: []
     }
-  }
+  },
+  mounted() {
+    let payload = {
+      size: 10,
+      page: 1,
+      _token: window.Laravel.csrfToken
+    }
+    this.$http.post('/getArticle', payload).then(
+      response => {
+        // 请求成功
+        let articles = response.data.articles
+        // 处理得到的数据
+        for (let i = 0; i < articles.length; i++) {
+          let item = articles[i]
+          for( let key in item) {
+            if(key=='username') {
+              item['username'] = item['username'].name
+            }
+          }
+        }
+        
+        this.articleList = articles
+      },
+      response => {
+        // 请求失败
+        this.$Message.error('获取失败,请重试!')
+      }
+    )
+  },
 }
 </script>

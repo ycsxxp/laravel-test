@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App;
 
 // use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +23,9 @@ class Article extends Model {
     ];
 
     public $timestamps = true;
+
+    public function username() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }
 ?>

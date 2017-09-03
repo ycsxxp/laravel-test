@@ -23,8 +23,16 @@ Route::middleware('auth')->post('/adduser', 'UserController@adduser');
 Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
 Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
 
+Route::middleware('auth')->post('/addCategory', 'CategoryController@add');
+Route::middleware('auth')->post('/getCategory', 'CategoryController@get');
+Route::middleware('auth')->post('/deleteCategory', 'CategoryController@delete');
+
+
+
 Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
 Route::middleware('auth')->post('/getArticleDetail', 'ArticleController@getArticleDetail');
+Route::middleware('auth')->post('/deleteArticle', 'ArticleController@delete');
+
 
 Route::middleware('auth')->post('/getOrderArticleList', 'ArticleController@getOrderArticleList');
 

@@ -77,7 +77,7 @@ export default {
             },
             response => {
               // 请求失败
-              this.$Message.error('请求失败！稍后重试');
+              this.$Message.error('网络错误,请重试!');
             }
           )
         } else {

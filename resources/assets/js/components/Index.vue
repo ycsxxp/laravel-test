@@ -140,6 +140,11 @@ export default {
               },
               {
                   id: '2',
+                  name: 'category',
+                  title: '分类管理'
+              },
+              {
+                  id: '3',
                   name: 'test',
                   title: '评论管理'
               }
@@ -201,6 +206,7 @@ export default {
       this.$http.post('/logout', { _token: window.Laravel.csrfToken }).then(
         response => {
           this.$store.commit('logoutSuccess')
+          this.$store.commit('setLoginUserInfo', "")
           this.$router.push({ path: '/' });
         },
         response => {

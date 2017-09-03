@@ -6,10 +6,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false ,
-		loginUserInfo: [],
+		// loginStatus: false ,
+		// loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
+		loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
 		breadCrumb: [],
 		data: {
-			userFormData: []
+			userFormData: [],
+			categoryFormData: []
 		},
 		pageConfig: {
 			currentPage: 1,
@@ -23,6 +26,7 @@ export default new Vuex.Store({
 		},
 		setLoginUserInfo (state, payload) {
 			state.loginUserInfo = payload
+			localStorage.setItem("loginUserInfo", JSON.stringify(payload))
 		},
 		logoutSuccess (state) {
 			state.loginStatus = false

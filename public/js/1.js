@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 103:
+/***/ 109:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -77,17 +77,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 114:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(87);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(63)("982173aa", content, false);
+var update = __webpack_require__(65)("982173aa", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -104,18 +104,18 @@ if(false) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(114)
+__webpack_require__(122)
 
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(73),
+  __webpack_require__(77),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(109),
   /* scopeId */
   "data-v-0f94bdf4",
   /* cssModules */
@@ -143,7 +143,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 63:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -162,7 +162,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(64)
+var listToStyles = __webpack_require__(66)
 
 /*
 type StyleObject = {
@@ -365,7 +365,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 64:
+/***/ 66:
 /***/ (function(module, exports) {
 
 /**
@@ -399,7 +399,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 65:
+/***/ 67:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -474,7 +474,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.orderArticleList.visitList = response.data.order_by_visit;
       }, function (response) {
         // 请求失败
-        _this.$Message.error('获取失败');
+        _this.$Message.error('网络错误,请重试!');
       });
     },
     showDetail: function showDetail(id) {
@@ -485,14 +485,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 66:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(65),
-  /* template */
   __webpack_require__(67),
+  /* template */
+  __webpack_require__(69),
   /* scopeId */
   null,
   /* cssModules */
@@ -520,7 +520,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 67:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -568,12 +568,12 @@ if (false) {
 
 /***/ }),
 
-/***/ 73:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Catalog_vue__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Catalog_vue__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Catalog_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Catalog_vue__);
 //
 //
@@ -649,7 +649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.hotArticleList = _this.articleInfo;
         _this.recentArticleList = _this.articleInfo;
       }, function (response) {
-        _this.$Message.error('获取失败,请重试!');
+        _this.$Message.error('网络错误,请重试!');
       });
     },
     showDetail: function showDetail(id) {
@@ -683,7 +683,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 87:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();

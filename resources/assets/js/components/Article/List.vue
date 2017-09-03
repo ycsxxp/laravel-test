@@ -46,39 +46,117 @@ export default {
           },
           {
             title: '操作',
-            key: 'action'
+            key: 'action',
+            render: (createElement, params) => {
+              return createElement(
+                'div',
+                [
+                  // createElement(
+                  //   'Button',
+                  //   {
+                  //     props: {
+                  //       type: 'primary',
+                  //       size: 'small'
+                  //     },
+                  //     style: {
+                  //       marginRight: '5px'
+                  //     },
+                  //     on: {
+                  //       click: () => {
+                  //         this.editCategory(params)
+                  //       }
+                  //     }
+                  //   },
+                  //   '编辑'
+                  // ),
+                  createElement(
+                    'Button',
+                    {
+                      props: {
+                        type: 'error',
+                        size: 'small'
+                      },
+                      on: {
+                        click: () => {
+                          this.delete(params)
+                        }
+                      }
+                    },
+                    '删除'
+                  )
+                ]
+              )
+            }
           }
       ],
       articleList: []
     }
   },
   mounted() {
-    let payload = {
-      size: 10,
-      page: 1,
-      _token: window.Laravel.csrfToken
-    }
-    this.$http.post('/getArticle', payload).then(
-      response => {
-        // 请求成功
-        let articles = response.data.articles
-        // 处理得到的数据
-        for (let i = 0; i < articles.length; i++) {
-          let item = articles[i]
-          for( let key in item) {
-            if(key=='username') {
-              item['username'] = item['username'].name
+    this.get()
+  },
+  methods: {
+    get() {
+      let payload = {
+        size: 10,
+        page: 1,
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.post('/getArticle', payload).then(
+        response => {
+          // 请求成功
+          let articles = response.data.articles
+          // 处理得到的数据
+          for (let i = 0; i < articles.length; i++) {
+            let item = articles[i]
+            for( let key in item) {
+              if(key=='username') {
+                item['username'] = item['username'].name
+              }
             }
           }
+          this.articleList = articles
+        },
+        response => {
+          // 请求失败
+          this.$Message.error('网络错误,请重试!')
         }
-        
-        this.articleList = articles
-      },
-      response => {
-        // 请求失败
-        this.$Message.error('获取失败,请重试!')
+      )
+    },
+    delete(params) {
+      let payload = {
+        _token: window.Laravel.csrfToken,
+        id: params.row.id,
+        user_id: params.row.user_id,
+        size: 10,
+        page: 1,
       }
-    )
-  },
+      this.$http.post('/deleteArticle', payload).then(
+        response => {
+          // 请求成功
+          let articles = response.data.articles
+          // 处理得到的数据
+          for (let i = 0; i < articles.length; i++) {
+            let item = articles[i]
+            for( let key in item) {
+              if(key=='username') {
+                item['username'] = item['username'].name
+              }
+            }
+          }
+          this.articleList = articles
+
+          this.$Notice.success({
+            title: '删除成功',
+            duration: 3
+          });
+        },
+        response => {
+          // 请求失败
+          this.$Message.error('网络错误,请重试!');
+        }
+      )
+    }
+  }
 }
 </script>

@@ -66,7 +66,7 @@ export default {
         },
         response => {
           // 请求失败
-          this.$Message.error('获取失败')
+          this.$Message.error('网络错误,请重试!')
         }
       )
     },

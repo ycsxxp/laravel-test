@@ -28,7 +28,7 @@ Vue.prototype.$http = axios;
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('login', require('./components/Login.vue'));
 
-
+console.log(localStorage.getItem("loginStatus"))
 router.beforeEach((to, from, next) => {
 	if(!store.state.loginStatus && to.path != '/login') {
 		// 如果未登录 && 路由不是 /login 则重定向到 /login

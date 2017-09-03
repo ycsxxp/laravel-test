@@ -23,6 +23,14 @@ export default new VueRouter({
 					component: resolve => require(['./components/Article/List.vue'], resolve)
 				},
 				{
+					path: '/category',
+					component: resolve => require(['./AdminPage/Category/List.vue'], resolve)
+				},
+				{
+					path: '/category/:type',
+					component: resolve => require(['./AdminPage/Category/Form.vue'], resolve)
+				},
+				{
 					path: '/test',
 					component: resolve => require(['./components/Test.vue'], resolve)
 				},
@@ -43,6 +51,10 @@ export default new VueRouter({
 				{
 					path: '/homepage',
 					component: resolve => require(['./components/HomePage/Homepage.vue'], resolve)
+				},
+				{
+					path: '/cate',
+					component: resolve => require(['./components/HomePage/Category.vue'], resolve)
 				},
 				{
 					path: '/writer',

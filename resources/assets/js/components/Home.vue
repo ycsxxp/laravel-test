@@ -57,6 +57,9 @@
             <Menu-item name="homepage">
               首页
             </Menu-item>
+            <Menu-item name="cate">
+              文章分类
+            </Menu-item>
             <Menu-item name="writer">
               发布文章
             </Menu-item>

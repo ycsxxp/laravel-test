@@ -6,7 +6,7 @@
   text-align: right;
 }
 @for $i from 2 through 10 {
-    .ivu-table .td-item-#{$i} { padding-left: 20px * ($i - 1) ; }
+  .ivu-table .td-item-#{$i} { padding-left: 20px * ($i - 1) ; }
 }
 </style>
 <template>

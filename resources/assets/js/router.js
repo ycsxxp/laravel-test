@@ -63,6 +63,10 @@ export default new VueRouter({
 				{
 					path: '/detail/:id',
 					component: resolve => require(['./components/HomePage/Detail.vue'], resolve)
+				},
+				{
+					path: '/other',
+					component: resolve => require(['./components/Test.vue'], resolve)
 				}
 			]
 		}

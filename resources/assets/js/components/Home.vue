@@ -1,4 +1,8 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .wrapper {
+    width: 100%;
+    height: 100%;
+  }
   .wrapper-header {
     .ivu-menu-horizontal {
       height: 80px;

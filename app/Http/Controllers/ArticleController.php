@@ -35,6 +35,11 @@ class ArticleController extends Controller {
         return $result;
     }
 
+    public function getByCategory(Request $request) {
+        $category_id = intval($request->id);
+        return Article::where('category', $category_id)->get()->toJson();
+    }
+
     public function getArticleDetail(Request $request) {
         $id = intval($request->id);
         // 阅读量 +1

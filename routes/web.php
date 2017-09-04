@@ -32,6 +32,8 @@ Route::middleware('auth')->post('/deleteCategory', 'CategoryController@delete');
 Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
 Route::middleware('auth')->post('/getArticleDetail', 'ArticleController@getArticleDetail');
 Route::middleware('auth')->post('/deleteArticle', 'ArticleController@delete');
+Route::middleware('auth')->post('/getArticleByCategory', 'ArticleController@getByCategory');
+
 
 
 Route::middleware('auth')->post('/getOrderArticleList', 'ArticleController@getOrderArticleList');

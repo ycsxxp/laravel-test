@@ -2,8 +2,8 @@
   @import 'resources/assets/sass/_homepage.scss';
 </style>
 <template>
-  <div class="content">
-    <div class="content_left">
+  <Row class="content">
+    <Col class="content_left">
       <section class="article_section" v-for="article in articleInfo">
         <div class="title">
           <h2>{{article.title}}</h2>
@@ -22,11 +22,11 @@
       <div class="pagination">
         <Page :total="paginationInit.total" placement="top" size="small" show-elevator show-sizer :current="paginationInit.page" :page-size="paginationInit.size" :page-size-opts="paginationInit.sizeOpt" @on-change="changePage" @on-page-size-change="setPageSize"></Page>
       </div>
-    </div>
-    <div class="content-right">
+    </Col>
+    <Col class="content-right">
       <catalog></catalog>
-    </div>
-  </div>
+    </Col>
+  </Row>
 </template>
 <script>
 import Catalog from './Catalog.vue'
@@ -59,8 +59,7 @@ export default {
     getArticle() {
       let payload = {
         size: this.paginationInit.size,
-        page: this.paginationInit.page,
-        _token: window.Laravel.csrfToken
+        page: this.paginationInit.page
       }
       this.$http.post('/getArticle', payload).then(
         response => {
@@ -70,7 +69,7 @@ export default {
           this.recentArticleList = this.articleInfo
         },
         response => {
-          this.$Message.error('网络错误,请重试!');
+          this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
     },

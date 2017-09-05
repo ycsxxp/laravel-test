@@ -27,7 +27,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		13: 0
+/******/ 		14: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -11219,24 +11219,57 @@ Vue.prototype.$http = axios;
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('login', require('./components/Login.vue'));
 
-console.log(localStorage.getItem("loginStatus"));
+// 对所有请求增加 _token
+axios.interceptors.request.use(function (config) {
+	// if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+	//     config.headers.Authorization = `token ${store.state.token}`;
+	// }
+	return config;
+}, function (err) {
+	return Promise.reject(err);
+});
+// 增加对认证过期返回401的统一处理 http response 拦截器
+axios.interceptors.response.use(function (response) {
+	return response;
+}, function (error) {
+	if (error.response) {
+		switch (error.response.status) {
+			case 401:
+				// 返回 401 清除token信息并跳转到登录页面
+				__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].commit('logoutSuccess');
+				__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].commit('setErrorResponseMsg', '登录超时,请重新登录!');
+				__WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */].replace({
+					path: 'login',
+					query: { redirect: __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */].currentRoute.fullPath }
+				});
+				break;
+			case 500:
+				__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].commit('setErrorResponseMsg', '网络错误,请重试!');
+				break;
+		}
+	}
+	return Promise.reject(error.response.data); // 返回接口返回的错误信息
+});
+
 __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */].beforeEach(function (to, from, next) {
-  if (!__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && to.path != '/login') {
-    // 如果未登录 && 路由不是 /login 则重定向到 /login
-    next('/login');
-  } else if (__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus && (to.path == '/login' || to.path == '/')) {
-    // 如果已登录 && 路由是 /login或者 / 则不跳转
-    next(false);
-  } else {
-    next();
-  }
+	if (!__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus) {
+		// 如果未登录 && 路由不是 /login 则重定向到 /login
+		if (to.path != '/login') {
+			next('/login');
+		} else {
+			next();
+		}
+	} else if (__WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */].state.loginStatus) {
+		// 如果已登录
+		next();
+	}
 });
 var app = new Vue({
-  el: '#app',
-  store: __WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */],
-  router: __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */],
-  template: '<App />',
-  components: { App: __WEBPACK_IMPORTED_MODULE_0__App_vue___default.a }
+	el: '#app',
+	store: __WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */],
+	router: __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */],
+	template: '<App />',
+	components: { App: __WEBPACK_IMPORTED_MODULE_0__App_vue___default.a }
 });
 
 /***/ }),
@@ -12542,27 +12575,27 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 	}, {
 		path: '/login',
 		component: function component(resolve) {
-			return __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(63)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+			return __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(64)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 		}
 	}, {
 		path: '/index',
 		component: function component(resolve) {
-			return __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(62)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+			return __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(63)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 		},
 		children: [{
 			path: '/article',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(10).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(56)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(10).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(57)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/category',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(55)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(12).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(55)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/category/:type',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(12).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(54)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(13).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(54)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/test',
@@ -12572,38 +12605,43 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 		}, {
 			path: '/user',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(65)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(66)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/user/:type',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(64)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(65)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}]
 	}, {
 		path: '/home',
 		component: function component(resolve) {
-			return __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(57)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+			return __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(58)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 		},
 		children: [{
 			path: '/homepage',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(60)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(61)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/cate',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(58)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(59)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/writer',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(61)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(62)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/detail/:id',
 			component: function component(resolve) {
-				return __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(59)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+				return __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(60)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+			}
+		}, {
+			path: '/mine',
+			component: function component(resolve) {
+				return __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(56)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 			}
 		}, {
 			path: '/other',
@@ -12632,7 +12670,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false,
 		// loginStatus: false ,
 		// loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
-		loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
+		loginUserInfo: localStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(localStorage.getItem("loginUserInfo")),
+		responseErrorMsg: '',
 		breadCrumb: [],
 		data: {
 			userFormData: [],
@@ -12644,24 +12683,29 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 		}
 	},
 	mutations: {
-		loginSuccess: function loginSuccess(state) {
+		loginSuccess: function loginSuccess(state, payload) {
 			state.loginStatus = true;
 			localStorage.setItem("loginStatus", "true");
-		},
-		setLoginUserInfo: function setLoginUserInfo(state, payload) {
+
 			state.loginUserInfo = payload;
 			localStorage.setItem("loginUserInfo", JSON.stringify(payload));
 		},
 		logoutSuccess: function logoutSuccess(state) {
 			state.loginStatus = false;
 			localStorage.setItem("loginStatus", "false");
+
+			state.loginUserInfo = "";
+			localStorage.setItem("loginUserInfo", "");
+		},
+		setErrorResponseMsg: function setErrorResponseMsg(state, msg) {
+			state.responseErrorMsg = msg;
 		},
 		setBreadCrumb: function setBreadCrumb(state, payload) {
 			// state.ceshibread = ['ceshi','success']
 			state.breadCrumb = [];
 			payload.menuArr.map(function (item) {
 				if (item.name == payload.clickName) {
-					console.log(payload.clickName);
+					// console.log(payload.clickName)
 				} else if (item.child != null) {
 					item.child.map(function (child) {
 						if (child.name == payload.clickName) {

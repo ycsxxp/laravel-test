@@ -1,13 +1,10 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 .content {
   width: 100%;
-  padding: 40px 80px 40px 80px;
-  .editor_container {
-    margin-bottom: 120px;
-    .quilleditor {
-      height: 480px;
-    }
-  }
+  padding: 40px 80px 20px 80px;
+}
+:global(.quilleditor .ql-editor) {
+  height: 480px;
 }
 :global(.ivu-input .ivu-input-large) {
   border: none;
@@ -17,7 +14,7 @@
 }
 </style>
 <template>
-  <div class="content">
+  <Row class="content">
     <Form ref="articleInfo" :model="articleInfo" label-position="top" :rules="articleValidate">
       <FormItem label="标题" prop="title">
         <Input v-model="articleInfo.title" size="large"></Input>
@@ -31,11 +28,11 @@
       <FormItem class="editor_container" label="正文" prop="content">
         <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor>
       </FormItem>
-      <FormItem>
+      <FormItem class="submitBtn">
         <Button type="info" @click="handleSubmit()">发布</Button>
       </FormItem>
     </Form>
-  </div>
+  </Row>
 </template>
 <script>
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
@@ -95,7 +92,7 @@ export default {
         },
         response => {
           // 请求失败
-          this.$Message.error('获取失败,请重试!')
+          this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
     },
@@ -108,7 +105,7 @@ export default {
           this.$router.push({ path: '/homepage' })
         },
         response => {
-          this.$Message.error('网络错误,请重试!')
+          this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
     }

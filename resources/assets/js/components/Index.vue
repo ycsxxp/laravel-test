@@ -206,7 +206,6 @@ export default {
       this.$http.post('/logout', { _token: window.Laravel.csrfToken }).then(
         response => {
           this.$store.commit('logoutSuccess')
-          this.$store.commit('setLoginUserInfo', "")
           this.$router.push({ path: '/' });
         },
         response => {

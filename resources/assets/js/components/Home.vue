@@ -1,7 +1,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   .wrapper {
     width: 100%;
-    height: 100%;
+    // height: 100%;
   }
   .wrapper-header {
     .ivu-menu-horizontal {
@@ -25,7 +25,7 @@
         margin-left: 50px;
       }
       .wrapper-header-nav-list {
-        height: inherit;
+        // height: inherit;
         float: right;
       }
     }
@@ -36,8 +36,7 @@
     width: 90%;
     margin: 30px auto 20px;
     border-radius: 6px;
-    height: 100%;
-    overflow: hidden;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
   }
 </style>
 <template>
@@ -67,8 +66,8 @@
             <Menu-item name="writer">
               发布文章
             </Menu-item>
-            <Menu-item name="other">
-              其他
+            <Menu-item name="mine">
+              我的
             </Menu-item>
           </div>
         </div>

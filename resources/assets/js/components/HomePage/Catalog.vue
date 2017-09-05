@@ -66,7 +66,7 @@ export default {
         },
         response => {
           // 请求失败
-          this.$Message.error('网络错误,请重试!')
+          this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
     },

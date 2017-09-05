@@ -41,7 +41,7 @@ export default {
       formInline: {
         user: '',
         password: '',
-        _token: window.Laravel.csrfToken
+        // _token: window.Laravel.csrfToken
       },
       ruleInline: {
         user: [
@@ -58,28 +58,37 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          // this.$Message.success('提交成功!');
-          this.$http.post('/login',this.formInline).then(
-            response => {
-              // 请求成功
-              if(response.data != '') {
-                // 登录成功
-                this.$store.commit('loginSuccess')
-                this.$store.commit('setLoginUserInfo', response.data)
-                if(this.$store.state.loginUserInfo.role == '0') {
-                  this.$router.push({ path:'/index'})
-                }else {
-                  this.$router.push({ path:'/home'})
-                }
-              }else {
-                this.$Message.error('登录失败！账号或密码错误');
-              }
-            },
-            response => {
-              // 请求失败
-              this.$Message.error('网络错误,请重试!');
+          console.log(this.$store.state.loginStatus)
+          if(this.$store.state.loginStatus == true) {
+
+            // 如果已经登录 不允许重复登录
+            if(this.$store.state.loginUserInfo.role == '0') {
+              this.$router.push({ path:'/index'})
+            }else {
+              this.$router.push({ path:'/home'})
             }
-          )
+          }else {
+            this.$http.post('/login',this.formInline).then(
+              response => {
+                // 请求成功
+                if(response.data != '') {
+                  // 登录成功 并将用户信息修改
+                  this.$store.commit('loginSuccess', response.data)
+                  if(this.$store.state.loginUserInfo.role == '0') {
+                    this.$router.push({ path:'/index'})
+                  }else {
+                    this.$router.push({ path:'/home'})
+                  }
+                }else {
+                  this.$Message.error('登录失败！账号或密码错误');
+                }
+              },
+              response => {
+                // 请求失败
+                this.$Message.error(this.$store.state.responseErrorMsg)
+              }
+            )
+          }
         } else {
           this.$Message.error('表单验证失败!');
         }

@@ -85,7 +85,7 @@ export default {
               this.$router.push({ path: '/user' })
             },
             response => {
-              this.$Message.error('网络错误,请重试!');
+              this.$Message.error(this.$store.state.responseErrorMsg)
             }
           );
   			} else {

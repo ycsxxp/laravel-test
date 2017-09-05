@@ -1,14 +1,22 @@
-<style>
-.row-header {
-  margin-bottom: 10px; 
+<style rel="stylesheet/scss" lang="scss" scoped>
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 40px 80px 40px 80px;
+}
+.rowHeader {
+  margin-bottom: 20px; 
+}
+.rowTable {
+  margin-bottom: 30px; 
 }
 .control-bar {
   text-align: right;
 }
 </style>
 <template>
-  <div class="container">
-    <Row type="flex" justify="end" class="row-header">
+  <div class="content">
+    <Row type="flex" justify="end" class="rowHeader">
       <Col span="8">
         <div class="control-bar">
           <Input v-model="value2" placeholder="请输入..." style="width: 150px"></Input>
@@ -16,8 +24,13 @@
         </div>
       </Col>
     </Row>
-    <Row>
+    <Row class="rowTable">
       <Table border stripe :columns="articleColumns" :data="articleList"></Table>
+    </Row>
+    <Row>
+      <div class="pagination">
+        <Page :total="paginationInit.total" placement="top" size="small" show-elevator show-sizer :current="paginationInit.page" :page-size="paginationInit.size" :page-size-opts="paginationInit.sizeOpt" @on-change="changePage" @on-page-size-change="setPageSize"></Page>
+      </div>
     </Row>
   </div>
 </template>
@@ -25,6 +38,12 @@
 export default {
   data () {
     return {
+      paginationInit: {
+        total: 1,
+        page: this.$store.state.pageConfig.currentPage,
+        size: this.$store.state.pageConfig.pageSize,
+        sizeOpt: [5, 10, 15, 20]
+      },
       value2: '',
       articleColumns: [
           {
@@ -51,24 +70,24 @@ export default {
               return createElement(
                 'div',
                 [
-                  // createElement(
-                  //   'Button',
-                  //   {
-                  //     props: {
-                  //       type: 'primary',
-                  //       size: 'small'
-                  //     },
-                  //     style: {
-                  //       marginRight: '5px'
-                  //     },
-                  //     on: {
-                  //       click: () => {
-                  //         this.editCategory(params)
-                  //       }
-                  //     }
-                  //   },
-                  //   '编辑'
-                  // ),
+                  createElement(
+                    'Button',
+                    {
+                      props: {
+                        type: 'primary',
+                        size: 'small'
+                      },
+                      style: {
+                        marginRight: '5px'
+                      },
+                      on: {
+                        click: () => {
+                          this.editCategory(params)
+                        }
+                      }
+                    },
+                    '编辑'
+                  ),
                   createElement(
                     'Button',
                     {
@@ -100,9 +119,9 @@ export default {
       let payload = {
         size: 10,
         page: 1,
-        _token: window.Laravel.csrfToken
+        // _token: window.Laravel.csrfToken
       }
-      this.$http.post('/getArticle', payload).then(
+      this.$http.post('/getArticleByUser', payload).then(
         response => {
           // 请求成功
           let articles = response.data.articles
@@ -125,7 +144,7 @@ export default {
     },
     delete(params) {
       let payload = {
-        _token: window.Laravel.csrfToken,
+        // _token: window.Laravel.csrfToken,
         id: params.row.id,
         user_id: params.row.user_id,
         size: 10,

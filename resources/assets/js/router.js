@@ -65,6 +65,10 @@ export default new VueRouter({
 					component: resolve => require(['./components/HomePage/Detail.vue'], resolve)
 				},
 				{
+					path: '/mine',
+					component: resolve => require(['./HomePage/Mine/List.vue'], resolve)
+				},
+				{
 					path: '/other',
 					component: resolve => require(['./components/Test.vue'], resolve)
 				}

@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 102:
+/***/ 105:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
@@ -8,7 +8,7 @@ exports.push([module.i, "\n.quill-editor img {\n  max-width: 100%;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 105:
+/***/ 108:
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -99,13 +99,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ 106:
+/***/ 109:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(89);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(16)(content, {});
@@ -126,13 +126,13 @@ if(false) {
 
 /***/ }),
 
-/***/ 107:
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(16)(content, {});
@@ -153,13 +153,13 @@ if(false) {
 
 /***/ }),
 
-/***/ 108:
+/***/ 111:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(93);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(16)(content, {});
@@ -180,18 +180,18 @@ if(false) {
 
 /***/ }),
 
-/***/ 109:
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(135)
+__webpack_require__(140)
 
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(72),
+  __webpack_require__(73),
   /* template */
-  __webpack_require__(121),
+  __webpack_require__(125),
   /* scopeId */
   null,
   /* cssModules */
@@ -219,11 +219,11 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 114:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('Row', {
     staticClass: "content"
   }, [_c('Form', {
     ref: "articleInfo",
@@ -293,7 +293,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "articleInfo.content"
     }
-  })], 1), _vm._v(" "), _c('FormItem', [_c('Button', {
+  })], 1), _vm._v(" "), _c('FormItem', {
+    staticClass: "submitBtn"
+  }, [_c('Button', {
     attrs: {
       "type": "info"
     },
@@ -314,7 +316,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -334,7 +336,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 124:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -342,8 +344,8 @@ if (false) {
  * @author Surmon.me
  */
 
-window.Quill = __webpack_require__(71)
-var quillEditor = __webpack_require__(109)
+window.Quill = __webpack_require__(72)
+var quillEditor = __webpack_require__(112)
 quillEditor = quillEditor.default || quillEditor
 
 var VueQuillEditor = {
@@ -359,17 +361,17 @@ module.exports = VueQuillEditor
 
 /***/ }),
 
-/***/ 128:
+/***/ 133:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(98);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(66)("d95a9938", content, false);
+var update = __webpack_require__(67)("d95a9938", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -386,17 +388,17 @@ if(false) {
 
 /***/ }),
 
-/***/ 135:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(102);
+var content = __webpack_require__(105);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(66)("d102ed4c", content, false);
+var update = __webpack_require__(67)("d102ed4c", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -413,18 +415,18 @@ if(false) {
 
 /***/ }),
 
-/***/ 61:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(128)
+__webpack_require__(133)
 
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(80),
+  __webpack_require__(82),
   /* template */
-  __webpack_require__(114),
+  __webpack_require__(118),
   /* scopeId */
   "data-v-212fe9ea",
   /* cssModules */
@@ -452,7 +454,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 66:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -471,7 +473,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(67)
+var listToStyles = __webpack_require__(68)
 
 /*
 type StyleObject = {
@@ -674,7 +676,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 68:
 /***/ (function(module, exports) {
 
 /**
@@ -708,7 +710,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*!
@@ -11718,11 +11720,11 @@ module.exports = __webpack_require__(62);
 /***/ })
 /******/ ]);
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(89).Buffer))
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11735,11 +11737,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-__webpack_require__(108);
-__webpack_require__(106);
-__webpack_require__(107);
+__webpack_require__(111);
+__webpack_require__(109);
+__webpack_require__(110);
 if (!window.Quill) {
-  window.Quill = __webpack_require__(71);
+  window.Quill = __webpack_require__(72);
 }
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'quill-editor',
@@ -11849,16 +11851,13 @@ if (!window.Quill) {
 
 /***/ }),
 
-/***/ 80:
+/***/ 82:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__);
-//
-//
-//
 //
 //
 //
@@ -11947,7 +11946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.categoryList = response.data;
       }, function (response) {
         // 请求失败
-        _this.$Message.error('获取失败,请重试!');
+        _this.$Message.error(_this.$store.state.responseErrorMsg);
       });
     },
     handleSubmit: function handleSubmit() {
@@ -11959,7 +11958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.$Message.success('添加成功!');
         _this2.$router.push({ path: '/homepage' });
       }, function (response) {
-        _this2.$Message.error('网络错误,请重试!');
+        _this2.$Message.error(_this2.$store.state.responseErrorMsg);
       });
     }
   }
@@ -11967,7 +11966,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 86:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12089,7 +12088,7 @@ function fromByteArray (uint8) {
 
 /***/ }),
 
-/***/ 87:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12103,9 +12102,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(86)
-var ieee754 = __webpack_require__(105)
-var isArray = __webpack_require__(88)
+var base64 = __webpack_require__(88)
+var ieee754 = __webpack_require__(108)
+var isArray = __webpack_require__(90)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -13887,7 +13886,7 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 88:
+/***/ 90:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -13899,7 +13898,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 89:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
@@ -13907,7 +13906,7 @@ exports.push([module.i, "/*!\n * Quill Editor v1.2.6\n * https://quilljs.com/\n 
 
 /***/ }),
 
-/***/ 90:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
@@ -13915,7 +13914,7 @@ exports.push([module.i, "/*!\n * Quill Editor v1.2.6\n * https://quilljs.com/\n 
 
 /***/ }),
 
-/***/ 91:
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
@@ -13923,11 +13922,11 @@ exports.push([module.i, "/*!\n * Quill Editor v1.2.6\n * https://quilljs.com/\n 
 
 /***/ }),
 
-/***/ 95:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n.content[data-v-212fe9ea] {\n  width: 100%;\n  padding: 40px 80px 40px 80px;\n}\n.content .editor_container[data-v-212fe9ea] {\n    margin-bottom: 120px;\n}\n.content .editor_container .quilleditor[data-v-212fe9ea] {\n      height: 480px;\n}\n[data-v-212fe9ea].ivu-input .ivu-input-large {\n  border: none;\n}\n.option-2[data-v-212fe9ea] {\n  padding-left: 40px;\n}\n.option-3[data-v-212fe9ea] {\n  padding-left: 60px;\n}\n.option-4[data-v-212fe9ea] {\n  padding-left: 80px;\n}\n.option-5[data-v-212fe9ea] {\n  padding-left: 100px;\n}\n.option-6[data-v-212fe9ea] {\n  padding-left: 120px;\n}\n.option-7[data-v-212fe9ea] {\n  padding-left: 140px;\n}\n.option-8[data-v-212fe9ea] {\n  padding-left: 160px;\n}\n.option-9[data-v-212fe9ea] {\n  padding-left: 180px;\n}\n.option-10[data-v-212fe9ea] {\n  padding-left: 200px;\n}\n", ""]);
+exports.push([module.i, "\n.content[data-v-212fe9ea] {\n  width: 100%;\n  padding: 40px 80px 20px 80px;\n}\n[data-v-212fe9ea].quilleditor .ql-editor {\n  height: 480px;\n}\n[data-v-212fe9ea].ivu-input .ivu-input-large {\n  border: none;\n}\n.option-2[data-v-212fe9ea] {\n  padding-left: 40px;\n}\n.option-3[data-v-212fe9ea] {\n  padding-left: 60px;\n}\n.option-4[data-v-212fe9ea] {\n  padding-left: 80px;\n}\n.option-5[data-v-212fe9ea] {\n  padding-left: 100px;\n}\n.option-6[data-v-212fe9ea] {\n  padding-left: 120px;\n}\n.option-7[data-v-212fe9ea] {\n  padding-left: 140px;\n}\n.option-8[data-v-212fe9ea] {\n  padding-left: 160px;\n}\n.option-9[data-v-212fe9ea] {\n  padding-left: 180px;\n}\n.option-10[data-v-212fe9ea] {\n  padding-left: 200px;\n}\n", ""]);
 
 /***/ })
 

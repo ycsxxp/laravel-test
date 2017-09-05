@@ -1,10 +1,20 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import 'resources/assets/sass/_homepage.scss';
+  .backBtn {
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    float: right;
+    margin-top: 30px;
+    padding-right: 50px;
+  }
 </style>
 <template>
-  <div class="content">
-    <div class="content_left">
-      <div class="backBtn"><Button type="success" @click="back">返回</Button></div>
+  <Row class="content">
+    <Col class="content_left">
+      <div class="backBtn">
+        <Button type="success" @click="back">返回</Button>
+      </div>
       <section class="detail_section">
         <div class="title_detail">
           <h2>{{articleDetail.title}}</h2>
@@ -17,11 +27,11 @@
           </div>
         </div>
       </section>
-    </div>
-    <div class="content-right">
+    </Col>
+    <Col class="content-right">
       <catalog></catalog>  
-    </div>
-  </div>
+    </Col>
+  </Row>
 </template>
 <script>
 import Catalog from './Catalog.vue'
@@ -67,7 +77,7 @@ export default {
         },
         response => {
           // 请求失败
-          this.$Message.error('网络错误,请重试!')
+          this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
     }

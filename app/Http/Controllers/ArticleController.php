@@ -35,6 +35,27 @@ class ArticleController extends Controller {
         return $result;
     }
 
+    // 根据登录用户获取文章列表
+    public function getArticleByUser(Request $request) {
+        $loginUser = Auth::user();
+        if( $loginUser->role == 1 ){
+            // 每页条数
+            $size = intval($request->size);
+            // 页数
+            $page = intval($request->page);
+
+            // DB::enableQueryLog();
+            $articles = Article::with('username')->where('user_id', $loginUser->id)->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+            $total = Article::count();
+            $result = array('articles' => $articles, 'total' => $total );
+            return $result;
+        }else {
+            $result = array('status'=>400 , 'msg'=>'权限错误');
+            return $result->toJson();
+        }
+
+    }
+
     public function getByCategory(Request $request) {
         $category_id = intval($request->id);
         return Article::where('category', $category_id)->get()->toJson();
@@ -65,11 +86,23 @@ class ArticleController extends Controller {
     }
 
     public function delete(Request $request) {
-        $id = intval($request->id);
-        $user_id = intval($request->user_id);
-        $deletedRows = Article::where([ ['id', $id], ['user_id', $user_id] ])->delete();
-        if($deletedRows) {
-            return $this->getArticle($request);
+        $loginUser = Auth::user();
+        $article_id = intval($request->id);
+        if( $loginUser->role == 0 ){
+            $user_id = intval($request->user_id);
+            $deletedRows = Article::where([ ['id', $article_id], ['user_id', $user_id] ])->delete();
+            if($deletedRows) {
+                return $this->getArticle($request);
+            }
+        }elseif( $loginUser->role == 1 ) {
+            $user_id = $loginUser->id;
+            $deletedRows = Article::where([ ['id', $article_id], ['user_id', $user_id] ])->delete();
+            if($deletedRows) {
+                return $this->getArticleByUser($request);
+            }
+        }else {
+            $result = array('status'=>400 , 'msg'=>'权限错误');
+            return $result->toJson();
         }
     }
 }

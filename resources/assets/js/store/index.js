@@ -8,7 +8,8 @@ export default new Vuex.Store({
 		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false ,
 		// loginStatus: false ,
 		// loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
-		loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
+		loginUserInfo: localStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(localStorage.getItem("loginUserInfo")),
+		responseErrorMsg: '',
 		breadCrumb: [],
 		data: {
 			userFormData: [],
@@ -20,17 +21,22 @@ export default new Vuex.Store({
 		}
 	},
 	mutations: {
-		loginSuccess (state) {
+		loginSuccess (state, payload) {
 			state.loginStatus = true
 			localStorage.setItem("loginStatus", "true")
-		},
-		setLoginUserInfo (state, payload) {
+
 			state.loginUserInfo = payload
 			localStorage.setItem("loginUserInfo", JSON.stringify(payload))
 		},
-		logoutSuccess (state) {
+		logoutSuccess(state) {
 			state.loginStatus = false
 			localStorage.setItem("loginStatus", "false")
+
+			state.loginUserInfo = ""
+			localStorage.setItem("loginUserInfo", "")
+		},
+		setErrorResponseMsg(state, msg) {
+			state.responseErrorMsg = msg
 		},
 		setBreadCrumb(state, payload) {
 			// state.ceshibread = ['ceshi','success']
@@ -38,7 +44,7 @@ export default new Vuex.Store({
       payload.menuArr.map(
         function(item){
           if(item.name == payload.clickName) {
-            console.log(payload.clickName)
+            // console.log(payload.clickName)
           }else if(item.child != null) {
             item.child.map(
               function(child) {

@@ -43,6 +43,11 @@ return [
 
     'disks' => [
 
+        // 'images' => [
+        //     'driver' => 'local',
+        //     'root' => 'D:\Code\nf-quora\public\uploads\images',
+        // ],
+        
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

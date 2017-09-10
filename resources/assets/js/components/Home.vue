@@ -25,7 +25,7 @@
         margin-left: 50px;
       }
       .wrapper-header-nav-list {
-        // height: inherit;
+        height: inherit;
         float: right;
       }
     }
@@ -49,6 +49,7 @@
           </a>
           <div class="wrapper-header-nav-user">
             <Dropdown trigger="hover" @on-click="userTodo">
+              <div :style="{ float: 'left', marginRight: '10px' }">Hi, {{ this.$store.state.loginUserInfo.name }}</div>
               <Button type="info" shape="circle" icon="ios-person">
               </Button>
               <Dropdown-menu slot="list">

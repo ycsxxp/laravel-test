@@ -40,8 +40,8 @@ export default {
     return {
       paginationInit: {
         total: 1,
-        page: this.$store.state.pageConfig.currentPage,
-        size: this.$store.state.pageConfig.pageSize,
+        page: 1,
+        size: 5,
         sizeOpt: [5, 10, 15, 20]
       },
       value2: '',
@@ -117,13 +117,14 @@ export default {
   methods: {
     get() {
       let payload = {
-        size: 10,
-        page: 1,
+        size: this.paginationInit.size,
+        page: this.paginationInit.page,
         // _token: window.Laravel.csrfToken
       }
       this.$http.post('/getArticleByUser', payload).then(
         response => {
           // 请求成功
+          this.paginationInit.total = response.data.total
           let articles = response.data.articles
           // 处理得到的数据
           for (let i = 0; i < articles.length; i++) {
@@ -147,8 +148,8 @@ export default {
         // _token: window.Laravel.csrfToken,
         id: params.row.id,
         user_id: params.row.user_id,
-        size: 10,
-        page: 1,
+        size: this.paginationInit.size,
+        page: this.paginationInit.page,
       }
       this.$http.post('/deleteArticle', payload).then(
         response => {
@@ -175,6 +176,22 @@ export default {
           this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
+    },
+    changePage (page) {
+      let payload = {
+        page: page,
+        size: this.paginationInit.size
+      }
+      this.paginationInit.page = page
+      this.get()
+    },
+    setPageSize (size) {
+      let payload = {
+        page: this.paginationInit.page,
+        size: size
+      }
+      this.paginationInit.size = size
+      this.get()
     }
   }
 }

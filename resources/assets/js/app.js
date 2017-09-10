@@ -49,9 +49,18 @@ axios.interceptors.response.use(
 		if (error.response) {
 			switch (error.response.status) {
 				case 401:
-					// 返回 401 清除token信息并跳转到登录页面
+					// 返回 401 清除登录信息并跳转到登录页面
 					store.commit('logoutSuccess');
 					store.commit('setErrorResponseMsg', '登录超时,请重新登录!')
+					router.replace({
+						path: 'login',
+						query: {redirect: router.currentRoute.fullPath}
+					})
+					break
+				case 408:
+					// 返回 402 清除token信息并跳转到登录页面
+					store.commit('logoutSuccess');
+					store.commit('setErrorResponseMsg', '页面超时,请重新登录!')
 					router.replace({
 						path: 'login',
 						query: {redirect: router.currentRoute.fullPath}
@@ -66,6 +75,7 @@ axios.interceptors.response.use(
 	}
 );
 
+
 router.beforeEach((to, from, next) => {
 	if(!store.state.loginStatus) {
 		// 如果未登录 && 路由不是 /login 则重定向到 /login
@@ -76,7 +86,15 @@ router.beforeEach((to, from, next) => {
 		}
 	}else if(store.state.loginStatus) {
 		// 如果已登录
-		next()
+		if(to.path == '/login') {
+			next(false)
+		}else {
+			if(to.meta.role != store.state.loginUserInfo.role) {
+				next(false)
+			}else {
+				next()
+			}
+		}
 	}
 })
 const app = new Vue({

@@ -91,6 +91,7 @@
               <Icon type="navicon" size="32"></Icon>
           </i-button> -->
           <Dropdown class="userIconDrop" trigger="hover" @on-click="userTodo">
+            <div :style="{ float: 'left', marginRight: '10px', lineHeight: '60px' }">Hi, {{ this.$store.state.loginUserInfo.name }}</div>
             <Button class="userIcon" type="info" shape="circle">
               <Icon type="person" ></Icon>
             </Button>
@@ -174,7 +175,7 @@ export default {
   mounted () {
     // 获取面包屑显示
     this.$store.commit('setBreadCrumb', { 'clickName': this.menuArr[0].child[0].name, 'menuArr': this.menuArr, 'breadCrumb': this.breadCrumb})
-    this.breadCrumb = this.$store.state.breadCrumb 
+    this.breadCrumb = this.$store.state.breadCrumb
     this.$router.push({ path: '/'+this.menuArr[0].child[0].name });
   },
   computed: {

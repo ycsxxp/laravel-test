@@ -58,15 +58,13 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          console.log(this.$store.state.loginStatus)
-          if(this.$store.state.loginStatus == true) {
-
+          if(localStorage.getItem("loginStatus") == "true") {
             // 如果已经登录 不允许重复登录
-            if(this.$store.state.loginUserInfo.role == '0') {
-              this.$router.push({ path:'/index'})
-            }else {
-              this.$router.push({ path:'/home'})
-            }
+            this.$Notice.error({
+              title: '重复登录',
+              desc: '已经登录，请勿重复登录',
+              duration: 3
+            });
           }else {
             this.$http.post('/login',this.formInline).then(
               response => {

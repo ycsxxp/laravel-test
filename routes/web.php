@@ -18,17 +18,25 @@ Route::get('/', function () {
 Route::post('/login', 'LoginController@authenticate');
 Route::post('/logout', 'LoginController@logout');
 
+/**
+    用户表相关操作
+**/
 Route::middleware('auth')->post('/getuser', 'UserController@getuser');
 Route::middleware('auth')->post('/adduser', 'UserController@adduser');
 Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
 Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
 
+/**
+    分类模块
+**/
 Route::middleware('auth')->post('/addCategory', 'CategoryController@add');
 Route::middleware('auth')->post('/getCategory', 'CategoryController@get');
 Route::middleware('auth')->post('/deleteCategory', 'CategoryController@delete');
 
 
-
+/**
+    文章模块
+**/
 Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
 // 根据登录用户获取文章列表
 Route::middleware('auth')->post('/getArticleByUser', 'ArticleController@getArticleByUser');
@@ -41,6 +49,11 @@ Route::middleware('auth')->post('/getArticleByCategory', 'ArticleController@getB
 Route::middleware('auth')->post('/getOrderArticleList', 'ArticleController@getOrderArticleList');
 
 Route::middleware('auth')->post('/saveWriter', 'ArticleController@saveWriter');
+
+
+// Route::middleware('auth')->post('/saveUploadImg', 'ArticleController@saveUploadImg');
+Route::middleware('auth')->post('/postfile', 'AttachfileController@saveUploadAttachFile');
+Route::middleware('auth')->get('/downloadfile', 'AttachfileController@downloadAttachFile');
 
 Route::middleware('auth')->post('/visitCountUp', 'ArticleController@visitCountUp');
 

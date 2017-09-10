@@ -19,7 +19,6 @@
           <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
           </Option>
         </Select>
-        <!-- <Input type="text" v-model="categoryInfo.address" placeholder="请输入" /> -->
       </Form-item>
       <Form-item label="顺序" prop="order">
         <Input v-model="categoryInfo.order" placeholder="请输入"></Input>
@@ -68,7 +67,6 @@ export default {
         response => {
           // 请求成功
           this.categoryList = response.data
-          console.log(this.categoryList)
         },
         response => {
           // 请求失败

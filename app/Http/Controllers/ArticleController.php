@@ -2,18 +2,22 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Attachfile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller {
+    
     public function saveWriter(Request $request) {
         return Article::create([
             'title' => $request->title,
             'content' => $request->content,
+            'attachfiles_id' => json_encode($request->attachfiles),
             // 'visit_count' => $request->visit_count,
             // 'like_count' => $request->like_count,
             // 'hot' => $request->hot,
@@ -46,7 +50,7 @@ class ArticleController extends Controller {
 
             // DB::enableQueryLog();
             $articles = Article::with('username')->where('user_id', $loginUser->id)->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
-            $total = Article::count();
+            $total = Article::where('user_id', $loginUser->id)->count();
             $result = array('articles' => $articles, 'total' => $total );
             return $result;
         }else {
@@ -61,12 +65,19 @@ class ArticleController extends Controller {
         return Article::where('category', $category_id)->get()->toJson();
     }
 
+    // 获取详细信息
     public function getArticleDetail(Request $request) {
         $id = intval($request->id);
         // 阅读量 +1
         $this->visitCountUp($id);
 
-        return Article::find($id)->toJson();
+        $articles = Article::find($id);
+        if($articles->attachfiles_id != 'null' && $articles->attachfiles_id != '') {
+            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', json_decode($articles->attachfiles_id))->get();    
+        }else {
+            $attachfiles = array();
+        }
+        return array('articles' => $articles, 'attachfiles' => $attachfiles);
     }
 
     public function getOrderArticleList() {
@@ -102,7 +113,7 @@ class ArticleController extends Controller {
             }
         }else {
             $result = array('status'=>400 , 'msg'=>'权限错误');
-            return $result->toJson();
+            return json_encode($result);
         }
     }
 }

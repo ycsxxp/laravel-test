@@ -44,7 +44,6 @@ export default new Vuex.Store({
       payload.menuArr.map(
         function(item){
           if(item.name == payload.clickName) {
-            // console.log(payload.clickName)
           }else if(item.child != null) {
             item.child.map(
               function(child) {
@@ -77,5 +76,13 @@ export default new Vuex.Store({
 			state.pageConfig.currentPage = payload.page
 			state.pageConfig.pageSize = payload.size
 		}
+	},
+	getters: {
+		// getLoginStatus() {
+		// 	return localStorage.getItem("loginStatus") == "true" ? true : false
+		// },
+		// getLoginUserInfo() {
+		// 	return localStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(localStorage.getItem("loginUserInfo"))
+		// }
 	}
 })

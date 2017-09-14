@@ -11967,7 +11967,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
 
-// import Ckeditor from 'vue-ckeditor2'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {

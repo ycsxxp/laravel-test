@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'address' => 'beijing',
             'email' => 'ycsxxp@126.com',
             'password' => bcrypt('123456'),
+            'role' => 0
         ]);
     }
 }

@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             // 内容
             $table->longText('content');
             // 附件ID JSON
-            $table->json('attachfiles_id');
+            $table->string('attachfiles_id');
             // 阅读量
             $table->integer('visit_count')->default(0);
             // 点赞量

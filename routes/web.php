@@ -49,7 +49,7 @@ Route::middleware('auth')->post('/getArticleByCategory', 'ArticleController@getB
 Route::middleware('auth')->post('/getOrderArticleList', 'ArticleController@getOrderArticleList');
 
 Route::middleware('auth')->post('/saveWriter', 'ArticleController@saveWriter');
-
+Route::middleware('auth')->get('/getEditDetail','ArticleController@getEditDetail');
 
 // Route::middleware('auth')->post('/saveUploadImg', 'ArticleController@saveUploadImg');
 Route::middleware('auth')->post('/postfile', 'AttachfileController@saveUploadAttachFile');

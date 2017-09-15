@@ -31,6 +31,11 @@ export default {
 				meta: { role: 1 },
 			},
 			{
+				path: '/mine/edit/:id',
+				component: resolve => require(['./HomePage/Mine/Edit.vue'], resolve),
+				meta: { role: 1 },
+			},
+			{
 				path: '/other',
 				component: resolve => require(['./components/Test.vue'], resolve),
 				meta: { role: 1 },

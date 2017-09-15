@@ -26,6 +26,19 @@ class ArticleController extends Controller {
         ]);
     }
 
+    // 获取待编辑的文章详细信息
+    public function getEditDetail(Request $request) {
+        $article_id = intval($request->id);
+
+        $articleDetail = Article::find($article_id);
+        if($articleDetail->attachfiles_id != 'null' && $articleDetail->attachfiles_id != '') {
+            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', json_decode($articleDetail->attachfiles_id))->get();    
+        }else {
+            $attachfiles = array();
+        }
+        return array('articleDetail' => $articleDetail, 'attachfiles' => $attachfiles);
+    }
+
     public function getArticle(Request $request) {
         // 每页条数
         $size = intval($request->size);

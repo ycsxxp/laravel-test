@@ -82,7 +82,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.editCategory(params)
+                          this.edit(params)
                         }
                       }
                     },
@@ -142,6 +142,11 @@ export default {
           this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
+    },
+    edit(params) {
+      // 文章id
+      let id = params.row.id
+      this.$router.push({ path: '/mine/edit/'+id })
     },
     delete(params) {
       let payload = {

@@ -17,22 +17,32 @@ class ArticleController extends Controller {
         return Article::create([
             'title' => $request->title,
             'content' => $request->content,
-            'attachfiles_id' => json_encode($request->attachfiles),
+            'attachfiles_id' => $request->attachfiles_id,
             // 'visit_count' => $request->visit_count,
             // 'like_count' => $request->like_count,
             // 'hot' => $request->hot,
-            'category' => intval($request->cate),
+            'category' => intval($request->category),
             'user_id' => intval($request->user_id)
         ]);
+    }
+
+    // 更新文章详细信息
+    public function updateDetail(Request $request) {
+        $result = Article::where([ ['id', intval($request->id)], ['user_id', intval($request->user_id)] ])->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'attachfiles_id' => json_encode($request->attachfiles_id),
+            'category' => intval($request->category)
+        ]);
+        dd($result);
     }
 
     // 获取待编辑的文章详细信息
     public function getEditDetail(Request $request) {
         $article_id = intval($request->id);
-
         $articleDetail = Article::find($article_id);
         if($articleDetail->attachfiles_id != 'null' && $articleDetail->attachfiles_id != '') {
-            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', json_decode($articleDetail->attachfiles_id))->get();    
+            $attachfiles = Attachfile::select('id', 'f_name as name')->whereIn('id', $articleDetail->attachfiles_id)->get();    
         }else {
             $attachfiles = array();
         }
@@ -86,7 +96,7 @@ class ArticleController extends Controller {
 
         $articles = Article::find($id);
         if($articles->attachfiles_id != 'null' && $articles->attachfiles_id != '') {
-            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', json_decode($articles->attachfiles_id))->get();    
+            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', $articles->attachfiles_id)->get();    
         }else {
             $attachfiles = array();
         }

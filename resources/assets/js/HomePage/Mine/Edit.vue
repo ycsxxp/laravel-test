@@ -38,6 +38,12 @@
           type="drag"
           action="/postfile"
           :default-file-list="defaultList"
+          :on-success="postfileSuccess"
+          :on-remove="postfileRemove"
+          :format="['txt', 'doc', 'docx', 'xlsx']"
+          :max-size="2048"
+          :on-format-error="postfileFormatError"
+          :on-exceeded-size="postfileMaxSize"
           >
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
@@ -58,21 +64,14 @@ import { quillEditor } from 'vue-quill-editor'
 export default {
   data() {
     return {
-      defaultList: [
-        {
-          name: '测试默认显示'
-        },
-        {
-          name: '仍然测试'
-        }
-      ],
+      defaultList: [],
       articleDetail: {
         // title: '这里是文章标题',
         // cate: '',
         // content: '',
         // user_id: this.$store.state.loginUserInfo.id,
       },
-      attachfiles: {},
+      attachfiles: [],
       categoryList: {},
       editorOption: {
 
@@ -104,6 +103,28 @@ export default {
     this.getEditDetail(parseInt(this.$route.params.id))
   },
   methods: {
+    postfileRemove (file) {
+      // 从 upload 实例删除数据
+      // const fileList = this.$refs.upload.fileList;
+      // this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+    },
+    postfileSuccess (res, file) {
+      // 因为上传过程为实例，这里模拟添加 url
+      let attachfile_id = res.id
+      this.articleDetail.attachfiles_id.push(attachfile_id)
+    },
+    postfileFormatError (file) {
+      this.$Notice.warning({
+        title: '文件格式不正确',
+        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx 格式的文件。'
+      });
+    },
+    postfileMaxSize (file) {
+      this.$Notice.warning({
+        title: '超出文件大小限制',
+        desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+      });
+    },
     onEditorReady(editor) {
       // console.log('editor ready!', editor)
     },
@@ -134,13 +155,24 @@ export default {
       this.$http.get('/getEditDetail', payload).then(
         response => {
           // 请求成功
-          console.log(response)
+          console.log(response.data)
           this.articleDetail = response.data.articleDetail
-          this.addAttach = JSON.parse(this.articleDetail.attachfiles_id)==null ? false : true
-          this.attachfiles = response.data.attachfiles
+          this.addAttach = this.articleDetail.attachfiles_id.length == 0 ? false : true
+          this.defaultList = response.data.attachfiles
         },
         response => {
           // 请求失败
+          this.$Message.error(this.$store.state.responseErrorMsg)
+        }
+      )
+    },
+    handleSubmit() {
+      this.$http.post( '/updateDetail', this.articleDetail ).then(
+        response => {
+          this.$Message.success('添加成功!')
+          this.$router.push({ path: '/homepage' })
+        },
+        response => {
           this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )

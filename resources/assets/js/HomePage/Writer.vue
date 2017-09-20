@@ -19,8 +19,8 @@
       <FormItem label="标题" prop="title">
         <Input v-model="articleInfo.title" size="large"></Input>
       </FormItem>
-      <FormItem label="分类" prop="cate">
-        <Select v-model="articleInfo.cate" >
+      <FormItem label="分类" prop="category">
+        <Select v-model="articleInfo.category" >
           <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
           </Option>
         </Select>
@@ -65,10 +65,10 @@ export default {
     return {
       articleInfo: {
         title: '这里是文章标题',
-        cate: '',
+        category: '',
         content: '',
         user_id: this.$store.state.loginUserInfo.id,
-        attachfiles: []
+        attachfiles_id: []
       },
       categoryList: {},
       editorOption: {
@@ -79,7 +79,7 @@ export default {
         title: [
           { required: true, message: '文章标题不能为空', trigger: 'blur' }
         ],
-        cate: [
+        category: [
           { required: true, message: '文章分类不能为空', trigger: 'blur' }
         ],
         content: [
@@ -112,7 +112,7 @@ export default {
     postfileSuccess (res, file) {
       // 因为上传过程为实例，这里模拟添加 url
       let attachfile_id = res.id
-      this.articleInfo.attachfiles.push(attachfile_id)
+      this.articleInfo.attachfiles_id.push(attachfile_id)
     },
     postfileFormatError (file) {
       this.$Notice.warning({

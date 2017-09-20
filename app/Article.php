@@ -14,6 +14,15 @@ class Article extends Model {
     ];
 
     /**
+     * 应该被转换成原生类型的属性。
+     *
+     * @var array
+     */
+    protected $casts = [
+        'attachfiles_id' => 'array',
+    ];
+    
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -27,5 +36,6 @@ class Article extends Model {
     public function username() {
         return $this->belongsTo('App\User', 'user_id');
     }
+
 }
 ?>

@@ -74,17 +74,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       articleInfo: {
         title: '这里是文章标题',
-        cate: '',
+        category: '',
         content: '',
         user_id: this.$store.state.loginUserInfo.id,
-        attachfiles: []
+        attachfiles_id: []
       },
       categoryList: {},
       editorOption: {},
       addAttach: false,
       articleValidate: {
         title: [{ required: true, message: '文章标题不能为空', trigger: 'blur' }],
-        cate: [{ required: true, message: '文章分类不能为空', trigger: 'blur' }],
+        category: [{ required: true, message: '文章分类不能为空', trigger: 'blur' }],
         content: [{ required: true, message: '文章内容不能为空', trigger: 'blur' }]
       }
     };
@@ -115,7 +115,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     postfileSuccess: function postfileSuccess(res, file) {
       // 因为上传过程为实例，这里模拟添加 url
       var attachfile_id = res.id;
-      this.articleInfo.attachfiles.push(attachfile_id);
+      this.articleInfo.attachfiles_id.push(attachfile_id);
     },
     postfileFormatError: function postfileFormatError(file) {
       this.$Notice.warning({
@@ -202,15 +202,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _c('FormItem', {
     attrs: {
       "label": "分类",
-      "prop": "cate"
+      "prop": "category"
     }
   }, [_c('Select', {
     model: {
-      value: (_vm.articleInfo.cate),
+      value: (_vm.articleInfo.category),
       callback: function($$v) {
-        _vm.articleInfo.cate = $$v
+        _vm.articleInfo.category = $$v
       },
-      expression: "articleInfo.cate"
+      expression: "articleInfo.category"
     }
   }, _vm._l((_vm.categoryList), function(item, index) {
     return _c('Option', {

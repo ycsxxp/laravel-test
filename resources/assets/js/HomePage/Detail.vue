@@ -59,7 +59,9 @@
           </div> -->
           <mavon-editor v-model='articleDetail.content' style="height: 100%"
             :editable="false"
+            :subfield="false"
             :toolbarsFlag="false"
+            :ishljs="true"
             code_style="code-hybrid"
             default_open="preview"
           ></mavon-editor>

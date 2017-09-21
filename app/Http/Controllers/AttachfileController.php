@@ -22,8 +22,12 @@ class AttachfileController extends Controller
         // $file from Symfony\Component\HttpFoundation\File 
         $file = $request['file'];
         if($file->isValid()) {
-            $path = $request->file('file')->store(date('Ymd/His'), 'public');
             $loginUser = Auth::user();
+            
+            $file_dir = $loginUser->account;
+            $file_name = date('YmdHis').'.'.$file->getClientOriginalExtension();
+            $path = $request->file('file')->storeAs($file_dir, $file_name, 'public');
+            
             return Attachfile::create([
                 'f_name' => $file->getClientOriginalName(),
                 'f_path' => $path,

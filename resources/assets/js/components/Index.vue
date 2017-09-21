@@ -4,17 +4,16 @@
     background: #f5f7f9;
     position: relative;
     border-radius: 4px;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
   }
   .layout-breadcrumb{
     padding: 10px 15px 0;
   }
   .layout-content{
-    height: 100%;
     min-height: 200px;
     margin: 15px;
-    overflow: hidden;
+    overflow: auto;
     background: #fff;
     border-radius: 4px;
   }
@@ -23,7 +22,6 @@
   }
   .layout-copy{
     bottom: 0;
-    position: absolute;
     width: 100%;
     text-align: center;
     padding: 10px 0 20px;
@@ -53,6 +51,7 @@
     display: none;
   }
   .ivu-col{
+    overflow: auto;
     transition: width .2s ease-in-out;
   }
   .rowDiv {

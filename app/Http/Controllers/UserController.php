@@ -17,9 +17,9 @@ class UserController extends Controller {
     public function adduser(Request $request) {
         return User::create([
             'name' => $request->name,
-            'age' => $request->age,
             'address' => $request->address,
             'email' => $request->email,
+            'account' => $request->account,
             'password' => bcrypt($request->password),
             'role' => 1,
         ]);
@@ -28,7 +28,7 @@ class UserController extends Controller {
     public function updateuser(Request $request) {
         $id = (int)$request->id;
         $name = (string)$request->name;
-        $data = ['name' => $name, 'age' => (int)$request->age, 'address' => (string)$request->address, 'email' => (string)$request->email, 'password' => bcrypt($request->password)];
+        $data = ['name' => $name, 'address' => (string)$request->address, 'email' => (string)$request->email, 'account' => (string)$request->account, 'password' => bcrypt($request->password)];
         return User::where([ ['id', $id],['name', $name] ])->update($data);
     }
 

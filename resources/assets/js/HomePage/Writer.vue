@@ -17,7 +17,7 @@
   <Row class="content">
     <Form ref="articleInfo" :model="articleInfo" label-position="top" :rules="articleValidate">
       <FormItem label="标题" prop="title">
-        <Input v-model="articleInfo.title" size="large"></Input>
+        <Input v-model="articleInfo.title" size="large" placeholder="文章标题"></Input>
       </FormItem>
       <FormItem label="分类" prop="category">
         <Select v-model="articleInfo.category" >
@@ -64,7 +64,7 @@ export default {
   data () {
     return {
       articleInfo: {
-        title: '这里是文章标题',
+        title: '',
         category: '',
         content: '',
         user_id: this.$store.state.loginUserInfo.id,

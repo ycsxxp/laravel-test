@@ -50,16 +50,16 @@
             key: 'name'
           },
           {
-            title: '年龄',
-            key: 'age'
-          },
-          {
-            title: '地址',
-            key: 'address'
+            title: '账号',
+            key: 'account'
           },
           {
             title: '邮箱',
             key: 'email'
+          },
+          {
+            title: '地址',
+            key: 'address'
           },
           {
             title: '操作',

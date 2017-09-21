@@ -11,7 +11,7 @@
         <div class="cover">
           <!-- <img src="images/72620b440e684eae9376c87a8d60f050.webp"> -->
         </div>
-        <div class="summary" v-html="summaryFilter(article.content)">
+        <div class="summary" v-html="article.content">
         </div>
         <div class="infoDiv">
           <Button class="readmore" type="info"  @click="showDetail(article.id)">详细</Button>
@@ -53,9 +53,6 @@ export default {
     this.getArticle()
   },
   methods: {
-    summaryFilter (val) {
-      return (val || "").substring(0, 100)
-    },
     getArticle() {
       let payload = {
         size: this.paginationInit.size,

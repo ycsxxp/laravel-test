@@ -38,7 +38,7 @@
         width: 90%;
         margin: 0 auto;
         margin-bottom: 20px;
-        padding: 20px 15px 15px 20px;
+        padding: 10px 15px 10px 15px;
         border-style: solid;
         border-width: 1px;
         .title {
@@ -46,7 +46,9 @@
           margin: 0 0 10px 0;
         }
         .summary {
-          margin: 10px 0 10px 0;
+          margin: 0px 0 10px 0;
+          height: 89px;
+          overflow: hidden;
         }
         .infoDiv {
           position: relative;
@@ -94,7 +96,7 @@
         <div class="title">
           <h2>{{article.title}}</h2>
         </div>
-        <div class="summary" v-html="summaryFilter(article.content)">
+        <div class="summary" v-html="article.content">
         </div>
         <div class="infoDiv">
           <Button class="readmore" type="info"  @click="showDetail(article.id)">详细</Button>
@@ -133,9 +135,6 @@
           document.body.scrollTop = 0
           document.documentElement.scrollTop = 0
         })
-      },
-      summaryFilter (val) {
-        return (val || "").substring(0, 120)
       },
       getCatory() {
         let payload = {

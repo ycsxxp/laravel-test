@@ -13,10 +13,11 @@ class LoginController extends Controller {
      */
     public function authenticate(Request $request)
     {
-        $email = $request->input('user');
+        $account = $request->input('user');
         $password = $request->input('password');
         // var_dump(Auth::attempt(['email' => $email, 'password' => $password]));exit();
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        // if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['account' => $account, 'password' => $password])) {
             // Authentication passed...
             // return redirect()->intended('dashboard');
             // 重定向操作由前端来做

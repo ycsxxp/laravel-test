@@ -26,7 +26,13 @@
         </Select>
       </FormItem>
       <FormItem class="editor_container" label="正文" prop="content">
-        <quill-editor v-model="articleDetail.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor>
+        <!-- <quill-editor v-model="articleDetail.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
+        <div style="height: 580px;">
+          <mavon-editor ref="myMavonEditor" v-model='articleDetail.content' style="height: 100%" 
+            :ishljs="true"
+            code_style="code-hybrid"
+          ></mavon-editor>
+        </div>
       </FormItem>
       <FormItem>
         <a @click="addAttachToggle">{{ addAttach ? '取消添加':'添加附件' }}</a>
@@ -61,16 +67,14 @@
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
 import { quillEditor } from 'vue-quill-editor'
 
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 export default {
   data() {
     return {
       defaultList: [],
-      articleDetail: {
-        // title: '这里是文章标题',
-        // cate: '',
-        // content: '',
-        // user_id: this.$store.state.loginUserInfo.id,
-      },
+      articleDetail: {},
       attachfiles: [],
       categoryList: {},
       editorOption: {
@@ -91,7 +95,8 @@ export default {
     }
   },
   components: {
-    quillEditor
+    quillEditor,
+    mavonEditor
   },
   computed: {
     editor() {

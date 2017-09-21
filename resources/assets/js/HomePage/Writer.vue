@@ -34,7 +34,10 @@
       <FormItem class="editor_container" label="正文" prop="content">
         <!-- <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
         <div style="height: 580px;">
-          <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" code_style="code-hybrid"></mavon-editor>
+          <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" 
+            :ishljs="true"
+            code_style="code-hybrid"
+          ></mavon-editor>
         </div>
 
       </FormItem>
@@ -171,7 +174,6 @@ export default {
       )
     },
     handleSubmit() {
-      this.articleInfo.htmlcontent = this.$refs.myMavonEditor.d_render
       this.articleInfo._token = window.Laravel.csrfToken
       this.$http.post( '/saveWriter', this.articleInfo ).then(
         response => {

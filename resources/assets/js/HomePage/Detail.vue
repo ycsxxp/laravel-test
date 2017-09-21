@@ -110,26 +110,6 @@ export default {
       // this.$router.push({ path: '/homepage' })
       this.$router.go(-1)
     },
-    // download(id) {
-    //   let payload = {
-    //     id: id
-    //   }
-    //   this.$http.post('/downloadfile', payload).then(
-    //     response => {
-    //       // 请求成功
-    //       let a = document.createElement('a')
-    //       let url = window.URL.createObjectURL(blob)
-    //       let filename = "ceshi.docx"
-    //       a.href = url
-    //       a.download = filename
-    //       a.click()
-    //       window.URL.revokeObjectURL(url)
-    //     },
-    //     response => {
-
-    //     }
-    //   )
-    // },
     getArticleDetail(articleId) {
       let payload = {
         id: articleId,

@@ -1,7 +1,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import 'resources/assets/sass/_homepage.scss';
   .detail_section {
-    padding: 30px 50px 0 50px;
+    padding: 30px 50px 30px 50px;
     overflow: hidden;
     .title_detail {
       // margin-bottom: 
@@ -9,6 +9,7 @@
     .content_detail {
       float: left;
       margin-top: 20px;
+      width: 100%;
     }
   }
   :global(.content_detail img) {
@@ -54,8 +55,14 @@
           </ul>
         </div>
         <div class="content_detail">
-          <div v-html="articleDetail.content">
-          </div>
+          <!-- <div v-html="articleDetail.content">
+          </div> -->
+          <mavon-editor v-model='articleDetail.content' style="height: 100%"
+            :editable="false"
+            :toolbarsFlag="false"
+            code_style="code-hybrid"
+            default_open="preview"
+          ></mavon-editor>
         </div>
       </section>
     </Col>
@@ -67,6 +74,9 @@
 <script>
 import Catalog from './Catalog.vue'
 
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 export default {
   // props: ["id"],
   data () {
@@ -77,7 +87,8 @@ export default {
     }
   },
   components: {
-    Catalog
+    Catalog,
+    mavonEditor
   },
   // 对传进来的 recent, hot 参数监听 父组件修改后 同步修改到子组件
   // watch: {

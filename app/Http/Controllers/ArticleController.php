@@ -16,7 +16,8 @@ class ArticleController extends Controller {
     public function saveWriter(Request $request) {
         return Article::create([
             'title' => $request->title,
-            'content' => $request->content,
+            // 'content' => $request->content,
+            'content' => $request->htmlcontent,
             'attachfiles_id' => $request->attachfiles_id,
             // 'visit_count' => $request->visit_count,
             // 'like_count' => $request->like_count,

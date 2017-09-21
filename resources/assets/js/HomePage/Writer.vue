@@ -2,9 +2,15 @@
 .content {
   width: 100%;
   padding: 40px 80px 20px 80px;
+  .editor_container {
+    // height: 580px;
+  }
 }
 :global(.quilleditor .ql-editor) {
   height: 480px;
+}
+:global(.v-note-wrapper) {
+  z-index: 0;
 }
 :global(.ivu-input .ivu-input-large) {
   border: none;
@@ -26,7 +32,11 @@
         </Select>
       </FormItem>
       <FormItem class="editor_container" label="正文" prop="content">
-        <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor>
+        <!-- <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
+        <div style="height: 580px;">
+          <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" code_style="code-hybrid"></mavon-editor>
+        </div>
+
       </FormItem>
       <FormItem>
         <a @click="addAttachToggle">{{ addAttach ? '取消添加':'添加附件' }}</a>
@@ -60,6 +70,9 @@
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
 import { quillEditor } from 'vue-quill-editor'
 
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 export default {
   data () {
     return {
@@ -89,7 +102,8 @@ export default {
     }
   },
   components: {
-    quillEditor
+    quillEditor,
+    mavonEditor
   },
   // get the current quill instace object.
   computed: {
@@ -157,6 +171,7 @@ export default {
       )
     },
     handleSubmit() {
+      this.articleInfo.htmlcontent = this.$refs.myMavonEditor.d_render
       this.articleInfo._token = window.Laravel.csrfToken
       this.$http.post( '/saveWriter', this.articleInfo ).then(
         response => {

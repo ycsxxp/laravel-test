@@ -58,7 +58,7 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          if(localStorage.getItem("loginStatus") == "true") {
+          if(sessionStorage.getItem("loginStatus") == "true") {
             // 如果已经登录 不允许重复登录
             this.$Notice.error({
               title: '重复登录',

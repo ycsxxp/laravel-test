@@ -35,6 +35,18 @@ class AttachfileController extends Controller
         }
     }
 
+    // 删除上传的文件
+    public function deleteUploadAttachFile(Request $request) {
+        $file = $request->file;
+        $article_id = intval($file['id']);
+        $loginUser = Auth::user();
+        $result = Attachfile::where([ ['id', $article_id], ['user_id', $loginUser->id] ])->delete();
+        if($result) {
+            $f_path = $file['f_path'];
+            Storage::disk('public')->delete($f_path);
+        }
+    }
+
     // 下载文件
     public function downloadAttachFile(Request $request) {
         $loginUser = Auth::user();

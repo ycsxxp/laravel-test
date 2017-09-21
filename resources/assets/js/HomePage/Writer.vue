@@ -39,7 +39,7 @@
           action="/postfile" 
           :on-success="postfileSuccess"
           :on-remove="postfileRemove"
-          :format="['txt', 'doc', 'docx']"
+          :format="['txt', 'doc', 'docx', 'xlsx']"
           :max-size="2048"
           :on-format-error="postfileFormatError"
           :on-exceeded-size="postfileMaxSize"
@@ -106,8 +106,20 @@ export default {
     },
     postfileRemove (file) {
       // 从 upload 实例删除数据
-      // const fileList = this.$refs.upload.fileList;
-      // this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+      const fileList = this.$refs.upload.fileList;
+      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+      let payload = {
+        file: file.response
+      }
+      this.$http.post('/deletefile', payload).then(
+        response => {
+          // 请求成功
+          console.log(response)
+        },
+        response => {
+
+        }
+      )
     },
     postfileSuccess (res, file) {
       // 因为上传过程为实例，这里模拟添加 url
@@ -117,7 +129,7 @@ export default {
     postfileFormatError (file) {
       this.$Notice.warning({
         title: '文件格式不正确',
-        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx 格式的文件。'
+        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx,xlsx 格式的文件。'
       });
     },
     postfileMaxSize (file) {

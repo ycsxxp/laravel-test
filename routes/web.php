@@ -55,6 +55,8 @@ Route::middleware('auth')->get('/getEditDetail','ArticleController@getEditDetail
 
 // Route::middleware('auth')->post('/saveUploadImg', 'ArticleController@saveUploadImg');
 Route::middleware('auth')->post('/postfile', 'AttachfileController@saveUploadAttachFile');
+Route::middleware('auth')->post('/deletefile', 'AttachfileController@deleteUploadAttachFile');
+
 Route::middleware('auth')->get('/downloadfile', 'AttachfileController@downloadAttachFile');
 
 Route::middleware('auth')->post('/visitCountUp', 'ArticleController@visitCountUp');

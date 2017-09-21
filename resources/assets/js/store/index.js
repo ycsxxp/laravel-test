@@ -5,10 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		loginStatus: localStorage.getItem("loginStatus") == "true" ? true : false ,
+		loginStatus: sessionStorage.getItem("loginStatus") == "true" ? true : false ,
 		// loginStatus: false ,
-		// loginUserInfo: JSON.parse(localStorage.getItem("loginUserInfo")),
-		loginUserInfo: localStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(localStorage.getItem("loginUserInfo")),
+		// loginUserInfo: JSON.parse(sessionStorage.getItem("loginUserInfo")),
+		loginUserInfo: sessionStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(sessionStorage.getItem("loginUserInfo")),
 		responseErrorMsg: '',
 		breadCrumb: [],
 		data: {
@@ -23,17 +23,17 @@ export default new Vuex.Store({
 	mutations: {
 		loginSuccess (state, payload) {
 			state.loginStatus = true
-			localStorage.setItem("loginStatus", "true")
+			sessionStorage.setItem("loginStatus", "true")
 
 			state.loginUserInfo = payload
-			localStorage.setItem("loginUserInfo", JSON.stringify(payload))
+			sessionStorage.setItem("loginUserInfo", JSON.stringify(payload))
 		},
 		logoutSuccess(state) {
 			state.loginStatus = false
-			localStorage.setItem("loginStatus", "false")
+			sessionStorage.setItem("loginStatus", "false")
 
 			state.loginUserInfo = ""
-			localStorage.setItem("loginUserInfo", "")
+			sessionStorage.setItem("loginUserInfo", "")
 		},
 		setErrorResponseMsg(state, msg) {
 			state.responseErrorMsg = msg
@@ -79,10 +79,10 @@ export default new Vuex.Store({
 	},
 	getters: {
 		// getLoginStatus() {
-		// 	return localStorage.getItem("loginStatus") == "true" ? true : false
+		// 	return sessionStorage.getItem("loginStatus") == "true" ? true : false
 		// },
 		// getLoginUserInfo() {
-		// 	return localStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(localStorage.getItem("loginUserInfo"))
+		// 	return sessionStorage.getItem("loginUserInfo") == "" ? "" : JSON.parse(sessionStorage.getItem("loginUserInfo"))
 		// }
 	}
 })

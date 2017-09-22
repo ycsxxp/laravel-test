@@ -9,6 +9,9 @@
 :global(.ivu-input .ivu-input-large) {
   border: none;
 }
+:global(.v-note-wrapper) {
+  z-index: 0;
+}
 @for $i from 2 through 10 {
   .option-#{$i} { padding-left: 20px * $i ; }
 }
@@ -35,9 +38,9 @@
         </div>
       </FormItem>
       <FormItem>
-        <a @click="addAttachToggle">{{ addAttach ? '取消添加':'添加附件' }}</a>
+        <a @click="addAttachToggle">{{ addAttach ? '收起':'附件' }}</a>
       </FormItem>
-      <FormItem label="附件" prop="attach" v-show="addAttach">
+      <FormItem prop="attach" v-show="addAttach">
         <Upload
           ref="upload"
           multiple

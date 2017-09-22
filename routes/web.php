@@ -25,6 +25,8 @@ Route::middleware('auth')->post('/getuser', 'UserController@getuser');
 Route::middleware('auth')->post('/adduser', 'UserController@adduser');
 Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
 Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
+// 修改密码
+Route::middleware('auth')->post('/modifypass', 'UserController@modifypass');
 
 /**
     分类模块

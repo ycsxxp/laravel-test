@@ -40,5 +40,18 @@ class UserController extends Controller {
             return $this->getuser();
         }
     }
+
+    // 修改密码
+    public function modifypass(Request $request) {
+        $oripass = $request->oripass;
+        $newpass = $request->newpass;
+        $confirm = $request->confirm;
+
+        $loginUser = Auth::user();
+        $user_id = $loginUser->id;
+        if(password_verify($oripass, $loginUser->password) && $newpass === $confirm) {
+            $result = User::where('id', $user_id)->update(['password' => bcrypt($newpass)]);
+        }
+    }
 }
 ?>

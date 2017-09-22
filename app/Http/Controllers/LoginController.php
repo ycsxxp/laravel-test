@@ -15,7 +15,6 @@ class LoginController extends Controller {
     {
         $account = $request->input('user');
         $password = $request->input('password');
-        // var_dump(Auth::attempt(['email' => $email, 'password' => $password]));exit();
         // if (Auth::attempt(['email' => $email, 'password' => $password])) {
         if (Auth::attempt(['account' => $account, 'password' => $password])) {
             // Authentication passed...

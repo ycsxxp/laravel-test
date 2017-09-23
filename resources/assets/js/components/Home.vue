@@ -106,7 +106,6 @@
 export default {
   data() {
     const validateOriPass = (rule, value, callback) => {
-      console.log(value.length)
       if(value.length < 6) {
         callback(new Error('密码长度不能小于6位'));
       }else {
@@ -162,12 +161,26 @@ export default {
           this.$http.post('/modifypass', this.passFormItem).then(
             response => {
               // 请求成功
+              if(response.data.status === 200) {
+                this.$Notice.success({
+                  title: '密码修改成功，请重新登录'
+                });
+                this.logout();
+              }else if(response.data.status === 400) {
+                this.$refs.passFormItem.resetFields()
+                console.log(2);
+                this.$Notice.error({
+                  title: '密码错误修改失败, 请重试',
+                  duration: 3
+                });
+                // console.log(this.$refs);
+              }
             },
             response => {
               // 请求失败
             }
           )
-          this.$Message.success('提交成功!');
+          
 
         } else {
           this.$Message.error('表单验证失败!');

@@ -137,8 +137,7 @@ class ArticleController extends Controller {
                 return $this->getArticleByUser($request);
             }
         }else {
-            $result = array('status'=>400 , 'msg'=>'权限错误');
-            return json_encode($result);
+            return response()->json(['status' => 400, 'msg' => '权限错误']);
         }
     }
 }

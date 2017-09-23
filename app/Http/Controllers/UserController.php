@@ -51,6 +51,9 @@ class UserController extends Controller {
         $user_id = $loginUser->id;
         if(password_verify($oripass, $loginUser->password) && $newpass === $confirm) {
             $result = User::where('id', $user_id)->update(['password' => bcrypt($newpass)]);
+            return $result == true ? response()->json(['status' => 200, 'msg' => 'success']) : response()->json(['status' => 400, 'msg' => 'fail']);
+        }else {
+            return response()->json(['status' => 400, 'msg' => 'password error']);
         }
     }
 }

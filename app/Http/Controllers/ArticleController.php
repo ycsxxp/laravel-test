@@ -51,6 +51,7 @@ class ArticleController extends Controller {
         return array('articleDetail' => $articleDetail, 'attachfiles' => $attachfiles);
     }
 
+    // 获取所有文章
     public function getArticle(Request $request) {
         // 每页条数
         $size = intval($request->size);
@@ -58,7 +59,14 @@ class ArticleController extends Controller {
         $page = intval($request->page);
 
         // DB::enableQueryLog();
-        $articles = Article::with('username')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+        $articles = Article::with('username')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+        $articles = array_map(
+                        function($item) { 
+                            $item['username'] = $item['username']['name'];
+                            return $item;
+                        }, 
+                        $articles
+                    );
         $total = Article::count();
         $result = array('articles' => $articles, 'total' => $total );
         return $result;
@@ -74,13 +82,19 @@ class ArticleController extends Controller {
             $page = intval($request->page);
 
             // DB::enableQueryLog();
-            $articles = Article::with('username')->where('user_id', $loginUser->id)->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+            $articles = Article::with('username')->where('user_id', $loginUser->id)->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+            $articles = array_map(
+                            function($item) { 
+                                $item['username'] = $item['username']['name'];
+                                return $item;
+                            }, 
+                            $articles
+                        );
             $total = Article::where('user_id', $loginUser->id)->count();
             $result = array('articles' => $articles, 'total' => $total );
             return $result;
         }else {
-            $result = array('status'=>400 , 'msg'=>'权限错误');
-            return $result->toJson();
+            return response()->json(['status'=>400 , 'msg'=>'权限错误']);
         }
 
     }
@@ -96,9 +110,10 @@ class ArticleController extends Controller {
         // 阅读量 +1
         $this->visitCountUp($id);
 
-        $articles = Article::find($id);
-        if($articles->attachfiles_id != 'null' && $articles->attachfiles_id != '') {
-            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', $articles->attachfiles_id)->get();    
+        $articles = Article::with('username')->find($id)->toArray();
+        $articles['username'] = $articles['username']['name'];
+        if($articles['attachfiles_id'] != 'null' && $articles['attachfiles_id'] != '') {
+            $attachfiles = Attachfile::select('id', 'f_name')->whereIn('id', $articles['attachfiles_id'])->get();    
         }else {
             $attachfiles = array();
         }

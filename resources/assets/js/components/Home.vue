@@ -168,7 +168,6 @@ export default {
                 this.logout();
               }else if(response.data.status === 400) {
                 this.$refs.passFormItem.resetFields()
-                console.log(2);
                 this.$Notice.error({
                   title: '密码错误修改失败, 请重试',
                   duration: 3

@@ -4,7 +4,7 @@
     padding: 30px 50px 30px 50px;
     overflow: hidden;
     .title_detail {
-      // margin-bottom: 
+      margin-bottom: 5px;
     }
     .content_detail {
       float: left;
@@ -44,7 +44,7 @@
           <h2>{{articleDetail.title}}</h2>
         </div>
         <div class="title_span">
-          最后编辑于 {{articleDetail.updated_at}}
+          <span style="margin-right:10px;">{{articleDetail.username}}</span>最后编辑于 {{articleDetail.updated_at}}
         </div>
         <div class="attachfile_list" v-show="attachfiles.length > 0">
           <label>包含附件</label>

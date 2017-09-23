@@ -105,17 +105,7 @@ export default {
       this.$http.post('/getArticle', payload).then(
         response => {
           // 请求成功
-          let articles = response.data.articles
-          // 处理得到的数据
-          for (let i = 0; i < articles.length; i++) {
-            let item = articles[i]
-            for( let key in item) {
-              if(key=='username') {
-                item['username'] = item['username'].name
-              }
-            }
-          }
-          this.articleList = articles
+          this.articleList = response.data.articles
         },
         response => {
           // 请求失败

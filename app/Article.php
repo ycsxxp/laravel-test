@@ -34,8 +34,7 @@ class Article extends Model {
     public $timestamps = true;
 
     public function username() {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id')->select('id','name');
     }
-
 }
 ?>

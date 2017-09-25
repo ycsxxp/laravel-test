@@ -22,7 +22,7 @@ class ArticleController extends Controller {
             // 'visit_count' => $request->visit_count,
             // 'like_count' => $request->like_count,
             // 'hot' => $request->hot,
-            'category' => intval($request->category),
+            'category_id' => intval($request->category_id),
             'user_id' => intval($request->user_id)
         ]);
     }
@@ -34,7 +34,7 @@ class ArticleController extends Controller {
             'content' => $request->content,
             // 'content' => $request->htmlcontent,
             'attachfiles_id' => json_encode($request->attachfiles_id),
-            'category' => intval($request->category)
+            'category_id' => intval($request->category_id)
         ]);
         dd($result);
     }
@@ -101,7 +101,7 @@ class ArticleController extends Controller {
 
     public function getByCategory(Request $request) {
         $category_id = intval($request->id);
-        return Article::where('category', $category_id)->get()->toJson();
+        return Article::where('category_id', $category_id)->get()->toJson();
     }
 
     // 获取详细信息

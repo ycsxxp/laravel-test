@@ -106,15 +106,15 @@
 export default {
   data() {
     const validateOriPass = (rule, value, callback) => {
-      if(value.length < 6) {
-        callback(new Error('密码长度不能小于6位'));
+      if(value.length < 5) {
+        callback(new Error('密码长度不能小于5位'));
       }else {
         callback();
       }
     }
     const validateNewPass = (rule, value, callback) => {
-      if(value.length < 6) {
-        callback(new Error('新密码长度不能小于6位'));
+      if(value.length < 5) {
+        callback(new Error('新密码长度不能小于5位'));
       }else {
         if(this.passFormItem.newpass !== '') {
           this.$refs.passFormItem.validateField('confirm')
@@ -172,11 +172,11 @@ export default {
                   title: '密码错误修改失败, 请重试',
                   duration: 3
                 });
-                // console.log(this.$refs);
               }
             },
             response => {
               // 请求失败
+              this.$Message.error(this.$store.state.responseErrorMsg)
             }
           )
           

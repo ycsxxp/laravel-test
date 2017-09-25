@@ -22,8 +22,8 @@
       <FormItem label="标题" prop="title">
         <Input v-model="articleDetail.title" size="large"></Input>
       </FormItem>
-      <FormItem label="分类" prop="category">
-        <Select v-model="articleDetail.category" >
+      <FormItem label="分类" prop="category_id">
+        <Select v-model="articleDetail.category_id" >
           <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
           </Option>
         </Select>
@@ -163,7 +163,6 @@ export default {
       this.$http.get('/getEditDetail', payload).then(
         response => {
           // 请求成功
-          console.log(response.data)
           this.articleDetail = response.data.articleDetail
           this.addAttach = this.articleDetail.attachfiles_id.length == 0 ? false : true
           this.defaultList = response.data.attachfiles

@@ -87,7 +87,7 @@
     <Col class="content_left">
       <ul class="ivu-menu ivu-menu-light ivu-menu-vertical cate_nav">
         <li v-for="(item, index) in categoryList" :class="['ivu-menu-item', {'ivu-menu-item-active ivu-menu-item-selected': activeId == item.id}, 'li-level-'+item.c_level]" @click="getArticleByCategory(item.id)">
-            {{ item.c_title }}
+            {{ item.c_title }} 【{{item.articles_count}}】
         </li>
       </ul>
     </Col>

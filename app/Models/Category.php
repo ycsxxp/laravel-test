@@ -23,5 +23,9 @@ class Category extends Model {
     ];
 
     public $timestamps = true;
+
+    public function articles_count() {
+        return $this->hasMany('App\Article', 'category_id', 'id');
+    }
 }
 ?>

@@ -25,8 +25,8 @@
       <FormItem label="标题" prop="title">
         <Input v-model="articleInfo.title" size="large" placeholder="文章标题"></Input>
       </FormItem>
-      <FormItem label="分类" prop="category">
-        <Select v-model="articleInfo.category" >
+      <FormItem label="分类" prop="category_id">
+        <Select v-model="articleInfo.category_id" >
           <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
           </Option>
         </Select>
@@ -81,7 +81,7 @@ export default {
     return {
       articleInfo: {
         title: '',
-        category: '',
+        category_id: '',
         content: '',
         user_id: this.$store.state.loginUserInfo.id,
         attachfiles_id: []

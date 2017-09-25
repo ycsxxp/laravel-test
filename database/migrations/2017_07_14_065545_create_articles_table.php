@@ -29,7 +29,8 @@ class CreateArticlesTable extends Migration
             // 热门指数
             $table->integer('hot')->default(0);
             // 分类
-            $table->integer('category');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('category'); // 作者 id
             // 注意: 当创建一个参照递增整数类型的外键的时候，记得把外键字段的类型定义为无符号。
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users'); // 作者 id

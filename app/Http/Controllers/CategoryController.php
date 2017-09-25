@@ -14,6 +14,8 @@ class CategoryController extends Controller
 {
     //
     private $category_result = array();
+
+    private $articles_count = 0;
     //
     public function add(Request $request) {
         
@@ -41,7 +43,6 @@ class CategoryController extends Controller
     // 将分类树处理成顺序数组方便页面显示
     public function getCategoryResult($tree) {
         foreach ($tree as $key => $value) {
-            $value['c_title'] = $value['c_title'];
             if(isset($value['child'])) {
                 $child = $value['child'];
                 unset($value['child']);
@@ -55,7 +56,14 @@ class CategoryController extends Controller
     }
 
     public function get() {
-        $category_all_arr = Category::orderBy('c_parent', 'asc')->get()->toArray();
+        $category_all_arr = Category::with('articles_count')->orderBy('c_parent', 'asc')->get()->toArray();
+        $category_all_arr = array_map(
+                                function($item) { 
+                                    $item['articles_count'] = count($item['articles_count']);
+                                    return $item;
+                                }, 
+                                $category_all_arr
+                            );
         $category_list = array();
         foreach ($category_all_arr as $key => $value) {
             $category_list[$value['id']] = $value;

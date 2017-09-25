@@ -87,7 +87,6 @@
                     {
                       props: {
                         confirm: true,
-                        transfer: true,
                         title: "确认删除这条内容吗?",
                       },
                       on: {

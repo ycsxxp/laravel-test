@@ -10,6 +10,7 @@ import App from './App.vue'
 import Vuex from 'vuex' // 引入vuex
 import iView from 'iview'; // 引入iView
 import 'iview/dist/styles/iview.css';    // 使用 CSS
+import 'mavon-editor/dist/css/index.css' // 引入mavonEditor样式
 import router from './router'
 import store from './store'
 

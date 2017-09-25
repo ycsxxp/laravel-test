@@ -6,9 +6,6 @@
     // height: 580px;
   }
 }
-:global(.quilleditor .ql-editor) {
-  height: 480px;
-}
 :global(.v-note-wrapper) {
   z-index: 0;
 }
@@ -71,10 +68,9 @@
 </template>
 <script>
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
-import { quillEditor } from 'vue-quill-editor'
+// import { quillEditor } from 'vue-quill-editor'
 
 import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
 
 export default {
   data () {
@@ -105,7 +101,7 @@ export default {
     }
   },
   components: {
-    quillEditor,
+    // quillEditor,
     mavonEditor
   },
   // get the current quill instace object.

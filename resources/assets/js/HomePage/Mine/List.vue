@@ -70,8 +70,7 @@ export default {
               return createElement(
                 'div',
                 [
-                  createElement(
-                    'Button',
+                  createElement('Button',
                     {
                       props: {
                         type: 'primary',
@@ -85,23 +84,32 @@ export default {
                           this.edit(params)
                         }
                       }
-                    },
+                    }, 
                     '编辑'
                   ),
-                  createElement(
-                    'Button',
+                  createElement('Poptip',
                     {
                       props: {
-                        type: 'error',
-                        size: 'small'
+                        confirm: true,
+                        title: "确认删除这条内容吗?",
                       },
                       on: {
-                        click: () => {
+                        'on-ok': () => {
                           this.delete(params)
                         }
                       }
                     },
-                    '删除'
+                    [
+                      createElement('Button', 
+                        {
+                          props: {
+                            type: 'error',
+                            size: 'small'
+                          }
+                        }, 
+                        '删除'
+                      )
+                    ]
                   )
                 ]
               )
@@ -115,6 +123,9 @@ export default {
     this.get()
   },
   methods: {
+    ceshi () {
+      console.log('ok')
+    },
     get() {
       let payload = {
         size: this.paginationInit.size,

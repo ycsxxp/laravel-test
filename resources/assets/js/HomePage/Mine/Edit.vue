@@ -3,9 +3,6 @@
   width: 100%;
   padding: 40px 80px 20px 80px;
 }
-:global(.quilleditor .ql-editor) {
-  height: 480px;
-}
 :global(.ivu-input .ivu-input-large) {
   border: none;
 }
@@ -68,10 +65,9 @@
 </template>
 <script>
 // 富文本编辑器 https://github.com/surmon-china/vue-quill-editor
-import { quillEditor } from 'vue-quill-editor'
+// import { quillEditor } from 'vue-quill-editor'
 
 import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
 
 export default {
   data() {
@@ -98,7 +94,7 @@ export default {
     }
   },
   components: {
-    quillEditor,
+    // quillEditor,
     mavonEditor
   },
   computed: {

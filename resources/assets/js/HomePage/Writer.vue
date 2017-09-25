@@ -7,7 +7,7 @@
   }
 }
 :global(.v-note-wrapper) {
-  z-index: 0;
+  z-index: 99;
 }
 :global(.ivu-input .ivu-input-large) {
   border: none;

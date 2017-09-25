@@ -47,6 +47,7 @@
           },
           {
             title: '姓名',
+            width: 120,
             key: 'name'
           },
           {
@@ -64,44 +65,45 @@
           {
             title: '操作',
             key: 'action',
-            width: 150,
-            align: 'center',
             render: (createElement, params) => {
               return createElement(
                 'div',
                 [
-                  createElement(
-                    'Button',
-                    {
-                      props: {
-                        type: 'primary',
-                        size: 'small'
-                      },
-                      style: {
-                        marginRight: '5px'
-                      },
-                      on: {
-                        click: () => {
-                          this.editUser(params)
-                        }
-                      }
+                  createElement('Button', {
+                    props: {
+                      type: 'primary',
+                      size: 'small'
                     },
-                    '编辑'
-                  ),
-                  createElement(
-                    'Button',
+                    style: {
+                      marginRight: '5px'
+                    },
+                    on: {
+                      click: () => {
+                        this.editUser(params)
+                      }
+                    }
+                  }, '编辑'),
+                  createElement('Poptip', 
                     {
                       props: {
-                        type: 'error',
-                        size: 'small'
+                        confirm: true,
+                        transfer: true,
+                        title: "确认删除这条内容吗?",
                       },
                       on: {
-                        click: () => {
+                        'on-ok': () => {
                           this.deleteUser(params.row.id, params.row.name)
                         }
                       }
                     },
-                    '删除'
+                    [
+                      createElement('Button', {
+                        props: {
+                          type: 'error',
+                          size: 'small'
+                        }
+                      }, '删除')
+                    ]
                   )
                 ]
               )

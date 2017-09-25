@@ -7,7 +7,7 @@
   border: none;
 }
 :global(.v-note-wrapper) {
-  z-index: 0;
+  z-index: 99;
 }
 @for $i from 2 through 10 {
   .option-#{$i} { padding-left: 20px * $i ; }

@@ -123,9 +123,6 @@ export default {
     this.get()
   },
   methods: {
-    ceshi () {
-      console.log('ok')
-    },
     get() {
       let payload = {
         size: this.paginationInit.size,

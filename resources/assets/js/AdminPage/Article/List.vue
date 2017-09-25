@@ -69,20 +69,26 @@ export default {
                   //   },
                   //   '编辑'
                   // ),
-                  createElement(
-                    'Button',
+                  createElement('Poptip', 
                     {
                       props: {
-                        type: 'error',
-                        size: 'small'
+                        confirm: true,
+                        title: "确认删除这条内容吗?",
                       },
                       on: {
-                        click: () => {
+                        'on-ok': () => {
                           this.delete(params)
                         }
                       }
                     },
-                    '删除'
+                    [
+                      createElement('Button', {
+                        props: {
+                          type: 'error',
+                          size: 'small'
+                        }
+                      }, '删除')
+                    ]
                   )
                 ]
               )

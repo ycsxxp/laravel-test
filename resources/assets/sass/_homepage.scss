@@ -67,3 +67,7 @@
     }
   }
 }
+
+:global(.v-note-wrapper) {
+  z-index: 99;
+}

@@ -6,9 +6,7 @@
     // height: 580px;
   }
 }
-:global(.v-note-wrapper) {
-  z-index: 99;
-}
+
 :global(.ivu-input .ivu-input-large) {
   border: none;
 }

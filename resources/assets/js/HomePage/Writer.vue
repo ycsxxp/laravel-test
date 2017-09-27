@@ -6,10 +6,17 @@
     // height: 580px;
   }
 }
-
 :global(.ivu-input .ivu-input-large) {
   border: none;
 }
+
+:global(.v-note-wrapper) {
+  z-index: 0;
+}
+:global(.v-note-wrapper.fullscreen) {
+  z-index: 1501;
+}
+
 @for $i from 2 through 10 {
   .option-#{$i} { padding-left: 20px * $i ; }
 }

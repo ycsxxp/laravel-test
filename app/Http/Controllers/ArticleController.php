@@ -5,6 +5,7 @@ use App\Article;
 use App\Attachfile;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller {
     
+    // 存储图片
+    public function saveUploadImg(Request $request) {
+        // $file from Symfony\Component\HttpFoundation\File 
+        $file = $request['img'];
+        if($file->isValid()) {
+            $loginUser = Auth::user();
+            $file_dir = $loginUser->account;
+            $file_name = date('YmdHis').'.'.$file->getClientOriginalExtension();
+            $path = $request->file('img')->storeAs($file_dir, $file_name, 'images');
+            $url = Storage::disk('images')->url($path);
+            return response()->json(['url' => $url]);
+        }else {
+            return response()->json(['status' => 418, 'msg' => 'File invalid']);
+        }
+    }
+
     public function saveWriter(Request $request) {
         return Article::create([
             'title' => $request->title,
@@ -44,7 +61,7 @@ class ArticleController extends Controller {
         $article_id = intval($request->id);
         $articleDetail = Article::find($article_id);
         if($articleDetail->attachfiles_id != 'null' && $articleDetail->attachfiles_id != '') {
-            $attachfiles = Attachfile::select('id', 'f_name as name')->whereIn('id', $articleDetail->attachfiles_id)->get();    
+            $attachfiles = Attachfile::select('id', 'f_name as name', 'f_path')->whereIn('id', $articleDetail->attachfiles_id)->get();    
         }else {
             $attachfiles = array();
         }

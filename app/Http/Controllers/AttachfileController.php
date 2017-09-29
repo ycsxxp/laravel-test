@@ -12,12 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class AttachfileController extends Controller
 {
-    // 存储图片 暂时注释
-    // public function saveUploadImg(Request $request) {
-    //     $path = $request->file('upload')->store(date('Ymd/His'), 'images');
-    //     $path = "uploads/images/".$path;
-    //     return $path;
-    // }
     public function saveUploadAttachFile(Request $request) {
         // $file from Symfony\Component\HttpFoundation\File 
         $file = $request['file'];
@@ -35,7 +29,7 @@ class AttachfileController extends Controller
                 'user_name' => $loginUser->name,
             ]);
         }else {
-            return response()->json(['error' => 'File invalid'], 418);
+            return response()->json(['success' => 'false', 'msg' => 'File invalid']);
         }
     }
 
@@ -47,7 +41,11 @@ class AttachfileController extends Controller
         $result = Attachfile::where([ ['id', $article_id], ['user_id', $loginUser->id] ])->delete();
         if($result) {
             $f_path = $file['f_path'];
-            Storage::disk('public')->delete($f_path);
+            if(Storage::disk('public')->delete($f_path)) {
+                return response()->json(['success' => 'true', 'msg' => '删除成功']);
+            }else {
+                return response()->json(['success' => 'false', 'msg' => '删除失败']);
+            }
         }
     }
 

@@ -36,6 +36,7 @@
           <mavon-editor ref="myMavonEditor" v-model='articleDetail.content' style="height: 100%" 
             :ishljs="true"
             code_style="code-hybrid"
+            @imgAdd="$imgAdd"
           ></mavon-editor>
         </div>
       </FormItem>
@@ -52,7 +53,7 @@
           :on-success="postfileSuccess"
           :on-remove="postfileRemove"
           :format="['txt', 'doc', 'docx', 'xlsx']"
-          :max-size="2048"
+          :max-size="5120"
           :on-format-error="postfileFormatError"
           :on-exceeded-size="postfileMaxSize"
           >
@@ -112,10 +113,40 @@ export default {
     this.getEditDetail(parseInt(this.$route.params.id))
   },
   methods: {
+    $imgAdd(pos, $file){
+      let formdata = new FormData();
+      formdata.append('img', $file);
+      let $vm = this.$refs.myMavonEditor
+      this.$http.post('/saveUploadImg' , formdata).then(
+        response => {
+          // 请求成功
+          // 修改MD内容中的路径 ./0 为 ./相对路径
+          $vm.$img2Url(pos, response.data.url)
+          // 修改在上传图片处显示的 ./0 为 ./相对路径
+          for (var i = $vm.$refs.toolbar_left.img_file.length - 1; i >= 0; i--) {
+            $vm.$refs.toolbar_left.img_file[i][0] = response.data.url
+          }
+        },
+        response => {
+          // 请求失败
+          this.$Message.error(this.$store.state.responseErrorMsg)
+        }
+      )
+    },
     postfileRemove (file) {
-      // 从 upload 实例删除数据
-      // const fileList = this.$refs.upload.fileList;
-      // this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+      let payload = {
+        file: typeof(file.id) !=='undefined' ? file : file.response
+      }
+      this.$http.post('/deletefile', payload).then(
+        response => {
+          // 请求成功
+          this.$Message.success(response.data.msg)
+        },
+        response => {
+          // 请求失败
+          this.$Message.error(this.$store.state.responseErrorMsg)
+        }
+      )
     },
     postfileSuccess (res, file) {
       // 因为上传过程为实例，这里模拟添加 url
@@ -131,7 +162,7 @@ export default {
     postfileMaxSize (file) {
       this.$Notice.warning({
         title: '超出文件大小限制',
-        desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+        desc: '文件 ' + file.name + ' 太大，不能超过 5M。'
       });
     },
     onEditorReady(editor) {

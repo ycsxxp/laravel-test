@@ -19,7 +19,7 @@ class CreateAttachfilesTable extends Migration
             // 附件文件名
             $table->string('f_name');
             // 附件存储路径
-            $table->string('f_path');
+            $table->string('f_path')->unique();
             // 附件上传用户
             $table->integer('user_id');
             // 附件上传用户名

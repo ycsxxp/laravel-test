@@ -53,7 +53,6 @@ class AttachfileController extends Controller
     public function downloadAttachFile(Request $request) {
         $loginUser = Auth::user();
         $file_id = intval($request->id);
-        // $file = Attachfile::where([ ['id', $file_id], ['user_id', $loginUser->id] ])->first(['f_name', 'f_path']);
         $file = Attachfile::where([ ['id', $file_id] ])->first(['f_name', 'f_path']);
         $download_path = Storage::disk('public')->getAdapter()->getPathPrefix().$file->f_path;
         $download_name = $file->f_name;

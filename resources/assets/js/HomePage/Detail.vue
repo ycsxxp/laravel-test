@@ -44,7 +44,7 @@
           <h2>{{articleDetail.title}}</h2>
         </div>
         <div class="title_span">
-          <span style="margin-right:10px;">{{articleDetail.username}}</span>最后编辑于 {{articleDetail.updated_at}}
+          <span style="margin-right:10px;">{{articleDetail.updated_user}}</span>最后编辑于 {{articleDetail.updated_at}}
         </div>
         <div class="attachfile_list" v-show="attachfiles.length > 0">
           <label>包含附件</label>

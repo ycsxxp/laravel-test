@@ -10,7 +10,7 @@ class Article extends Model {
     protected $table = 'articles';
 
     protected $fillable = [
-        'title', 'content', 'attachfiles_id', 'visit_count', 'like_count', 'hot', 'category_id', 'user_id',
+        'title', 'content', 'attachfiles_id', 'visit_count', 'like_count', 'hot', 'category_id', 'user_id'
     ];
 
     /**
@@ -19,7 +19,7 @@ class Article extends Model {
      * @var array
      */
     protected $casts = [
-        'attachfiles_id' => 'array',
+        'attachfiles_id' => 'array'
     ];
     
     /**

@@ -21,51 +21,79 @@
 <template>
   <Row class="content">
     <Form ref="articleDetail" :model="articleDetail" label-position="top" :rules="articleValidate">
-      <FormItem label="标题" prop="title">
-        <Input v-model="articleDetail.title" size="large"></Input>
-      </FormItem>
-      <FormItem label="分类" prop="category_id">
-        <Select v-model="articleDetail.category_id" >
-          <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
-          </Option>
-        </Select>
-      </FormItem>
-      <FormItem class="editor_container" label="正文" prop="content">
-        <!-- <quill-editor v-model="articleDetail.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
-        <div style="height: 580px;">
-          <mavon-editor ref="myMavonEditor" v-model='articleDetail.content' style="height: 100%" 
-            :ishljs="true"
-            code_style="code-hybrid"
-            @imgAdd="$imgAdd"
-          ></mavon-editor>
-        </div>
-      </FormItem>
-      <FormItem>
-        <a @click="addAttachToggle">{{ addAttach ? '收起':'附件' }}</a>
-      </FormItem>
-      <FormItem prop="attach" v-show="addAttach">
-        <Upload
-          ref="upload"
-          multiple
-          type="drag"
-          action="/postfile"
-          :default-file-list="defaultList"
-          :on-success="postfileSuccess"
-          :on-remove="postfileRemove"
-          :format="['txt', 'doc', 'docx', 'xlsx']"
-          :max-size="5120"
-          :on-format-error="postfileFormatError"
-          :on-exceeded-size="postfileMaxSize"
-          >
-          <div style="padding: 20px 0">
-            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-            <p>点击或将文件拖拽到这里上传</p>
+      <Row>
+        <Col span="10">
+          <FormItem label="标题" prop="title" style="width:95%">
+            <Input v-model="articleDetail.title" size="large"></Input>
+          </FormItem>
+        </Col>
+        <Col span="8">
+          <FormItem label="分类" prop="category_id" style="width:95%">
+            <Select v-model="articleDetail.category_id" >
+              <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
+              </Option>
+            </Select>
+          </FormItem>
+        </Col>
+        <Col span="6">
+          <FormItem label="共同编辑人" prop="" style="width:100%">
+            <Select
+              v-model="shareUserId"
+              v-bind:disabled="!shareSelectShow"
+              multiple
+              filterable
+              placeholder="可选择"
+            >
+              <Option v-for="(item,index) in userList" :value="item.id" :key="index">{{ item.name }}
+              </Option>
+            </Select>
+          </FormItem>
+        </Col>
+      </Row>
+      <Row>
+        <FormItem class="editor_container" label="正文" prop="content">
+          <!-- <quill-editor v-model="articleDetail.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
+          <div style="height: 580px;">
+            <mavon-editor ref="myMavonEditor" v-model='articleDetail.content' style="height: 100%" 
+              :ishljs="true"
+              code_style="code-hybrid"
+              @imgAdd="$imgAdd"
+            ></mavon-editor>
           </div>
-        </Upload>
-      </FormItem>
-      <FormItem class="submitBtn">
-        <Button type="info" @click="handleSubmit()">发布</Button>
-      </FormItem>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem>
+          <a @click="addAttachToggle">{{ addAttach ? '收起':'附件' }}</a>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem prop="attach" v-show="addAttach">
+          <Upload
+            ref="upload"
+            multiple
+            type="drag"
+            action="/postfile"
+            :default-file-list="defaultList"
+            :on-success="postfileSuccess"
+            :on-remove="postfileRemove"
+            :format="['txt', 'doc', 'docx', 'xlsx']"
+            :max-size="5120"
+            :on-format-error="postfileFormatError"
+            :on-exceeded-size="postfileMaxSize"
+            >
+            <div style="padding: 20px 0">
+              <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+              <p>点击或将文件拖拽到这里上传</p>
+            </div>
+          </Upload>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem class="submitBtn">
+          <Button type="info" @click="handleSubmit()">发布</Button>
+        </FormItem>
+      </Row>
     </Form>
   </Row>
 </template>
@@ -82,6 +110,9 @@ export default {
       articleDetail: {},
       attachfiles: [],
       categoryList: {},
+      shareSelectShow: true,
+      shareUserId: [],
+      userList: {},
       editorOption: {
 
       },
@@ -110,6 +141,7 @@ export default {
   },
   mounted () {
     this.getCatoryForSelect()
+    this.getUserList()
     this.getEditDetail(parseInt(this.$route.params.id))
   },
   methods: {
@@ -186,6 +218,21 @@ export default {
         }
       )
     },
+    getUserList() {
+      let payload = {
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.get('/getUserList', payload).then(
+        response => {
+          // 请求成功
+          this.userList = response.data
+        },
+        response => {
+          // 请求失败
+          this.$Message.error(this.$store.state.responseErrorMsg)
+        }
+      )
+    },
     getEditDetail(articleId) {
       let payload = {
         params: {
@@ -196,8 +243,11 @@ export default {
         response => {
           // 请求成功
           this.articleDetail = response.data.articleDetail
+          this.shareSelectShow = this.articleDetail.user_id === this.$store.state.loginUserInfo.id
           this.addAttach = this.articleDetail.attachfiles_id.length == 0 ? false : true
           this.defaultList = response.data.attachfiles
+          // 共同编辑人
+          this.shareUserId = response.data.shareUserId
         },
         response => {
           // 请求失败
@@ -208,8 +258,10 @@ export default {
     handleSubmit() {
       this.$http.post( '/updateDetail', this.articleDetail ).then(
         response => {
-          this.$Message.success('添加成功!')
-          this.$router.push({ path: '/homepage' })
+          if (response.data.msg == "success") {
+            this.$Message.success('编辑成功!')
+            this.$router.push({ path: '/homepage' })
+          }
         },
         response => {
           this.$Message.error(this.$store.state.responseErrorMsg)
@@ -217,19 +269,5 @@ export default {
       )
     }
   }
-  // let payload = {
-  //       // 文章id
-  //       id: params.row.id,
-  //       // 用户id
-  //       user_id: params.row.user_id
-  //     }
-  //     this.$http.post('/editArticleDetail', payload).then(
-  //       response => {
-          
-  //       },
-  //       response => {
-
-  //       }
-  //     )
 }
 </script>

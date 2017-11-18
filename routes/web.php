@@ -27,7 +27,8 @@ Route::middleware('auth')->post('/updateuser', 'UserController@updateuser');
 Route::middleware('auth')->post('/deleteuser', 'UserController@deleteuser');
 // 修改密码
 Route::middleware('auth')->post('/modifypass', 'UserController@modifypass');
-
+// 获取所有普通用户列表
+Route::middleware('auth')->get('/getUserList', 'UserController@getUserList');
 /**
     分类模块
 **/

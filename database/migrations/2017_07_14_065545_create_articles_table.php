@@ -34,6 +34,8 @@ class CreateArticlesTable extends Migration
             // 注意: 当创建一个参照递增整数类型的外键的时候，记得把外键字段的类型定义为无符号。
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users'); // 作者 id
+            // 最后更新的用户名
+            $table->string('updated_user');
             // Adds created_at and updated_at columns
             $table->timestamps();
         });

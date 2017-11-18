@@ -56,5 +56,14 @@ class UserController extends Controller {
             return response()->json(['status' => 400, 'msg' => 'password error']);
         }
     }
+
+    // 获取所有普通用户
+    public function getUserList(Request $request) {
+        $loginUser = Auth::user();
+        $user_id = $loginUser->id;
+
+        $user_list = User::select('id', 'name', 'account')->where([ ['id', '!=', $user_id], ['role', '!=', 0] ])->orderBy('name', 'asc')->get()->toJson();
+        return $user_list;
+    }
 }
 ?>

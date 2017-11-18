@@ -23,52 +23,78 @@
 </style>
 <template>
   <Row class="content">
-    <Form ref="articleInfo" :model="articleInfo" label-position="top" :rules="articleValidate">
-      <FormItem label="标题" prop="title">
-        <Input v-model="articleInfo.title" size="large" placeholder="文章标题"></Input>
-      </FormItem>
-      <FormItem label="分类" prop="category_id">
-        <Select v-model="articleInfo.category_id" >
-          <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
-          </Option>
-        </Select>
-      </FormItem>
-      <FormItem class="editor_container" label="正文" prop="content">
-        <!-- <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
-        <div style="height: 580px;">
-          <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" 
-            :ishljs="true"
-            code_style="code-hybrid"
-            @imgAdd="$imgAdd"
-          ></mavon-editor>
-        </div>
-
-      </FormItem>
-      <FormItem>
-        <a @click="addAttachToggle">{{ addAttach ? '收起':'附件' }}</a>
-      </FormItem>
-      <FormItem prop="attach" v-show="addAttach">
-        <Upload
-          ref="upload"
-          multiple 
-          type="drag" 
-          action="/postfile" 
-          :on-success="postfileSuccess"
-          :on-remove="postfileRemove"
-          :format="['txt', 'doc', 'docx', 'xlsx']"
-          :max-size="5120"
-          :on-format-error="postfileFormatError"
-          :on-exceeded-size="postfileMaxSize"
-          >
-          <div style="padding: 20px 0">
-            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-            <p>点击或将文件拖拽到这里上传</p>
+    <Form ref="articleInfo" :model="articleInfo" label-position="top" :rules="articleValidate" inline>
+      <Row>
+        <Col span="10">
+          <FormItem label="标题" prop="title" style="width:90%">
+            <Input v-model="articleInfo.title" size="large" placeholder="文章标题"></Input>
+          </FormItem>
+        </Col>
+        <Col span="8">
+          <FormItem label="分类" prop="category_id" style="width:90%">
+            <Select v-model="articleInfo.category_id" >
+              <Option v-for="(item,index) in categoryList" :value="item.id" :key="index" :class="'option-'+item.c_level">{{ item.c_title }}
+              </Option>
+            </Select>
+          </FormItem>
+        </Col>
+        <Col span="6">
+          <FormItem label="共同编辑人" prop="share_user_id" style="width:90%">
+            <Select
+              multiple
+              filterable
+              v-model="articleInfo.share_user_id"
+              placeholder="可选择"
+            >
+              <Option v-for="(item,index) in userList" :value="item.id" :key="index">{{ item.name }}
+              </Option>
+            </Select>
+          </FormItem>
+        </Col>
+      </Row>
+      <Row>
+        <FormItem class="editor_container" label="正文" prop="content">
+          <!-- <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
+          <div style="height: 580px;">
+            <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" 
+              :ishljs="true"
+              code_style="code-hybrid"
+              @imgAdd="$imgAdd"
+            ></mavon-editor>
           </div>
-        </Upload>
-      </FormItem>
-      <FormItem class="submitBtn">
-        <Button type="info" @click="handleSubmit()">发布</Button>
-      </FormItem>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem>
+          <a @click="addAttachToggle">{{ addAttach ? '收起':'附件' }}</a>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem prop="attach" v-show="addAttach" style="width:100%">
+          <Upload
+            ref="upload"
+            multiple 
+            type="drag" 
+            action="/postfile" 
+            :on-success="postfileSuccess"
+            :on-remove="postfileRemove"
+            :format="['txt', 'doc', 'docx', 'xlsx', 'pdf']"
+            :max-size="10240"
+            :on-format-error="postfileFormatError"
+            :on-exceeded-size="postfileMaxSize"
+            >
+            <div style="padding: 20px 0">
+              <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+              <p>点击或将文件拖拽到这里上传</p>
+            </div>
+          </Upload>
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem class="submitBtn">
+          <Button type="info" @click="handleSubmit()">发布</Button>
+        </FormItem>
+      </Row>
     </Form>
   </Row>
 </template>
@@ -84,11 +110,13 @@ export default {
       articleInfo: {
         title: '',
         category_id: '',
+        share_user_id: [],
         content: '',
         user_id: this.$store.state.loginUserInfo.id,
         attachfiles_id: []
       },
       categoryList: {},
+      userList: {},
       editorOption: {
 
       },
@@ -118,6 +146,7 @@ export default {
   },
   mounted () {
     this.getCatoryForSelect()
+    this.getUserList()
   },
   methods: {
     $imgAdd(pos, $file){
@@ -166,7 +195,7 @@ export default {
     postfileFormatError (file) {
       this.$Notice.warning({
         title: '文件格式不正确',
-        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx,xlsx 格式的文件。'
+        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx,xlsx,pdf 格式的文件。'
       });
     },
     postfileMaxSize (file) {
@@ -186,6 +215,21 @@ export default {
         response => {
           // 请求成功
           this.categoryList = response.data
+        },
+        response => {
+          // 请求失败
+          this.$Message.error(this.$store.state.responseErrorMsg)
+        }
+      )
+    },
+    getUserList() {
+      let payload = {
+        _token: window.Laravel.csrfToken
+      }
+      this.$http.get('/getUserList', payload).then(
+        response => {
+          // 请求成功
+          this.userList = response.data
         },
         response => {
           // 请求失败

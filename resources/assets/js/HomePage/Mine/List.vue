@@ -64,55 +64,55 @@ export default {
             key: 'username'
           },
           {
+            title: '共同编辑',
+            key: 'share'
+          },
+          {
             title: '操作',
             key: 'action',
             render: (createElement, params) => {
-              return createElement(
-                'div',
-                [
-                  createElement('Button',
-                    {
-                      props: {
-                        type: 'primary',
-                        size: 'small'
-                      },
-                      style: {
-                        marginRight: '5px'
-                      },
+              if (params.row.user_id === this.$store.state.loginUserInfo.id) {
+                return createElement('div',
+                  [
+                    createElement('Button', {
+                      props: { type: 'primary',size: 'small'},
+                      style: { marginRight: '5px' },
                       on: {
                         click: () => {
                           this.edit(params)
                         }
                       }
-                    }, 
-                    '编辑'
-                  ),
-                  createElement('Poptip',
-                    {
-                      props: {
-                        confirm: true,
-                        title: "确认删除这条内容吗?",
-                      },
+                    }, '编辑'),
+                    createElement('Poptip', {
+                      props: { confirm: true, title: "确认删除这条内容吗?" },
                       on: {
                         'on-ok': () => {
                           this.delete(params)
                         }
+                      }},
+                      [
+                        createElement('Button', {
+                          props: { type: 'error', size: 'small' }
+                        }, '删除')
+                      ]
+                    )
+                  ]
+                ) 
+              } else {
+                return createElement('div',
+                  [
+                    createElement('Button', {
+                      props: { type: 'primary',size: 'small'},
+                      style: { marginRight: '5px' },
+                      on: {
+                        click: () => {
+                          this.edit(params)
+                        }
                       }
-                    },
-                    [
-                      createElement('Button', 
-                        {
-                          props: {
-                            type: 'error',
-                            size: 'small'
-                          }
-                        }, 
-                        '删除'
-                      )
-                    ]
-                  )
-                ]
-              )
+                    }, '编辑')
+                  ]
+                )
+              }
             }
           }
       ],

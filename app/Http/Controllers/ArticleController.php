@@ -46,8 +46,8 @@ class ArticleController extends Controller {
             // 'like_count' => $request->like_count,
             // 'hot' => $request->hot,
             'category_id' => intval($request->category_id),
-            'updated_user' => $loginUser->name,
-            'user_id' => intval($request->user_id)
+            'user_id' => intval($request->user_id),
+            'updated_user' => $loginUser->name
         ]);
         $article_id = $result->id;
         $share_user_id = $request->share_user_id;
@@ -75,10 +75,32 @@ class ArticleController extends Controller {
             // 'content' => $request->htmlcontent,
             'attachfiles_id' => json_encode($request->attachfiles_id),
             'category_id' => intval($request->category_id),
-            'updated_user' => $loginUser->name,
+            'updated_user' => $loginUser->name
         ]);
         if ($result) {
-            return response()->json(['status' => 200, 'msg' => 'success']);
+
+            $article_id = intval($request->id);
+            $share_user_id = $request->share_user_id;
+            array_push($share_user_id, $loginUser->id);
+
+            // 获取当前数据库中的共同编辑用户
+            $current_share_user_id = DB::table('article_user')->where('article_id', $article_id)->pluck('user_id')->toArray();
+            // dd(, array_diff($share_user_id, $current_share_user_id));
+            // 删除被去除的用户
+            $delete_user_id = array_diff($current_share_user_id, $share_user_id);
+            DB::table('article_user')->where('article_id', $article_id)->whereIn('user_id', $delete_user_id)->delete();
+
+            // 添加新增的用户
+            $insert_arr = array();
+            $add_user_id = array_diff($share_user_id, $current_share_user_id);
+            foreach ($add_user_id as $value) {
+                array_push($insert_arr, array('article_id'=>$article_id, 'user_id'=>$value));
+            }
+            if (DB::table('article_user')->insert($insert_arr)) {
+                return response()->json(['status' => 200, 'msg' => 'success']);
+            } else {
+                return response()->json(['status' => 402, 'msg' => 'error']);
+            }
         }
     }
 

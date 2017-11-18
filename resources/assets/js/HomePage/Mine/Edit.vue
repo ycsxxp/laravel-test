@@ -256,6 +256,7 @@ export default {
       )
     },
     handleSubmit() {
+      this.articleDetail.share_user_id = this.shareUserId
       this.$http.post( '/updateDetail', this.articleDetail ).then(
         response => {
           if (response.data.msg == "success") {

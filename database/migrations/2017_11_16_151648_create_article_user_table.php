@@ -21,6 +21,8 @@ class CreateArticleUserTable extends Migration
             // 外键
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users'); // 作者 id
+            // 联合唯一
+            $table->unique(['article_id', 'user_id']);
         });
     }
 

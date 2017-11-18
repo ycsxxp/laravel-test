@@ -232,9 +232,9 @@ class ArticleController extends Controller {
             }
         }elseif( $loginUser->role == 1 ) {
             $user_id = $loginUser->id;
-            $deletedRows = Article::where([ ['id', $article_id], ['user_id', $user_id] ])->delete();
+            $deletedRows = DB::table('article_user')->where('article_id', $article_id)->delete();
             if($deletedRows) {
-                $deletedRows = DB::table('article_user')->where('article_id', $article_id)->delete();
+                $deletedRows = Article::where([ ['id', $article_id], ['user_id', $user_id] ])->delete();
                 if ($deletedRows) {
                     return $this->getArticleByUser($request);
                 }

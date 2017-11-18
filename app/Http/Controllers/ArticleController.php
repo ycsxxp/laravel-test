@@ -46,6 +46,7 @@ class ArticleController extends Controller {
             // 'like_count' => $request->like_count,
             // 'hot' => $request->hot,
             'category_id' => intval($request->category_id),
+            'updated_user' => $loginUser->name,
             'user_id' => intval($request->user_id)
         ]);
         $article_id = $result->id;

@@ -77,7 +77,7 @@
             :default-file-list="defaultList"
             :on-success="postfileSuccess"
             :on-remove="postfileRemove"
-            :format="['txt', 'doc', 'docx', 'xlsx']"
+            :format="['txt', 'doc', 'docx', 'xlsx', 'rar', 'zip', '7z']"
             :max-size="5120"
             :on-format-error="postfileFormatError"
             :on-exceeded-size="postfileMaxSize"
@@ -188,7 +188,7 @@ export default {
     postfileFormatError (file) {
       this.$Notice.warning({
         title: '文件格式不正确',
-        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx,xlsx 格式的文件。'
+        desc: '文件 ' + file.name + ' 格式不正确，请上传 txt,doc,docx,xlsx,rar,zip,7z 格式的文件。'
       });
     },
     postfileMaxSize (file) {

@@ -78,7 +78,7 @@
             :on-success="postfileSuccess"
             :on-remove="postfileRemove"
             :format="['txt', 'doc', 'docx', 'xlsx', 'rar', 'zip', '7z']"
-            :max-size="5120"
+            :max-size="10240"
             :on-format-error="postfileFormatError"
             :on-exceeded-size="postfileMaxSize"
             >

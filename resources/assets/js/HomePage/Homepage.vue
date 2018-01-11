@@ -24,11 +24,17 @@
       </div>
     </Col>
     <Col class="content-right">
-      <catalog></catalog>
+      <Row>
+        <hero></hero>
+      </Row>
+      <Row>
+        <catalog></catalog>
+      </Row>
     </Col>
   </Row>
 </template>
 <script>
+import Hero from './Hero.vue'
 import Catalog from './Catalog.vue'
 
 export default {
@@ -47,7 +53,8 @@ export default {
     }
   },
   components: {
-    Catalog
+    Catalog,
+    Hero
   },
   created () {
     this.getArticle()

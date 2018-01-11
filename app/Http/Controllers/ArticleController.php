@@ -211,6 +211,15 @@ class ArticleController extends Controller {
         $orderList = array('order_by_visit' => $order_by_visit , 'order_by_like' => $order_by_like);
         return $orderList;
     }
+    // 获取根据文章发布数量排序的用户列表
+    public function getHeroList() {
+        $article_total_raw = DB::raw('count(*) as total');
+        $list = Article::with('username')->select('user_id', $article_total_raw)->groupBy('user_id')->orderBy('total', 'desc')->limit(50)->get()->toArray();
+        foreach ($list as $key => $value) {
+            $list[$key]['username'] = $value['username']['name'];
+        }
+        return response()->json($list);
+    }
 
     public function visitCountUp($id) {
         $article = Article::find($id);

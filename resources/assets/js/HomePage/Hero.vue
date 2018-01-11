@@ -1,12 +1,12 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
-@for $i from 0 through 10 {
-  .list-item-#{$i} .hero-name, .list-item-#{$i} .article-count { 
-    // color: rgba(random(255), random(255), random(255), 1 ) ; 
-    background: -webkit-linear-gradient(left, rgb(random(255), random(255), random(255)) , #fe5d4b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
+// @for $i from 0 through 10 {
+//   .list-item-#{$i} .hero-name, .list-item-#{$i} .article-count { 
+//     // color: rgba(Math.ceil(Math.random()*255), random(255), random(255), 1 ) ; 
+//     // background: -webkit-linear-gradient(left, rgb(random(255), random(255), random(255)) , #fe5d4b);
+//     // -webkit-background-clip: text;
+//     // -webkit-text-fill-color: transparent;
+//   }
+// }
 </style>
 <template>
   <Row>
@@ -14,9 +14,10 @@
       <h2>英雄榜</h2>
     </Row>
     <Row class="hero-list">
-      <Row class="list-item" :class="'list-item-'+index" v-for="(item,index) in heroList" :key="index" :style="{fontSize: 1.2 + 0.2 * Math.max(1, 5 - index ) + 'em'}">
-        <Col span="8" class="hero-name">{{ item.username }}</Col>
-        <Col span="16" class="article-count">{{ item.total }} Kill</Col>
+      <Row class="list-item" :class="'list-item-'+index" v-for="(item,index) in heroList" :key="index" :style="{fontSize: 1.5 + 0.2 * Math.max(1, 5 - index ) + 'em'}">
+        <Col span="24" class="hero-name" :style="{background: '-webkit-linear-gradient(top, rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+') , rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+'))', '-webkit-background-clip': 'text','-webkit-text-fill-color': 'transparent'}">{{ item.username }} - {{ item.total }} Kill</Col>
+        <!-- rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+') -->
+        <!-- <Col span="16" class="article-count"></Col> -->
       </Row>
     </Row>
   </Row>

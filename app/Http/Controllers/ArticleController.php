@@ -186,7 +186,7 @@ class ArticleController extends Controller {
 
     public function getByCategory(Request $request) {
         $category_id = intval($request->id);
-        return Article::where('category_id', $category_id)->get()->toJson();
+        return Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->get()->toJson();
     }
 
     // 获取详细信息

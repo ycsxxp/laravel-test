@@ -64,6 +64,9 @@ Route::middleware('auth')->get('/downloadfile', 'AttachfileController@downloadAt
 
 Route::middleware('auth')->post('/visitCountUp', 'ArticleController@visitCountUp');
 
+// 搜索文章
+Route::middleware('auth')->post('/searchArticle', 'ArticleController@searchArticle');
+
 // 获取用户发布的文章数量的列表
 Route::middleware('auth')->get('/getHeroList', 'ArticleController@getHeroList');
 

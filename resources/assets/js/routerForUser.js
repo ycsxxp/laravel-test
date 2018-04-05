@@ -36,6 +36,11 @@ export default {
 				meta: { role: 1 },
 			},
 			{
+				path: '/search/:keyword',
+				component: resolve => require(['./HomePage/Search.vue'], resolve),
+				meta: { role: 1 },
+			},
+			{
 				path: '/other',
 				component: resolve => require(['./components/Test.vue'], resolve),
 				meta: { role: 1 },

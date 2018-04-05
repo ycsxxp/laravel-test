@@ -254,8 +254,24 @@ class ArticleController extends Controller {
         }
     }
 
+    // 搜索文章
+    public function searchArticle(Request $request) {
+        $keyword = $request->input('searchKeyword');
+
+        // 每页条数
+        $size = intval($request->size);
+        // 页数
+        $page = intval($request->page);
+
+        $articles = Article::with('username')->where('title', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
+
+        $total = Article::where('title', 'like', '%'.$keyword.'%')->count();
+        $result = array('articles' => $articles, 'total' => $total );
+        return $result;
+    }
+
     // 判断当前用户是否拥有文章权限
-    public function articleAuth($article_id) {
+    private function articleAuth($article_id) {
         $loginUser = Auth::user();
         $count = DB::table('article_user')->where([ ['article_id', $article_id], ['user_id', $loginUser->id] ])->count();
         if ($count <= 0) {
@@ -265,5 +281,7 @@ class ArticleController extends Controller {
             return true;
         }
     }
+
+    
 }
 ?>

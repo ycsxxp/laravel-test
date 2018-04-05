@@ -17,7 +17,11 @@ export default new Vuex.Store({
 		},
 		pageConfig: {
 			currentPage: 1,
-			pageSize: 5	
+			pageSize: 5
+		},
+		searchPageConfig: {
+			currentPage: 1,
+			pageSize: 5
 		}
 	},
 	mutations: {
@@ -75,6 +79,10 @@ export default new Vuex.Store({
 		setPageConfig(state, payload) {
 			state.pageConfig.currentPage = payload.page
 			state.pageConfig.pageSize = payload.size
+		},
+		setSearchPageConfig(state, payload) {
+			state.searchPageConfig.currentPage = payload.page
+			state.searchPageConfig.pageSize = payload.size
 		}
 	},
 	getters: {

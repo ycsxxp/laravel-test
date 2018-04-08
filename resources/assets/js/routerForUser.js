@@ -41,6 +41,11 @@ export default {
 				meta: { role: 1 },
 			},
 			{
+				path: '/hero-articles/:user_id',
+				component: resolve => require(['./HomePage/HeroArticles.vue'], resolve),
+				meta: { role: 1 },
+			},
+			{
 				path: '/other',
 				component: resolve => require(['./components/Test.vue'], resolve),
 				meta: { role: 1 },

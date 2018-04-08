@@ -16,6 +16,7 @@
         <div class="infoDiv">
           <Button class="readmore" type="info"  @click="showDetail(article.id)">详细</Button>
           <span class="visit_span"><Icon type="ios-eye" color=""></Icon> 访问量 {{article.visit_count}}</span>
+          <span class="username_span"><Icon type="person" color=""></Icon> {{article.username}}</span>
           <span class="time_span"><Icon type="ios-clock"></Icon> {{article.created_at}}</span>
         </div>
       </section>

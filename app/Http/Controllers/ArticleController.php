@@ -156,7 +156,6 @@ class ArticleController extends Controller {
             $page = intval($request->page);
 
             // 获取当前用户是否有共享编辑的文档
-            $article_id = array();
             $user_info = array();
             $articleIdArr = DB::table('article_user')->where('user_id', $loginUser->id)->orderBy('article_id')->pluck('article_id')->toArray();
             // dd(DB::getQueryLog());
@@ -182,6 +181,21 @@ class ArticleController extends Controller {
         }else {
             return response()->json(['status'=>400 , 'msg'=>'权限错误']);
         }
+    }
+
+    // 根据不同用户获取文章列表
+    public function getArticlesByHero(Request $request) {
+        $user_id = $request->input('user_id');
+
+        $articles = Article::with('username')->where('user_id', $user_id)->orderBy('created_at', 'desc')->get()->toArray();
+        $articles = array_map(
+                        function($item) { 
+                            $item['username'] = $item['username']['name'];
+                            return $item;
+                        }, 
+                        $articles
+                    );
+        return $articles;
     }
 
     public function getByCategory(Request $request) {
@@ -263,8 +277,14 @@ class ArticleController extends Controller {
         // 页数
         $page = intval($request->page);
 
-        $articles = Article::with('username')->where('title', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get();
-
+        $articles = Article::with('username')->where('title', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+        $articles = array_map(
+                        function($item) { 
+                            $item['username'] = $item['username']['name'];
+                            return $item;
+                        }, 
+                        $articles
+                    );
         $total = Article::where('title', 'like', '%'.$keyword.'%')->count();
         $result = array('articles' => $articles, 'total' => $total );
         return $result;

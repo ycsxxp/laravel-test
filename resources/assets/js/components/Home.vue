@@ -218,7 +218,6 @@ export default {
       this.$router.push({ path: '/'+e });
     },
     doSearch() {
-      console.log(123)
       this.$router.push({ path: '/search/'+ this.searchKeyword });
     },
     userTodo(name) {

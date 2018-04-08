@@ -15,7 +15,7 @@
     </Row>
     <Row class="hero-list">
       <Row class="list-item" :class="'list-item-'+index" v-for="(item,index) in heroList" :key="index" :style="{fontSize: 1.5 + 0.2 * Math.max(1, 5 - index ) + 'em'}">
-        <Col span="24" class="hero-name" :style="{background: '-webkit-linear-gradient(top, rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+') , rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+'))', '-webkit-background-clip': 'text','-webkit-text-fill-color': 'transparent'}">{{ item.username }} - {{ item.total }} Kill</Col>
+        <Col span="24" class="hero-name" :style="{background: '-webkit-linear-gradient(top, rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+') , rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+'))', '-webkit-background-clip': 'text','-webkit-text-fill-color': 'transparent'}"><a v-on:click="showArticlesByHero(item)">{{ item.username }} - {{ item.total }} Kill</a></Col>
         <!-- rgb('+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+', '+Math.ceil(Math.random()*255)+') -->
         <!-- <Col span="16" class="article-count"></Col> -->
       </Row>
@@ -51,6 +51,9 @@ export default {
         }
       )
     },
+    showArticlesByHero(item) {
+      this.$router.push({ path: '/hero-articles/'+ item.user_id });
+    }
   }
 }
 </script>

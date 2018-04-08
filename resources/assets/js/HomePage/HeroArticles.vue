@@ -28,9 +28,6 @@
           <span class="time_span"><Icon type="ios-clock"></Icon> {{article.created_at}}</span>
         </div>
       </section>
-      <div class="pagination">
-        <Page :total="paginationInit.total" placement="top" size="small" show-elevator show-sizer :current="paginationInit.page" :page-size="paginationInit.size" :page-size-opts="paginationInit.sizeOpt" @on-change="changePage" @on-page-size-change="setPageSize"></Page>
-      </div>
     </Col>
   </Row>
 </template>
@@ -39,55 +36,27 @@
 export default {
   data () {
     return {
-      articleInfo: {},
-      // articleDetail: {},
-      paginationInit: {
-        total: 1,
-        page: this.$store.state.searchPageConfig.currentPage,
-        size: this.$store.state.searchPageConfig.pageSize,
-        sizeOpt: [5, 10, 15, 20]
-      }
+      articleInfo: {}
     }
   },
   mounted() {
-    this.getSearchResult(this.$route.params.keyword)
+    this.getArticlesByHero(this.$route.params.user_id)
   },
   watch: {
     // 监测路由变化
     $route() {
-      this.getSearchResult(this.$route.params.keyword)
+      this.getArticlesByHero(this.$route.params.user_id)
     }
   },
   methods: {
-    changePage (page) {
+    getArticlesByHero(user_id) {
       let payload = {
-        page: page,
-        size: this.paginationInit.size
-      }
-      this.$store.commit('setSearchPageConfig', payload)
-      this.paginationInit.page = page
-      this.getSearchResult(this.$route.params.keyword)
-    },
-    setPageSize (size) {
-      let payload = {
-        page: this.paginationInit.page,
-        size: size
-      }
-      this.$store.commit('setSearchPageConfig', payload)
-      this.paginationInit.size = size
-      this.getSearchResult(this.$route.params.keyword)
-    },
-    getSearchResult(searchKeyword) {
-      let payload = {
-        size: this.paginationInit.size,
-        page: this.paginationInit.page,
-        searchKeyword: searchKeyword,
+        user_id: user_id,
         _token: window.Laravel.csrfToken
       }
-      this.$http.post('/searchArticle', payload).then(
+      this.$http.post('/getArticlesByHero', payload).then(
         response => {
-          this.articleInfo = response.data.articles
-          this.paginationInit.total = response.data.total
+          this.articleInfo = response.data
         },
         response => {
           // 请求失败

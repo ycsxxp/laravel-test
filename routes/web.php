@@ -44,6 +44,9 @@ Route::middleware('auth')->post('/getArticle', 'ArticleController@getArticle');
 // 根据登录用户获取文章列表
 Route::middleware('auth')->post('/getArticleByUser', 'ArticleController@getArticleByUser');
 
+// 根据不同用户获取文章列表
+Route::middleware('auth')->post('/getArticlesByHero', 'ArticleController@getArticlesByHero');
+
 Route::middleware('auth')->post('/getArticleDetail', 'ArticleController@getArticleDetail');
 Route::middleware('auth')->post('/deleteArticle', 'ArticleController@delete');
 Route::middleware('auth')->post('/getArticleByCategory', 'ArticleController@getByCategory');

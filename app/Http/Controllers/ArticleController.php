@@ -200,7 +200,15 @@ class ArticleController extends Controller {
 
     public function getByCategory(Request $request) {
         $category_id = intval($request->id);
-        return Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->get()->toJson();
+        $articles = Article::with('username')->where('category_id', $category_id)->orderBy('created_at', 'desc')->get()->toArray();
+        $articles = array_map(
+                        function($item) { 
+                            $item['username'] = $item['username']['name'];
+                            return $item;
+                        }, 
+                        $articles
+                    );
+        return $articles;
     }
 
     // 获取详细信息

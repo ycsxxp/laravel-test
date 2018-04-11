@@ -122,6 +122,7 @@
     <div class="wrapper-container">
       <router-view v-model="isSerach"></router-view>
     </div>
+    <BackTop></BackTop>
   </div>
 </template>
 <script>

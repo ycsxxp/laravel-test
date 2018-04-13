@@ -1,10 +1,14 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 .content {
   width: 100%;
-  padding: 40px 80px 20px 80px;
+  padding: 20px 80px 20px 80px;
   .editor_container {
     // height: 580px;
+    width: 100%;
   }
+}
+:global(.ivu-form) {
+  width: 100%;
 }
 :global(.ivu-input .ivu-input-large) {
   border: none;
@@ -22,7 +26,7 @@
 }
 </style>
 <template>
-  <Row class="content">
+  <Row class="content" type="flex">
     <Form ref="articleInfo" :model="articleInfo" label-position="top" :rules="articleValidate" inline>
       <Row>
         <Col span="10">
@@ -55,7 +59,7 @@
       <Row>
         <FormItem class="editor_container" label="正文" prop="content">
           <!-- <quill-editor v-model="articleInfo.content" class="quilleditor" ref="myQuillEditor" :option="editorOption" @ready="onEditorReady($event)"></quill-editor> -->
-          <div style="height: 580px;">
+          <div style="height: 580px;width:100%;">
             <mavon-editor ref="myMavonEditor" v-model='articleInfo.content' style="height: 100%" 
               :ishljs="true"
               code_style="code-hybrid"

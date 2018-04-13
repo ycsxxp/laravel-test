@@ -42,7 +42,7 @@
 
   .wrapper-container {
     background: #fff;
-    margin: 30px 60px;
+    margin: 15px;
     border-radius: 6px;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
   }

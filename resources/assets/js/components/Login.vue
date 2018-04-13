@@ -1,38 +1,55 @@
 <style scoped>
-  .formDiv {
-    margin: 0 auto;
-    text-align: center;
+  .login {
     width: 100%;
-    top: 30%;
-    position: absolute;
+    height: 100%;
+    background-size: cover;
+    background-position-x: 40%;
   }
-  .loginForm {
-    width: 300px;
-    float: right;
-    margin-right: 150px;
+  .formDiv {
+    width: 320px;
+    margin: 0 auto;
+    top: 20%;
+    right: 6%;
+    position: absolute;
+    background-color: #fff;
+  }
+  .content {
+    padding-top: 10px;
   }
   .loginBtn {
     width: 100%;
   }
 </style>
 <template>
-  <div class="formDiv">
-    <Form class="loginForm" ref="formInline" :model="formInline" :rules="ruleInline" >
-      <Form-item prop="user">
-        <Input type="text" v-model="formInline.user" placeholder="请输入用户名">
-            <Icon type="ios-person-outline" slot="prepend"></Icon>
-        </Input>
-      </Form-item>
-      <Form-item prop="password">
-        <Input type="password" v-model="formInline.password" placeholder="请输入密码">
-            <Icon type="ios-locked-outline" slot="prepend"></Icon>
-        </Input>
-      </Form-item>
-      <Form-item>
-        <Button class="loginBtn" type="primary" @click="handleSubmit('formInline')">登录</Button>
-      </Form-item>
-    </Form>
+  <div class="login" :style="backgroundImg">
+    <div class="formDiv" @keydown.enter="handleSubmit('formInline')">
+      <Card :bordered="false">
+        <p slot="title">
+          <Icon type="log-in"></Icon>
+          欢迎登陆Wiki
+        </p>
+        <div class="content">
+          <Form ref="formInline" :model="formInline" :rules="ruleInline" >
+            <Form-item prop="user">
+              <Input type="text" v-model="formInline.user" placeholder="请输入用户名">
+                <Icon type="person" slot="prepend" style="font-size:16px;"></Icon>
+              </Input>
+            </Form-item>
+            <Form-item prop="password">
+              <Input type="password" v-model="formInline.password" placeholder="请输入密码">
+                <Icon type="locked" slot="prepend" style="font-size:16px;"></Icon>
+              </Input>
+            </Form-item>
+            <Form-item>
+              <Button class="loginBtn" type="primary" @click="handleSubmit('formInline')">登录</Button>
+            </Form-item>
+          </Form>
+        </div>
+        
+      </Card>
+    </div>
   </div>
+  
 </template>
 <script>
 export default {
@@ -51,6 +68,9 @@ export default {
           { required: true, message: '请填写密码', trigger: 'blur' },
           { type: 'string', min: 5, message: '密码长度不能小于5位', trigger: 'blur' }
         ]
+      },
+      backgroundImg: {
+        backgroundImage: 'url("'+window.location.origin+'/images/login_bg.jpg")'
       }
     }
   },

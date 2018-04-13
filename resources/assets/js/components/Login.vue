@@ -16,6 +16,9 @@
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
   }
+  .ivu-card-head p, .ivu-card-head-inner {
+    color: #fff;
+  }
   .content {
     padding-top: 10px;
   }

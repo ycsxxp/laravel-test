@@ -11,7 +11,9 @@
     top: 20%;
     right: 6%;
     position: absolute;
-    background-color: #fff;
+  }
+  .ivu-card {
+    background: rgba(255, 255, 255, 0.2);
   }
   .content {
     padding-top: 10px;

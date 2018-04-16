@@ -113,7 +113,7 @@
           </div>
         </div>
         <div class="layout-copy">
-          2011-2016 &copy; TalkingData
+          2011-2016 &copy; NF - Wiki
         </div>
       </i-col>
     </Row>

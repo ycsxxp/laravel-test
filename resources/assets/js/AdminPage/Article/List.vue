@@ -5,6 +5,9 @@
 .control-bar {
   text-align: right;
 }
+.pagination {
+  margin-top: 20px;
+}
 </style>
 <template>
   <div class="container">
@@ -19,6 +22,9 @@
     <Row>
       <Table border stripe :columns="articleColumns" :data="articleList"></Table>
     </Row>
+    <Row class="pagination">
+      <Page :total="paginationInit.total" placement="top" size="small" show-elevator show-sizer :current="paginationInit.page" :page-size="paginationInit.size" :page-size-opts="paginationInit.sizeOpt" @on-change="changePage" @on-page-size-change="setPageSize"></Page>
+    </Row>
   </div>
 </template>
 <script>
@@ -26,98 +32,121 @@ export default {
   data () {
     return {
       value2: '',
+      paginationInit: {
+        total: 1,
+        page: 1,
+        size: 10,
+        sizeOpt: [10, 20, 50, 100]
+      },
       articleColumns: [
-          {
-            type: 'selection',
-            width: 60,
-            align: 'center'
-          },
-          {
-            title: '文章标题',
-            key: 'title'
-          },
-          {
-            title: '摘要',
-            key: 'title'
-          },
-          {
-            title: '发布人',
-            key: 'username'
-          },
-          {
-            title: '操作',
-            key: 'action',
-            render: (createElement, params) => {
-              return createElement(
-                'div',
-                [
-                  // createElement(
-                  //   'Button',
-                  //   {
-                  //     props: {
-                  //       type: 'primary',
-                  //       size: 'small'
-                  //     },
-                  //     style: {
-                  //       marginRight: '5px'
-                  //     },
-                  //     on: {
-                  //       click: () => {
-                  //         this.editCategory(params)
-                  //       }
-                  //     }
-                  //   },
-                  //   '编辑'
-                  // ),
-                  createElement('Poptip', 
-                    {
-                      props: {
-                        confirm: true,
-                        title: "确认删除这条内容吗?",
-                      },
-                      on: {
-                        'on-ok': () => {
-                          this.delete(params)
-                        }
-                      }
+        {
+          type: 'selection',
+          width: 60,
+          align: 'center'
+        },
+        {
+          title: '文章标题',
+          key: 'title'
+        },
+        {
+          title: '摘要',
+          key: 'title'
+        },
+        {
+          title: '发布人',
+          key: 'username'
+        },
+        {
+          title: '操作',
+          key: 'action',
+          render: (createElement, params) => {
+            return createElement(
+              'div',
+              [
+                // createElement(
+                //   'Button',
+                //   {
+                //     props: {
+                //       type: 'primary',
+                //       size: 'small'
+                //     },
+                //     style: {
+                //       marginRight: '5px'
+                //     },
+                //     on: {
+                //       click: () => {
+                //         this.editCategory(params)
+                //       }
+                //     }
+                //   },
+                //   '编辑'
+                // ),
+                createElement('Poptip', 
+                  {
+                    props: {
+                      confirm: true,
+                      title: "确认删除这条内容吗?",
                     },
-                    [
-                      createElement('Button', {
-                        props: {
-                          type: 'error',
-                          size: 'small'
-                        }
-                      }, '删除')
-                    ]
-                  )
-                ]
-              )
-            }
+                    on: {
+                      'on-ok': () => {
+                        this.delete(params)
+                      }
+                    }
+                  },
+                  [
+                    createElement('Button', {
+                      props: {
+                        type: 'error',
+                        size: 'small'
+                      }
+                    }, '删除')
+                  ]
+                )
+              ]
+            )
           }
+        }
       ],
       articleList: []
     }
   },
   mounted() {
-    this.get()
+    this.getArticle()
   },
   methods: {
-    get() {
+    getArticle() {
       let payload = {
-        size: 10,
-        page: 1,
+        size: this.paginationInit.size,
+        page: this.paginationInit.page,
         _token: window.Laravel.csrfToken
       }
       this.$http.post('/getArticle', payload).then(
         response => {
           // 请求成功
           this.articleList = response.data.articles
+          this.paginationInit.total = response.data.total
         },
         response => {
           // 请求失败
           this.$Message.error(this.$store.state.responseErrorMsg)
         }
       )
+    },
+    changePage (page) {
+      let payload = {
+        page: page,
+        size: this.paginationInit.size
+      }
+      this.paginationInit.page = page
+      this.getArticle()
+    },
+    setPageSize (size) {
+      let payload = {
+        page: this.paginationInit.page,
+        size: size
+      }
+      this.paginationInit.size = size
+      this.getArticle()
     },
     delete(params) {
       let payload = {

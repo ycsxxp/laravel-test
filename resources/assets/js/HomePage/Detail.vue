@@ -32,10 +32,20 @@
   :global(.ivu-upload-list-file) {
     float: left;
   }
+  // 表格样式设置
+  :global(.markdown-body table) {
+    font-size: 12px;
+  }
+  :global(.markdown-body table td) {
+    padding: 8px 12px;
+  }
+  :global(.markdown-body table th) {
+    padding: 8px 12px;
+  }
 </style>
 <template>
   <Row class="content">
-    <Col class="content_left">
+    <Col>
       <div class="backBtn">
         <Button type="success" @click="back">返回</Button>
       </div>
@@ -62,19 +72,15 @@
             :subfield="false"
             :toolbarsFlag="false"
             :ishljs="true"
-            code_style="code-hybrid"
-            default_open="preview"
+            codeStyle="code-hybrid"
+            defaultOpen="preview"
           ></mavon-editor>
         </div>
       </section>
     </Col>
-    <Col class="content-right">
-      <catalog></catalog>  
-    </Col>
   </Row>
 </template>
 <script>
-import Catalog from './Catalog.vue'
 
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -89,7 +95,6 @@ export default {
     }
   },
   components: {
-    Catalog,
     mavonEditor
   },
   // 对传进来的 recent, hot 参数监听 父组件修改后 同步修改到子组件

@@ -57,6 +57,10 @@
     line-height: 36px;
   }
 
+  // 回到顶部的按钮层次最高
+  :global(.ivu-back-top) {
+    z-index: 10000;
+  }
 </style>
 <template>
   <div class="wrapper">

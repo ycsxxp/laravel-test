@@ -2,7 +2,7 @@
 .content {
   width: 100%;
   height: 100%;
-  padding: 40px 50px 40px 50px;
+  padding: 30px 30px 30px 30px;
 }
 .rowHeader {
   margin-bottom: 20px; 
@@ -43,6 +43,12 @@ export default {
     return {
       value2: '',
       deviceColumns: [
+        {
+          title: '序号',
+          width: 50,
+          key: 'id',
+          align: 'center'
+        },
         {
           title: '资产编号',
           // width: 150,

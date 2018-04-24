@@ -34,7 +34,17 @@ export default {
 				path: '/user/:type',
 				component: resolve => require(['./AdminPage/User/Form.vue'], resolve),
 				meta: { role: 0 },
-			}
+			},
+			{
+				path: '/device',
+				component: resolve => require(['./AdminPage/Device/List.vue'], resolve),
+				meta: { role: 0 },
+			},
+			{
+				path: '/device/:type',
+				component: resolve => require(['./AdminPage/Device/Form.vue'], resolve),
+				meta: { role: 0 },
+			},
 		]
 	}
 }

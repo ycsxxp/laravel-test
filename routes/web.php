@@ -73,6 +73,15 @@ Route::middleware('auth')->post('/searchArticle', 'ArticleController@searchArtic
 // 获取用户发布的文章数量的列表
 Route::middleware('auth')->get('/getHeroList', 'ArticleController@getHeroList');
 
+
+/**
+    设备管理模块
+**/
+Route::middleware('auth')->get('/getDeviceList', 'DeviceController@getDeviceList');
+Route::middleware('auth')->post('/addDevice', 'DeviceController@addDevice');
+Route::middleware('auth')->post('/updateDevice', 'DeviceController@updateDevice');
+Route::middleware('auth')->post('/deleteDevice', 'DeviceController@deleteDevice');
+
 // Route::get('/index', function () {
 //     return view('welcome');
 // });

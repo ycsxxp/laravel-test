@@ -19,7 +19,7 @@
   .ivu-card-head p, .ivu-card-head-inner {
     color: #fff;
   }
-  .content {
+  .container {
     padding-top: 10px;
   }
   .loginBtn {
@@ -34,7 +34,7 @@
           <Icon type="log-in"></Icon>
           欢迎登陆Wiki
         </p>
-        <div class="content">
+        <div class="container">
           <Form ref="formInline" :model="formInline" :rules="ruleInline" >
             <Form-item prop="user">
               <Input type="text" v-model="formInline.user" placeholder="请输入用户名">

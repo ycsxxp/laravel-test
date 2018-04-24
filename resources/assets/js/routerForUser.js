@@ -46,6 +46,11 @@ export default {
 				meta: { role: 1 },
 			},
 			{
+				path: '/device-list',
+				component: resolve => require(['./HomePage/Device.vue'], resolve),
+				meta: { role: 1 },
+			},			
+			{
 				path: '/other',
 				component: resolve => require(['./components/Test.vue'], resolve),
 				meta: { role: 1 },

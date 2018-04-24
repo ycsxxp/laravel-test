@@ -69,7 +69,7 @@
   }
 </style>
 <template>
-  <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
+  <div class="layout" :class="{'layout-hide-text': spanLeft < 3}">
     <Row type="flex" class-name="rowDiv" justify="center">
       <i-col :span="spanLeft" class="layout-menu-left">
         <div class="layout-logo-left"></div>
@@ -124,8 +124,8 @@ export default {
   data () {
     return {
       breadCrumb: [],
-      spanLeft: 4,
-      spanRight: 20,
+      spanLeft: 3,
+      spanRight: 21,
       menuArr: [
         {
           id: '1',
@@ -167,6 +167,19 @@ export default {
               title: '活跃用户'
             }
           ]
+        },
+        {
+          id: '3',
+          name: '3',
+          title: '设备管理',
+          icon: 'monitor',
+          child: [
+            {
+              id: '1',
+              name: 'device',
+              title: '设备列表'
+            }
+          ]
         }
       ]
     }
@@ -179,17 +192,17 @@ export default {
   },
   computed: {
     iconSize () {
-      return this.spanLeft === 4 ? 14 : 24;
+      return this.spanLeft === 3 ? 14 : 24;
     }
   },
   methods: {
     toggleClick () {
-      if (this.spanLeft === 4) {
+      if (this.spanLeft === 3) {
         this.spanLeft = 2;
         this.spanRight = 22;
       } else {
-        this.spanLeft = 4;
-        this.spanRight = 20;
+        this.spanLeft = 3;
+        this.spanRight = 21;
       }
     },
     userTodo(name) {

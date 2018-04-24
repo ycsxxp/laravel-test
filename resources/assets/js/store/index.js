@@ -13,7 +13,8 @@ export default new Vuex.Store({
 		breadCrumb: [],
 		data: {
 			userFormData: [],
-			categoryFormData: []
+			categoryFormData: [],
+			deviceFormData: []
 		},
 		pageConfig: {
 			currentPage: 1,

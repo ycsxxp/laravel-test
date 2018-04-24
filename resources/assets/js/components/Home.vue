@@ -35,7 +35,7 @@
         margin-left: 100px;
       }
       .wrapper-header-nav-user{
-        margin-left: 100px;
+        margin-left: 50px;
       }
     }
   }
@@ -85,6 +85,9 @@
             </Menu-item>
             <Menu-item name="mine">
               我的
+            </Menu-item>
+            <Menu-item name="device-list">
+              NF设备列表
             </Menu-item>
           </div>
           <div class="wrapper-header-nav-user">
@@ -208,8 +211,6 @@ export default {
               this.$Message.error(this.$store.state.responseErrorMsg)
             }
           )
-          
-
         } else {
           this.$Message.error('表单验证失败!');
         }

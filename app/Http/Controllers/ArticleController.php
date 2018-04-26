@@ -133,7 +133,7 @@ class ArticleController extends Controller {
         $page = intval($request->page);
 
         // DB::enableQueryLog();
-        $articles = Article::with('username')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+        $articles = Article::with('username')->orderBy('updated_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
         $articles = array_map(
                         function($item) { 
                             $item['username'] = $item['username']['name'];
@@ -165,7 +165,7 @@ class ArticleController extends Controller {
                 $user_info[$articleId] = array_map('get_object_vars', $result);
             }
             // DB::enableQueryLog();
-            $articles = Article::with('username')->where('user_id', $loginUser->id)->orWhereIn('id', $articleIdArr)->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+            $articles = Article::with('username')->where('user_id', $loginUser->id)->orWhereIn('id', $articleIdArr)->orderBy('updated_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
             // dd(DB::getQueryLog());
             foreach ($articles as $key => $value) {
                 $articles[$key]['username'] = $value['username']['name'];
@@ -187,7 +187,7 @@ class ArticleController extends Controller {
     public function getArticlesByHero(Request $request) {
         $user_id = $request->input('user_id');
 
-        $articles = Article::with('username')->where('user_id', $user_id)->orderBy('created_at', 'desc')->get()->toArray();
+        $articles = Article::with('username')->where('user_id', $user_id)->orderBy('updated_at', 'desc')->get()->toArray();
         $articles = array_map(
                         function($item) { 
                             $item['username'] = $item['username']['name'];
@@ -200,7 +200,7 @@ class ArticleController extends Controller {
 
     public function getByCategory(Request $request) {
         $category_id = intval($request->id);
-        $articles = Article::with('username')->where('category_id', $category_id)->orderBy('created_at', 'desc')->get()->toArray();
+        $articles = Article::with('username')->where('category_id', $category_id)->orderBy('updated_at', 'desc')->get()->toArray();
         $articles = array_map(
                         function($item) { 
                             $item['username'] = $item['username']['name'];
@@ -285,7 +285,7 @@ class ArticleController extends Controller {
         // 页数
         $page = intval($request->page);
 
-        $articles = Article::with('username')->where('title', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
+        $articles = Article::with('username')->where('title', 'like', '%'.$keyword.'%')->orderBy('updated_at', 'desc')->offset( ($page-1)*$size )->limit($size)->get()->toArray();
         $articles = array_map(
                         function($item) { 
                             $item['username'] = $item['username']['name'];
